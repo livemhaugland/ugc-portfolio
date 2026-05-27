@@ -151,10 +151,9 @@ export default function App() {
           <div>
             <p className="text-xs uppercase tracking-[0.18em]">Navigation</p>
             <div className="mt-8 grid gap-3 text-sm uppercase">
-              <a href="#top">Home</a>
+              <a href="#home">Home</a>
               <a href="#about">About</a>
-              <a href="#photos">Photos</a>
-              <a href="#work">Portfolio</a>
+              <a href="#portfolio">Portfolio</a>
               <a href="#contact">Contact</a>
             </div>
           </div>
