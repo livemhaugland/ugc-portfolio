@@ -105,7 +105,7 @@ export default function App() {
 
 
 
-        <section id="work" className="px-8 py-8 md:px-14">
+        <section id="portfolio" className="px-8 py-8 md:px-14">
           <p className="mb-16 text-center text-xs uppercase tracking-[0.22em]">
           </p>
 
