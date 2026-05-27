@@ -39,7 +39,7 @@ export default function App() {
         </nav>
       </header>
 
-              <section className="min-h-[55vh] bg-[#f7f6f4] px-6 pt-36 pb-16 text-center">
+              <section className="min-h-[55vh] bg-[#f7f6f4] px-6 pt-36 pb-16 text-center flex flex-col items-center">
           <p className="text-[34px] leading-tight uppercase tracking-[0.04em] md:text-[56px]">
             Oslo-Based UGC Creator
           </p>
@@ -104,7 +104,7 @@ export default function App() {
 
 
 
-        <section id="portfolio" className="px-8 py-8 md:px-14">
+        <section id="portfolio" className="px-8 py-4 md:px-14">
           <p className="mb-16 text-center text-xs uppercase tracking-[0.22em]">
           </p>
 
