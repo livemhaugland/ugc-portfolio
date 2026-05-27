@@ -51,13 +51,12 @@ export default function App() {
             <br />
 
 
-          <div className="grid grid-cols-4 gap-3 px-6 md:gap-8 md:px-12">
+          <div className="mt-14 grid grid-cols-4 gap-5">
             {photos.map((photo, index) => (
               <img
                 key={index}
                 src={photo}
-                alt={`Photo ${index + 1}`}
-                className="h-[150px] w-full object-cover md:h-[520px]"
+                className="h-[300px] w-full object-cover md:h-[520px]"
               />
             ))}
           </div>
