@@ -32,9 +32,8 @@ export default function App() {
         </a>
 
         <nav className="hidden items-center gap-10 text-xs uppercase tracking-[0.16em] md:flex">
-          <a href="#top" className="border-b border-black pb-1">Home</a>
+          <a href="#photos">Home</a>
           <a href="#about">About</a>
-          <a href="#photos">Photos</a>
           <a href="#work">Portfolio</a>
           <a href="mailto:livehau@gmail.com">Contact</a>
         </nav>
