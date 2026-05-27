@@ -63,7 +63,7 @@ export default function App() {
         </section>
 
       <main id="top">
-        <section className="flex items-center justify-center bg-[#f7f6f4] px-8 py-18 text-center md:px-14 min-h-[35vh]">
+        <section className="flex items-center justify-center bg-[#f7f6f4] px-8 py-8 text-center md:px-14 min-h-[35vh]">
           <div className="flex flex-col justify-center bg-[#f7f6f4] px-10 py-12 md:px-24">
             <h1 className="text-[34px] font-normal uppercase leading-[1.05] tracking-[0.02em] md:text-[56px]">
               Authentic Content.<br />
@@ -78,7 +78,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="about" className="px-8 py-20 md:px-14">
+        <section id="about" className="px-8 py-8 md:px-14">
           <div className="mx-auto grid max-w-[1200px] items-center gap-16 md:grid-cols-[320px_1fr]">
             <div className="overflow-hidden">
               <img src={about} alt="About" className="aspect-[4/5] w-full object-cover" />
