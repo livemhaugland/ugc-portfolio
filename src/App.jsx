@@ -39,7 +39,7 @@ export default function App() {
         </nav>
       </header>
 
-              <section id="photos" className="px-8 py-20 md:px-14">
+              <section id="home" className="px-8 py-20 md:px-14">
           <p className="text-lg text-center font-normal uppercase leading-[1.1] tracking-[0.03em] md:text-[36px]">
             Oslo-Based UGC Creator
           </p>
@@ -73,7 +73,7 @@ export default function App() {
 
   
 
-            <a href="#work" className="mt-8 inline-block border-b border-black pb-1 text-xs uppercase tracking-[0.16em]">
+            <a href="#portfolio" className="mt-8 inline-block border-b border-black pb-1 text-xs uppercase tracking-[0.16em]">
               View work
             </a>
           </div>
