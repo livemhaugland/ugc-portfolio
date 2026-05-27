@@ -40,10 +40,10 @@ export default function App() {
       </header>
 
               <section className="flex min-h-[55vh] items-center justify-center bg-[#f7f6f4] px-6 pt-36 pb-16 text-center md:min-h-[65vh] md:px-14 md:pt-28">
-          <p cclassName="mx-auto mt-8 max-w-[620px] text-[19px] leading-8 text-black/60 md:text-base md:leading-8">
+          <p className="text-[34px] leading-tight uppercase tracking-[0.04em] md:text-[56px]">
             Oslo-Based UGC Creator
           </p>
-                    <p className="mx-auto mt-10 max-w-[900px] text-center leading-6 text-black/65">
+              <p className="max-w-[340px] text-[18px] leading-[1.7] text-black/60 md:max-w-[900px] md:text-[24px]">
               I'm a 23-year-old creator from Norway, currently living between Oslo and Barcelona. 
               <br />
               My work sits at the intersection of beauty, fashion, lifestyle, and travel — industries I follow closely and genuinely love.
@@ -51,13 +51,13 @@ export default function App() {
             <br />
 
 
-          <div className="grid grid-cols-4 gap-3 px-6 md:gap-8 md:px-14">
+          <div className="grid grid-cols-4 gap-3 px-6 md:gap-8 md:px-12">
             {photos.map((photo, index) => (
               <img
                 key={index}
                 src={photo}
                 alt={`Photo ${index + 1}`}
-                className="h-[150px] w-full object-cover md:h-[560px]"
+                className="h-[150px] w-full object-cover md:h-[520px]"
               />
             ))}
           </div>
