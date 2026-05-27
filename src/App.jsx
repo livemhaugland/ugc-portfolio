@@ -39,7 +39,7 @@ export default function App() {
         </nav>
       </header>
 
-              <section className="flex min-h-[55vh] items-center justify-center bg-[#f7f6f4] px-6 pt-36 pb-16 text-center md:min-h-[65vh] md:px-14 md:pt-28">
+              <section className="min-h-[55vh] bg-[#f7f6f4] px-6 pt-36 pb-16 text-center">
           <p className="text-[34px] leading-tight uppercase tracking-[0.04em] md:text-[56px]">
             Oslo-Based UGC Creator
           </p>
@@ -51,12 +51,12 @@ export default function App() {
             <br />
 
 
-          <div className="mt-14 grid grid-cols-4 gap-5">
+          <div className="mt-14 grid grid-cols-4 gap-3 md:gap-5">
             {photos.map((photo, index) => (
               <img
                 key={index}
                 src={photo}
-                className="h-[300px] w-full object-cover md:h-[520px]"
+                className="h-[180px] w-full object-cover md:h-[520px]"
               />
             ))}
           </div>
