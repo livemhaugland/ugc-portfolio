@@ -33,8 +33,8 @@ export default function App() {
 
         <nav className="flex flex-wrap justify-center gap-5 text-[11px] uppercase tracking-[0.18em] md:gap-10 md:text-sm">
           <a href="#home">Home</a>
-          <a href="#about">About</a>
           <a href="#portfolio">Portfolio</a>
+          <a href="#about">About</a>
           <a href="mailto:livehau@gmail.com">Contact</a>
         </nav>
       </header>
@@ -78,29 +78,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="about" className="px-8 py-8 md:px-14">
-          <div className="mx-auto grid max-w-[1200px] items-center gap-16 md:grid-cols-[320px_1fr]">
-            <div className="overflow-hidden">
-              <img src={about} alt="About" className="aspect-[4/5] w-full object-cover" />
-            </div>
 
-            <div className="text-center md:text-left">
-              <p className="text-xs uppercase tracking-[0.16em]">About me</p>
-
-              <p cclassName="mt-8 max-w-[390px] text-base leading-7">
-                Alongside creating, I'm studying Business Administration, which means I think about brand strategy and audience connection as seriously as I think about aesthetics.
-              </p>
-
-              <p className="mt-8 max-w-[390px] text-base leading-7">
-                I love creating content, and believe that I have a good eye for it as well. New ideas and creativity are what drive me, and I always want to push myself to create better.
-              </p>
-
-              <a href="mailto:livehau@gmail.com" className="mt-10 inline-block border-b border-black pb-1 text-xs uppercase tracking-[0.16em]">
-                Get in touch
-              </a>
-            </div>
-          </div>
-        </section>
 
 
 
@@ -138,6 +116,30 @@ export default function App() {
         </section>
       </main>
 
+        <section id="about" className="px-8 py-8 md:px-14">
+          <div className="mx-auto grid max-w-[1200px] items-center gap-16 md:grid-cols-[320px_1fr]">
+            <div className="overflow-hidden">
+              <img src={about} alt="About" className="aspect-[4/5] w-full object-cover" />
+            </div>
+
+            <div className="text-center md:text-left">
+              <p className="text-xs uppercase tracking-[0.16em]">About me</p>
+
+              <p cclassName="mt-8 max-w-[390px] text-base leading-7">
+                Alongside creating, I'm studying Business Administration, which means I think about brand strategy and audience connection as seriously as I think about aesthetics.
+              </p>
+
+              <p className="mt-8 max-w-[390px] text-base leading-7">
+                I love creating content, and believe that I have a good eye for it as well. New ideas and creativity are what drive me, and I always want to push myself to create better.
+              </p>
+
+              <a href="mailto:livehau@gmail.com" className="mt-10 inline-block border-b border-black pb-1 text-xs uppercase tracking-[0.16em]">
+                Get in touch
+              </a>
+            </div>
+          </div>
+        </section>
+        
       <footer id="contact" className="bg-[#f7f7f7] px-8 py-16 md:px-14">
         <div className="mx-auto grid max-w-[1700px] gap-12 md:grid-cols-3">
           <div>
