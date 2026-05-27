@@ -96,7 +96,7 @@ export default function App() {
                 I love creating content, and believe that I have a good eye for it as well. New ideas and creativity are what drive me, and I always want to push myself to create better.
               </p>
 
-              <a href="#contact" className="mt-10 inline-block border-b border-black pb-1 text-xs uppercase tracking-[0.16em]">
+              <a href="mailto:livehau@gmail.com" className="mt-10 inline-block border-b border-black pb-1 text-xs uppercase tracking-[0.16em]">
                 Get in touch
               </a>
             </div>
