@@ -26,12 +26,12 @@ const videoRows = [
 export default function App() {
   return (
     <div className="min-h-screen bg-white text-black" style={{ fontFamily: "Times New Roman, serif" }}>
-      <header className="mx-auto flex max-w-[1700px] items-center justify-between px-8 py-10 md:px-14">
+      <header className="fixed top-0 z-50 flex w-full flex-col items-center gap-5 bg-white px-6 py-6 md:flex-row md:justify-between md:px-14 md:py-8">
         <a href="#top" className="text-sm uppercase tracking-[0.18em]">
           Live Marie Haugland
         </a>
 
-        <nav className="hidden items-center gap-10 text-xs uppercase tracking-[0.16em] md:flex">
+        <nav className="flex flex-wrap justify-center gap-5 text-[11px] uppercase tracking-[0.18em] md:gap-10 md:text-sm">
           <a href="#home">Home</a>
           <a href="#about">About</a>
           <a href="#portfolio">Portfolio</a>
@@ -39,8 +39,8 @@ export default function App() {
         </nav>
       </header>
 
-              <section id="home" className="px-8 py-20 md:px-14">
-          <p className="text-lg text-center font-normal uppercase leading-[1.1] tracking-[0.03em] md:text-[36px]">
+              <section className="flex min-h-[55vh] items-center justify-center bg-[#f7f6f4] px-6 pt-36 pb-16 text-center md:min-h-[65vh] md:px-14 md:pt-28">
+          <p cclassName="mx-auto mt-8 max-w-[620px] text-[19px] leading-8 text-black/60 md:text-base md:leading-8">
             Oslo-Based UGC Creator
           </p>
                     <p className="mx-auto mt-10 max-w-[900px] text-center leading-6 text-black/65">
@@ -51,13 +51,13 @@ export default function App() {
             <br />
 
 
-          <div className="mx-auto grid max-w-[1800px] grid-cols-4 gap-6 mt-6">
+          <div className="grid grid-cols-4 gap-3 px-6 md:gap-8 md:px-14">
             {photos.map((photo, index) => (
               <img
                 key={index}
                 src={photo}
                 alt={`Photo ${index + 1}`}
-                className="aspect-[4/5] w-full object-cover"
+                className="h-[150px] w-full object-cover md:h-[560px]"
               />
             ))}
           </div>
@@ -66,7 +66,7 @@ export default function App() {
       <main id="top">
         <section className="flex items-center justify-center bg-[#f7f6f4] px-8 py-18 text-center md:px-14 min-h-[35vh]">
           <div className="flex flex-col justify-center bg-[#f7f6f4] px-10 py-12 md:px-24">
-            <h1 className="text-lg font-normal uppercase leading-[1.1] tracking-[0.03em] md:text-[36px]">
+            <h1 className="text-[34px] font-normal uppercase leading-[1.05] tracking-[0.02em] md:text-[56px]">
               Authentic Content.<br />
               Real Impact.
             </h1>
