@@ -40,7 +40,7 @@ export default function App() {
       </header>
 
               <section className="min-h-[55vh] bg-[#f7f6f4] px-6 pt-36 pb-16 text-center flex flex-col items-center">
-          <p className="text-[34px] leading-tight uppercase tracking-[0.04em] md:text-[56px]">
+          <p className="text-[25px] leading-tight uppercase tracking-[0.04em] md:text-[56px]">
             Oslo-Based UGC Creator
           </p>
               <p className="mt-8 max-w-[450px] center-text text-base leading-7">
@@ -65,7 +65,7 @@ export default function App() {
       <main id="top">
         <section className="flex items-center justify-center bg-[#f7f6f4] px-8 py-8 text-center md:px-14 min-h-[35vh]">
           <div className="flex flex-col justify-center bg-[#f7f6f4] px-10 py-12 md:px-24">
-            <h1 className="text-[34px] font-normal uppercase leading-[1.05] tracking-[0.02em] md:text-[56px]">
+            <h1 className="text-[25px] font-normal uppercase leading-[1.05] tracking-[0.02em] md:text-[56px]">
               Authentic Content.<br />
               Real Impact.
             </h1>
@@ -116,7 +116,7 @@ export default function App() {
         </section>
       </main>
 
-        <section id="about" className="px-8 py-8 md:px-14">
+        <section id="about" className="px-8 py-12 md:px-14">
           <div className="mx-auto grid max-w-[1200px] items-center gap-16 md:grid-cols-[320px_1fr]">
             <div className="overflow-hidden">
               <img src={about} alt="About" className="aspect-[4/5] w-full object-cover" />
@@ -139,7 +139,7 @@ export default function App() {
             </div>
           </div>
         </section>
-        
+
       <footer id="contact" className="bg-[#f7f7f7] px-8 py-16 md:px-14">
         <div className="mx-auto grid max-w-[1700px] gap-12 md:grid-cols-3">
           <div>
