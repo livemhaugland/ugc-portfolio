@@ -43,7 +43,7 @@ export default function App() {
           <p className="text-[34px] leading-tight uppercase tracking-[0.04em] md:text-[56px]">
             Oslo-Based UGC Creator
           </p>
-              <p className="mt-8 max-w-[390px] center-text text-base leading-7">
+              <p className="mt-8 max-w-[450px] center-text text-base leading-7">
               I'm a 23-year-old creator from Norway, currently living between Oslo and Barcelona. 
               <br />
               My work sits at the intersection of beauty, fashion, lifestyle, and travel — industries I follow closely and genuinely love.
