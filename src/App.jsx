@@ -65,7 +65,7 @@ export default function App() {
       <main id="top">
         <section className="flex items-center justify-center bg-[#f7f6f4] px-8 py-8 text-center md:px-14 min-h-[35vh]">
           <div className="flex flex-col justify-center bg-[#f7f6f4] px-10 py-12 md:px-24">
-            <h1 className="text-[25px] font-normal uppercase leading-[1.05] tracking-[0.02em] md:text-[56px]">
+            <h1 className="text-[32px] md:text-[72px] leading-[1] tracking-[0.01em]" style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic" }}>
               Authentic Content.<br />
               Real Impact.
             </h1>
