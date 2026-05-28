@@ -4,7 +4,7 @@ import photo2 from "./assets/photo2.png";
 import photo3 from "./assets/photo3.png";
 import photo4 from "./assets/photo4.png";
 import about from "./assets/about.png";
-import "@fontsource/cormorant-garamond/600-italic.css";
+import font from "./assets/MonsieurLaDoulaise-Regular.ttf";
 
 
 
