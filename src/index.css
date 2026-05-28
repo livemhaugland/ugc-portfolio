@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Monsieur La Doulaise";
+  src: url("./assets/MonsieurLaDoulaise-Regular.ttf") format("truetype");
+}
+
 @import "tailwindcss";
 /* Horizontal portfolio scrollbar */
 ::-webkit-scrollbar {
