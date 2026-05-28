@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "Monsieur La Doulaise";
-  src: url("./assets/MonsieurLaDoulaise-Regular.ttf") format("truetype");
+  font-family: "Pinyon";
+  src: url("./assets/PinyonScript-Regular.ttf") format("truetype");
 }
 
 @import "tailwindcss";
