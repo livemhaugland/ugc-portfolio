@@ -4,6 +4,8 @@ import photo2 from "./assets/photo2.png";
 import photo3 from "./assets/photo3.png";
 import photo4 from "./assets/photo4.png";
 import about from "./assets/about.png";
+import "@fontsource/cormorant-garamond/600-italic.css";
+
 
 
 const photos = [photo1, photo2, photo3, photo4];
@@ -65,7 +67,7 @@ export default function App() {
       <main id="top">
         <section className="flex items-center justify-center bg-[#f7f6f4] px-8 py-8 text-center md:px-14 min-h-[35vh]">
           <div className="flex flex-col justify-center bg-[#f7f6f4] px-10 py-12 md:px-24">
-            <h1 className="text-[30px] font-light italic leading-[1] tracking-[-0.01em] md:text-[74px]" style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic" }}>
+            <h1 className="text-[25px] italic tracking-[-0.03em] md:text-[92px]" style={{ fontFamily: "Cormorant Garamond" }}>
               Authentic Content.<br />
               Real Impact.
             </h1>
