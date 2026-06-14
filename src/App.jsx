@@ -42,8 +42,8 @@ export default function App() {
       </header>
 
               <section className="min-h-[55vh] bg-[#f7f6f4] px-6 pt-36 pb-16 text-center flex flex-col items-center">
-          <p className="text-[25px] leading-tight uppercase tracking-[0.04em] md:text-[56px]">
-            Oslo-Based UGC Creator
+          <p className="text-[25px] leading-tight tracking-[0.04em] md:text-[56px]">
+            UGC creator
           </p>
               <p className="mt-8 max-w-[450px] center-text text-base leading-7">
               I'm a 23-year-old creator from Norway, currently living between Oslo and Barcelona. 
@@ -67,7 +67,7 @@ export default function App() {
       <main id="top">
         <section className="flex items-center justify-center bg-[#f7f6f4] px-8 py-4 text-center md:px-14 min-h-[35vh]">
           <div className="flex flex-col justify-center bg-[#f7f6f4] px-10 py-12 md:px-24">
-            <h1 className="text-[25px] leading-[1.05] md:text-[90px]" style={{ fontFamily: '"Cormorant Garamond", serif', fontWeight: 300 }}>
+            <h1 className="text-[25px] leading-[1.05] md:text-[40px]" style={{ fontFamily: '"Cormorant Garamond", serif', fontWeight: 300 }}>
               Authentic Content.<br />
               Real Impact.
             </h1>
