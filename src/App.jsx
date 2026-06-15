@@ -67,11 +67,7 @@ export default function App() {
       <main id="top">
         <section className="flex items-center justify-center bg-[#f7f6f4] px-8 py-4 text-center md:px-14 min-h-[35vh]">
           <div className="flex flex-col justify-center bg-[#f7f6f4] px-10 py-12 md:px-24">
-            <h1 className="text-[25px] leading-[1.05] md:text-[40px]" style={{ fontFamily: '"Cormorant Garamond", serif', fontWeight: 300 }}>
-              Authentic Content.<br />
-            </h1>
-
-  
+            
 
             <a href="#portfolio" className="mt-8 inline-block border-b border-black pb-1 text-xs uppercase tracking-[0.16em]">
               View work
