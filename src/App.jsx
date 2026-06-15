@@ -87,9 +87,7 @@ export default function App() {
             Live Marie Haugland<br />
           </h1>
           <p style={{ marginTop: "2rem", fontSize: "14px", lineHeight: 1.9, color: "#555", maxWidth: "420px", marginLeft: "auto", marginRight: "auto" }}>
-            I'm a 23-year-old creator from Norway, currently living between Oslo and Barcelona.
-            My work sits at the intersection of beauty, fashion, lifestyle, and travel —
-            industries I follow closely and genuinely love.
+            Norwegian creator, currently living between Oslo and Barcelona. My content sits at the intersection of beauty, fashion, lifestyle and travel — always authentic, always intentional.
           </p>
           <a href="#portfolio" style={{ display: "inline-block", marginTop: "2.5rem", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", borderBottom: "0.5px solid #111", paddingBottom: "3px" }}>
             View work
