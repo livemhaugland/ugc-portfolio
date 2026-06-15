@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import React from "react";
 import photo1 from "./assets/photo1.png";
 import photo2 from "./assets/photo2.png";
 import photo3 from "./assets/photo3.png";
@@ -14,50 +14,35 @@ const categories = [
 
 const SLOTS = 8;
 
+const vimeoVideos = {
+  beauty: ["", "", "", "", "", "", "", ""],
+  fashion: ["", "", "", "", "", "", "", ""],
+  wellness: ["1201424640", "", "", "", "", "", "", ""],
+  lifestyle: ["", "", "", "", "", "", "", ""],
+};
+
 function VideoRow({ category }) {
   const slots = Array.from({ length: SLOTS }, (_, i) => i);
-  const inputRefs = useRef([]);
-  const slotRefs = useRef([]);
-
-  const handleFileChange = (e, index) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const url = URL.createObjectURL(file);
-    const slot = slotRefs.current[index];
-    slot.innerHTML = "";
-    const video = document.createElement("video");
-    video.src = url;
-    video.controls = true;
-    video.muted = true;
-    video.loop = true;
-    video.style.cssText = "width:100%;height:100%;object-fit:cover;";
-    slot.appendChild(video);
-    slot.onclick = null;
-    slot.style.cursor = "default";
-  };
 
   return (
     <div style={{ display: "flex", gap: "12px", overflowX: "auto", scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch", scrollbarWidth: "none", paddingBottom: "4px" }}>
       {slots.map((i) => (
         <div key={i} style={{ flex: "0 0 calc(25% - 9px)", minWidth: "calc(25% - 9px)", scrollSnapAlign: "start" }}>
-          <div
-            ref={(el) => (slotRefs.current[i] = el)}
-            onClick={() => inputRefs.current[i]?.click()}
-            title="Klikk for å laste opp video"
-            style={{ aspectRatio: "4/5", background: "#e8e5e0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "8px", cursor: "pointer", overflow: "hidden", transition: "background 0.2s" }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "#ddd9d3")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "#e8e5e0")}
-          >
-            <div style={{ width: "32px", height: "32px", border: "0.5px solid #aaa", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", color: "#888", fontSize: "20px", lineHeight: 1 }}>+</div>
-            <span style={{ fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#888" }}>Add video</span>
+          <div style={{ aspectRatio: "4/5", background: "#e8e5e0", overflow: "hidden" }}>
+            {vimeoVideos[category.id][i] ? (
+              <iframe
+                src={`https://player.vimeo.com/video/${vimeoVideos[category.id][i]}`}
+                style={{ width: "100%", height: "100%", border: "none" }}
+                allow="autoplay; fullscreen"
+                allowFullScreen
+              />
+            ) : (
+              <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "8px" }}>
+                <div style={{ width: "32px", height: "32px", border: "0.5px solid #aaa", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", color: "#888", fontSize: "20px", lineHeight: 1 }}>+</div>
+                <span style={{ fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#888" }}>Add video</span>
+              </div>
+            )}
           </div>
-          <input
-            type="file"
-            accept="video/*"
-            style={{ display: "none" }}
-            ref={(el) => (inputRefs.current[i] = el)}
-            onChange={(e) => handleFileChange(e, i)}
-          />
           <p style={{ marginTop: "10px", fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#888" }}>
             {category.title} {i + 1}
           </p>
