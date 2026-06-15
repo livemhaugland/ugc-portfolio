@@ -99,6 +99,10 @@ export default function App() {
             align-items: flex-start !important;
             gap: 4px !important;
           }
+          .video-card {
+            flex: 0 0 calc(50% - 6px) !important;
+            min-width: calc(50% - 6px) !important;
+          }
           .quote-band {
             padding: 3rem 1.25rem !important;
           }
