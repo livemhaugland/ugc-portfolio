@@ -139,7 +139,7 @@ export default function App() {
 
       {/* HERO */}
       <section id="home" className="hero-section" style={{ paddingTop: "80px", background: "#f7f6f4" }}>
-        <div className="hero-inner" style={{ textAlign: "center", padding: "5rem 2rem 3rem" }}>
+        <div className="hero-inner" style={{ textAlign: "center", padding: "5rem 2rem 3rem", maxWidth: "860px", margin: "0 auto" }}>
           <p style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#888", marginBottom: "2rem" }}>
             UGC Content Creator
           </p>
@@ -154,7 +154,7 @@ export default function App() {
           </a>
         </div>
 
-        <div className="photo-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px", padding: "2.5rem 2rem 0" }}>
+        <div className="photo-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px", padding: "2.5rem 2rem 0", maxWidth: "1300px", margin: "0 auto" }}>
           {[photo1, photo2, photo3, photo4].map((photo, i) => (
             <img key={i} src={photo} alt={`Photo ${i + 1}`} style={{ width: "100%", aspectRatio: "4/5", objectFit: "cover", display: "block" }} />
           ))}
