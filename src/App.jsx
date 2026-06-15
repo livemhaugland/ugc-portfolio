@@ -43,9 +43,6 @@ function VideoRow({ category }) {
               </div>
             )}
           </div>
-          <p style={{ marginTop: "10px", fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#888" }}>
-            {category.title} {i + 1}
-          </p>
         </div>
       ))}
     </div>
