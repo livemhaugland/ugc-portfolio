@@ -8,8 +8,8 @@ import about from "./assets/about.png";
 const categories = [
   { id: "beauty", title: "Beauty", desc: "Skin health, routines & soft glam" },
   { id: "fashion", title: "Fashion", desc: "Elevated styling" },
-  { id: "wellness", title: "Wellness", desc: "Mindful living & healthy habits" },
-  { id: "lifestyle", title: "Lifestyle", desc: "Everyday moments, calm & authentic" },
+  { id: "wellness", title: "Wellness", desc: "Mindful living" },
+  { id: "lifestyle", title: "Lifestyle", desc: "Everyday moments" },
 ];
 
 const SLOTS = 8;
