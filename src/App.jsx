@@ -85,6 +85,7 @@ export default function App() {
           .photo-grid {
             padding: 1.5rem 1.25rem 0 !important;
             gap: 6px !important;
+            grid-template-columns: repeat(2, 1fr) !important;
           }
           .video-card {
             flex: 0 0 calc(50% - 6px) !important;
