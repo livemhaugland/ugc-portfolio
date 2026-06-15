@@ -86,6 +86,10 @@ export default function App() {
             padding: 1.5rem 1.25rem 0 !important;
             gap: 6px !important;
           }
+          .video-card {
+            flex: 0 0 calc(50% - 6px) !important;
+            min-width: calc(50% - 6px) !important;
+          }
           .portfolio-section {
             padding: 3rem 1.25rem !important;
           }
