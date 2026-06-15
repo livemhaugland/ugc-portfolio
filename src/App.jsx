@@ -27,15 +27,14 @@ function VideoRow({ category }) {
   return (
     <div style={{ display: "flex", gap: "12px", overflowX: "auto", scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch", scrollbarWidth: "none", paddingBottom: "4px" }}>
       {slots.map((i) => (
-        <div key={i} className="video-card" style={{ scrollSnapAlign: "start" }}>
+        <div key={i} style={{ flex: "0 0 calc(25% - 9px)", minWidth: "calc(25% - 9px)", scrollSnapAlign: "start" }}>
           <div style={{ aspectRatio: "9/16", background: "#f7f6f4", overflow: "hidden" }}>
             {vimeoVideos[category.id][i] ? (
               <iframe
-                src={`https://player.vimeo.com/video/${vimeoVideos[category.id][i]}?badge=0&byline=0&portrait=0&title=0&controls=1&autoplay=0&muted=0&loop=1&playsinline=1`}
+                src={`https://player.vimeo.com/video/${vimeoVideos[category.id][i]}?badge=0&byline=0&portrait=0&title=0&controls=0&autoplay=1&muted=1&loop=1`}
                 style={{ width: "100%", height: "100%", border: "none" }}
-                allow="autoplay; fullscreen; picture-in-picture"
+                allow="autoplay; fullscreen"
                 allowFullScreen
-                playsInline
               />
             ) : (
               <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "8px" }}>
@@ -61,16 +60,15 @@ export default function App() {
         * { box-sizing: border-box; margin: 0; padding: 0; }
         a { color: inherit; text-decoration: none; }
 
-        .video-card {
-          flex: 0 0 calc(25% - 9px);
-          min-width: calc(25% - 9px);
-        }
-
+        /* ── MOBILE ── */
         @media (max-width: 768px) {
           .header-inner {
             flex-direction: column;
             gap: 0.75rem;
             padding: 1rem 1.25rem !important;
+          }
+          .header-logo {
+            font-size: 10px !important;
           }
           .header-nav {
             gap: 1.25rem !important;
@@ -96,10 +94,6 @@ export default function App() {
             align-items: flex-start !important;
             gap: 4px !important;
           }
-          .video-card {
-            flex: 0 0 calc(50% - 6px) !important;
-            min-width: calc(50% - 6px) !important;
-          }
           .quote-band {
             padding: 3rem 1.25rem !important;
           }
@@ -113,13 +107,15 @@ export default function App() {
           .about-img {
             max-width: 260px !important;
           }
-          .footer-grid {
+          .footer-inner {
             grid-template-columns: 1fr !important;
             gap: 2rem !important;
+            padding: 3rem 1.25rem !important;
           }
           .footer-bottom {
             flex-direction: column !important;
             gap: 0.5rem !important;
+            padding: 3rem 1.25rem 0 !important;
           }
         }
       `}</style>
@@ -127,7 +123,7 @@ export default function App() {
       {/* HEADER */}
       <header style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, background: "#fff", borderBottom: "0.5px solid #e8e6e2" }}>
         <div className="header-inner" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "1.5rem 3rem" }}>
-          <a href="#home" style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", whiteSpace: "nowrap" }}>
+          <a href="#home" className="header-logo" style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", whiteSpace: "nowrap" }}>
             UGC content creator
           </a>
           <nav className="header-nav" style={{ display: "flex", gap: "2.5rem" }}>
@@ -214,7 +210,7 @@ export default function App() {
 
       {/* FOOTER */}
       <footer id="contact" style={{ background: "#f7f6f4" }}>
-        <div className="footer-grid" style={{ maxWidth: "1300px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "3rem", padding: "5rem 3rem 0" }}>
+        <div className="footer-inner" style={{ maxWidth: "1300px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "3rem", padding: "5rem 3rem 0" }}>
           <div>
             <p style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#888", marginBottom: "1.5rem" }}>UGC Creator</p>
             <p style={{ fontSize: "13px", lineHeight: 1.8, color: "#555", maxWidth: "240px" }}>Creating content that connects brands with real people.</p>
@@ -236,7 +232,7 @@ export default function App() {
             </div>
           </div>
         </div>
-        <div className="footer-bottom" style={{ maxWidth: "1300px", margin: "3rem auto 0", padding: "2rem 3rem 3rem", borderTop: "0.5px solid #e0ddd8", display: "flex", justifyContent: "space-between" }}>
+        <div className="footer-bottom" style={{ maxWidth: "1300px", margin: "0 auto", padding: "3rem 3rem 3rem", borderTop: "0.5px solid #e0ddd8", marginTop: "3rem", display: "flex", justifyContent: "space-between" }}>
           <p style={{ fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#888" }}>© 2025 Live Marie Haugland</p>
           <p style={{ fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#888" }}>Oslo · Barcelona</p>
         </div>
