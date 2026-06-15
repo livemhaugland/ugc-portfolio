@@ -28,7 +28,7 @@ function VideoRow({ category }) {
     <div style={{ display: "flex", gap: "12px", overflowX: "auto", scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch", scrollbarWidth: "none", paddingBottom: "4px" }}>
       {slots.map((i) => (
         <div key={i} style={{ flex: "0 0 calc(25% - 9px)", minWidth: "calc(25% - 9px)", scrollSnapAlign: "start" }}>
-          <div style={{ aspectRatio: "4/5", background: "#e8e5e0", overflow: "hidden" }}>
+          <div style={{ aspectRatio: "9/16", background: "#f7f6f4", overflow: "hidden" }}>
             {vimeoVideos[category.id][i] ? (
               <iframe
                 src={`https://player.vimeo.com/video/${vimeoVideos[category.id][i]}`}
