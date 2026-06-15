@@ -68,7 +68,7 @@ export default function App() {
       {/* HEADER */}
       <header style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, background: "#fff", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "1.5rem 3rem", borderBottom: "0.5px solid #e8e6e2" }}>
         <a href="#home" style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase" }}>
-          Live Marie Haugland
+          UGC content creator
         </a>
         <nav style={{ display: "flex", gap: "2.5rem" }}>
           {[["#home", "Home"], ["#portfolio", "Portfolio"], ["#about", "About"], ["mailto:livehau@gmail.com", "Contact"]].map(([href, label]) => (
@@ -86,9 +86,8 @@ export default function App() {
           <p style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#888", marginBottom: "2rem" }}>
             UGC Content Creator
           </p>
-          <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(52px, 8vw, 110px)", fontWeight: 300, lineHeight: 1.0, letterSpacing: "0.01em" }}>
-            Authentic Content.<br />
-            <em>Real Impact.</em>
+          <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(32px, 5vw, 72px)", fontWeight: 300, lineHeight: 1.0, letterSpacing: "0.01em" }}>
+            Live Marie Haugland<br />
           </h1>
           <p style={{ marginTop: "2rem", fontSize: "14px", lineHeight: 1.9, color: "#555", maxWidth: "420px", marginLeft: "auto", marginRight: "auto" }}>
             I'm a 23-year-old creator from Norway, currently living between Oslo and Barcelona.
