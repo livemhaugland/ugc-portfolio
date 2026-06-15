@@ -31,7 +31,7 @@ function VideoRow({ category }) {
           <div style={{ aspectRatio: "9/16", background: "#f7f6f4", overflow: "hidden" }}>
             {vimeoVideos[category.id][i] ? (
               <iframe
-                src={`https://player.vimeo.com/video/${vimeoVideos[category.id][i]}`}
+                src={`https://player.vimeo.com/video/${vimeoVideos[category.id][i]}?badge=0&byline=0&portrait=0&title=0&controls=0`}
                 style={{ width: "100%", height: "100%", border: "none" }}
                 allow="autoplay; fullscreen"
                 allowFullScreen
