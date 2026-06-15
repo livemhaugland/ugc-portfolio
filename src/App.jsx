@@ -137,9 +137,9 @@ export default function App() {
               Creating with<br />intention.
             </h2>
             <p style={{ fontSize: "14px", lineHeight: 1.9, color: "#555", maxWidth: "440px", marginBottom: "1.2rem" }}>
-              I'm a content creator based between Oslo and Barcelona, with a genuine passion
+              I'm a creator with a genuine passion
               for beauty, fashion, and lifestyle. I believe great content doesn't just look good —
-              it feels real.
+              it creates a feeling. I love connecting with audiences and telling stories that resonate, whether it's through a single image or a full campaign.
             </p>
             <p style={{ fontSize: "14px", lineHeight: 1.9, color: "#555", maxWidth: "440px", marginBottom: "1.2rem" }}>
               Alongside creating, I'm studying Business Administration, which means I think about
