@@ -4,6 +4,9 @@ import photo2 from "./assets/photo2.png";
 import photo3 from "./assets/photo3.png";
 import photo4 from "./assets/photo4.png";
 import about from "./assets/about.png";
+import wellness1 from "./assets/Wellness1.mp4";
+import fashion2 from "./assets/Fashion2.mp4";
+import kookaiDress from "./assets/Kookai dress.mp4";
 
 const categories = [
   { id: "beauty", title: "Beauty", desc: "Skin health, routines & soft glam" },
@@ -14,10 +17,10 @@ const categories = [
 
 const SLOTS = 8;
 
-const vimeoVideos = {
+const videos = {
   beauty: ["", "", "", "", "", "", "", ""],
-  fashion: ["1201842774", "1202080949", "", "", "", "", "", ""],
-  wellness: ["1201424640", "", "", "", "", "", "", ""],
+  fashion: [kookaiDress, fashion2, "", "", "", "", "", ""],
+  wellness: [wellness1, "", "", "", "", "", "", ""],
   lifestyle: ["", "", "", "", "", "", "", ""],
 };
 
@@ -29,12 +32,14 @@ function VideoRow({ category }) {
       {slots.map((i) => (
         <div key={i} style={{ flex: "0 0 calc(25% - 9px)", minWidth: "calc(25% - 9px)", scrollSnapAlign: "start" }}>
           <div style={{ aspectRatio: "9/16", background: "#f7f6f4", overflow: "hidden" }}>
-            {vimeoVideos[category.id][i] ? (
-              <iframe
-                src={`https://player.vimeo.com/video/${vimeoVideos[category.id][i]}?badge=0&byline=0&portrait=0&title=0&controls=0&autoplay=1&muted=1&loop=1`}
-                style={{ width: "100%", height: "100%", border: "none" }}
-                allow="autoplay; fullscreen"
-                allowFullScreen
+            {videos[category.id][i] ? (
+              <video
+                src={videos[category.id][i]}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                autoPlay
+                muted
+                loop
+                playsInline
               />
             ) : (
               <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "8px" }}>
