@@ -7,10 +7,11 @@ import about from "./assets/about.png";
 import wellness1 from "./assets/Wellness1.mp4";
 import fashion2 from "./assets/Fashion2.mp4";
 import kookaiDress from "./assets/Kookai dress.mp4";
+import beauty1 from "./assets/Beauty1.mp4";
 
 const categories = [
-  { id: "beauty", title: "Beauty", desc: "Skin health, routines & soft glam" },
   { id: "fashion", title: "Fashion", desc: "Elevated styling" },
+  { id: "beauty", title: "Beauty", desc: "Skin health, routines & soft glam" },
   { id: "wellness", title: "Wellness", desc: "Mindful living" },
   { id: "lifestyle", title: "Lifestyle", desc: "Everyday moments" },
 ];
@@ -18,8 +19,8 @@ const categories = [
 const SLOTS = 8;
 
 const videos = {
-  beauty: ["", "", "", "", "", "", "", ""],
   fashion: [kookaiDress, fashion2, "", "", "", "", "", ""],
+  beauty: [beauty1, "", "", "", "", "", "", ""],
   wellness: [wellness1, "", "", "", "", "", "", ""],
   lifestyle: ["", "", "", "", "", "", "", ""],
 };
