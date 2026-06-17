@@ -8,6 +8,7 @@ import wellness1 from "./assets/Wellness1.mp4";
 import fashion2 from "./assets/Fashion2.mp4";
 import kookaiDress from "./assets/Kookai dress.mp4";
 import beauty1 from "./assets/Beauty1.mp4";
+import beauty2 from "./assets/Beauty2.mp4";
 
 const categories = [
   { id: "fashion", title: "Fashion", desc: "Elevated styling" },
@@ -20,7 +21,7 @@ const SLOTS = 8;
 
 const videos = {
   fashion: [kookaiDress, fashion2, "", "", "", "", "", ""],
-  beauty: [beauty1, "", "", "", "", "", "", ""],
+  beauty: [beauty2, beauty1, "", "", "", "", "", ""],
   wellness: [wellness1, "", "", "", "", "", "", ""],
   lifestyle: ["", "", "", "", "", "", "", ""],
 };
