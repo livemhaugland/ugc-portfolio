@@ -23,7 +23,7 @@ const SLOTS = 8;
 
 const videos = {
   fashion: [kookaiDress, fashion2, fashion3, "", "", "", "", ""],
-  beauty: [beauty2, beauty4, "beauty1", "", "", "", "", ""],
+  beauty: [beauty2, beauty4, beauty1, "", "", "", "", ""],
   wellness: [wellness1, "", "", "", "", "", "", ""],
   lifestyle: ["", "", "", "", "", "", "", ""],
 };
