@@ -239,6 +239,17 @@ export default function App() {
             <VideoRow category={cat} />
           </div>
         ))}
+
+       {/* HOTELS & TRAVEL */}
+        <div style={{ maxWidth: "1300px", margin: "0 auto 5rem" }}>
+          <div className="category-head hotels-head" style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: "1.5rem", paddingBottom: "1rem", borderBottom: "0.5px solid #f7f6f4" }}>
+            <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "38px", fontWeight: 300, letterSpacing: "0.02em" }}>Hotels &amp; Travel</h3>
+            <img src={about} alt="Live Marie Haugland" style={{ width: "64px", height: "64px", borderRadius: "50%", objectFit: "cover" }} />
+          </div>
+          {hotels.map((hotel) => (
+            <HotelRow key={hotel.title} hotel={hotel} />
+          ))}
+        </div>
       </section>
 
       {/* QUOTE */}
