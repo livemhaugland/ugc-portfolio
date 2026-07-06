@@ -11,6 +11,13 @@ import beauty1 from "./assets/Beauty1.mp4";
 import beauty2 from "./assets/Beauty2.mp4";
 import fashion3 from "./assets/Fashion3.mp4";
 import beauty4 from "./assets/Beauty4.mp4";
+import hotel11 from "./assets/Hotel11.png";
+import hotel12 from "./assets/Hotel12.png";
+import hotel13 from "./assets/Hotel13.png";
+import hotel14 from "./assets/Hotel14.png";
+import hotel15 from "./assets/Hotel15.png";
+import hotel16 from "./assets/Hotel16.png";
+import hotel17 from "./assets/Hotel17.png";
 
 const categories = [
   { id: "fashion", title: "Fashion", desc: "Elevated styling" },
@@ -20,9 +27,9 @@ const categories = [
 ];
 
 const hotels = [
-  { title: "Hotel 1", photos: ["", "", "", "", "", ""] },
-  { title: "Hotel 2", photos: ["", "", "", "", "", ""] },
-  { title: "Hotel 3", photos: ["", "", "", "", "", ""] },
+  { title: "Hotel 1", photos: [hotel11, hotel12, hotel13, hotel14, hotel15, hotel16] },
+  { title: "Hotel 2", photos: [hotel11, hotel12, hotel13, hotel14, hotel15, hotel16] },
+  { title: "Hotel 3", photos: [hotel11, hotel12, hotel13, hotel14, hotel15, hotel16] },
 ];
 
 const sizePattern = ["large", "small", "medium", "small", "medium", "large"];
@@ -239,7 +246,7 @@ export default function App() {
             <VideoRow category={cat} />
           </div>
         ))}
-
+        
        {/* HOTELS & TRAVEL */}
         <div style={{ maxWidth: "1300px", margin: "0 auto 5rem" }}>
           <div className="category-head hotels-head" style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: "1.5rem", paddingBottom: "1rem", borderBottom: "0.5px solid #f7f6f4" }}>
