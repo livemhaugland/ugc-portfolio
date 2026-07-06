@@ -19,6 +19,19 @@ const categories = [
   { id: "lifestyle", title: "Lifestyle", desc: "Everyday moments" },
 ];
 
+const hotels = [
+  { title: "Hotel 1", photos: ["", "", "", "", "", ""] },
+  { title: "Hotel 2", photos: ["", "", "", "", "", ""] },
+  { title: "Hotel 3", photos: ["", "", "", "", "", ""] },
+];
+
+const sizePattern = ["large", "small", "medium", "small", "medium", "large"];
+const spanMap = {
+  large: { gridColumn: "span 3", gridRow: "span 2" },
+  medium: { gridColumn: "span 2", gridRow: "span 1" },
+  small: { gridColumn: "span 1", gridRow: "span 1" },
+};
+
 const SLOTS = 8;
 
 const videos = {
@@ -54,6 +67,33 @@ function VideoRow({ category }) {
           </div>
         </div>
       ))}
+    </div>
+  );
+}
+
+function HotelRow({ hotel }) {
+  return (
+    <div style={{ marginBottom: "3rem" }}>
+      <h4 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "24px", fontWeight: 300, letterSpacing: "0.01em", marginBottom: "1rem" }}>
+        {hotel.title}
+      </h4>
+      <div className="hotel-grid" style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gridAutoRows: "130px", gap: "10px" }}>
+        {hotel.photos.map((photo, i) => {
+          const size = sizePattern[i % sizePattern.length];
+          return (
+            <div key={i} className="hotel-photo" style={{ ...spanMap[size], overflow: "hidden", background: "#f7f6f4" }}>
+              {photo ? (
+                <img src={photo} alt={hotel.title} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+              ) : (
+                <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "8px" }}>
+                  <div style={{ width: "32px", height: "32px", border: "0.5px solid #aaa", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", color: "#888", fontSize: "20px", lineHeight: 1 }}>+</div>
+                  <span style={{ fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#888" }}>Add photo</span>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
