@@ -378,7 +378,7 @@ export default function App() {
               Creating with<br />intention.
             </h2>
             <p style={{ fontSize: "14px", lineHeight: 1.9, color: "#555", maxWidth: "440px", marginBottom: "1.2rem" }}>
-              I'm a creator with a genuine interest in beauty, fashion, and lifestyle. I believe great content doesn't just look good — it creates a feeling.
+              I'm a creator with a genuine interest in inspiring people and to connect them with brands that resonates with them. I believe great content doesn't just look good — it creates a feeling. If you like my take on creation please get in touch, I would love to hear from you. XX.
             </p>
             <a href="mailto:livehau@gmail.com" style={{ display: "inline-block", marginTop: "1.5rem", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", borderBottom: "0.5px solid #111", paddingBottom: "3px" }}>
               Get in touch
