@@ -29,7 +29,7 @@ import hotel25 from "./assets/Hotel25.png";
 import hotel26 from "./assets/Hotel26.png";
 import hotel27 from "./assets/Hotel27.png";
 import hotel28 from "./assets/Hotel28.png";
-import hotel2 from "./assets/hotel2.mp4";
+import hotel2 from "./assets/Hotel2.mp4";
 
 
 const categories = [
