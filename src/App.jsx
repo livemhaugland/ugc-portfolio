@@ -19,6 +19,8 @@ import hotel14 from "./assets/Hotel14.png";
 import hotel15 from "./assets/Hotel15.png";
 import hotel16 from "./assets/Hotel16.png";
 import hotel17 from "./assets/Hotel17.png";
+import hotel18 from "./assets/Hotel18.png";
+import hotel19 from "./assets/Hotel19.png";
 
 const categories = [
   { id: "fashion", title: "Fashion", desc: "Elevated styling" },
@@ -27,7 +29,7 @@ const categories = [
 ];
 
 const hotels = [
-  { title: "Casona de Las Flores, Ondara, Spain", photos: [hotel11, hotel12, hotel13, hotel14, hotel15, hotel16, hotel17, "", ""] },
+  { title: "Casona de Las Flores, Ondara, Spain", photos: [hotel11, hotel12, hotel13, hotel14, hotel15, hotel16, hotel17, hotel18, hotel19] },
   { title: "Hotel 2", photos: ["", "", "", "", "", "", "", "", ""] },
   { title: "Hotel 3", photos: ["", "", "", "", "", "", "", "", ""] },
 ];
