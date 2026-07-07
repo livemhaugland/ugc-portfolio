@@ -5,7 +5,6 @@ import photo2 from "./assets/photo2.png";
 import photo3 from "./assets/photo3.png";
 import photo4 from "./assets/photo4.png";
 import about from "./assets/about.png";
-import wellness1 from "./assets/Wellness1.mp4";
 import fashion2 from "./assets/Fashion2.mp4";
 import kookaiDress from "./assets/Kookai dress.mp4";
 import beauty1 from "./assets/Beauty1.mp4";
@@ -87,7 +86,7 @@ const SLOTS = 8;
 const videos = {
   fashion: [kookaiDress, fashion2, fashion3, "", "", "", "", ""],
   beauty: [beauty5, beauty4, beauty1, beauty2, "", "", "", ""],
-  wellness: [wellness1, "", "", "", "", "", "", ""],
+  wellness: ["", "", "", "", "", "", "", ""],
 };
 
 function VideoRow({ category }) {
