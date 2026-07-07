@@ -35,8 +35,6 @@ const hotels = [
 // Lim inn URL-ene til innleggene du vil vise (kopiert fra instagram.com)
 const instagramPosts = [
   "https://www.instagram.com/p/DX2Rlisij2f/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-  "https://www.instagram.com/p/C6uXMuHtY_F/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-  "https://www.instagram.com/reel/DZwjXRfKuwb/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
 ];
 
 function InstagramEmbed({ url }) {
@@ -143,6 +141,24 @@ function HotelRow({ hotel }) {
         })}
       </div>
     </div>
+  );
+}
+
+function InstagramIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <rect x="2" y="2" width="20" height="20" rx="5" />
+      <circle cx="12" cy="12" r="4.2" />
+      <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function TikTokIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M16.5 2h-3v13.2a2.9 2.9 0 1 1-2.1-2.79V9.3a6 6 0 1 0 5.1 5.93V8.2a7.5 7.5 0 0 0 4.5 1.5V6.6a4.5 4.5 0 0 1-4.5-4.5z" />
+    </svg>
   );
 }
 
@@ -269,13 +285,20 @@ export default function App() {
             <p style={{ marginTop: "2rem", fontSize: "14px", lineHeight: 1.9, color: "#555", maxWidth: "420px", marginLeft: "auto", marginRight: "auto" }}>
               Norwegian creator. My content sits at the intersection of beauty, fashion, lifestyle and travel — always authentic, always intentional.
             </p>
-            <InstagramFeed posts={instagramPosts} />
-             <a href="https://instagram.com/livemhaugland" target="_blank" rel="noreferrer" style={{ display: "inline-block", marginTop: "1.5rem", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", borderBottom: "0.5px solid #111", paddingBottom: "3px" }}>
-                View full profile
-              </a>
+            <div style={{ display: "flex", gap: "1.5rem", marginTop: "2rem" }}>
+            <a href="https://instagram.com/livemhaugland" target="_blank" rel="noreferrer" aria-label="Instagram" style={{ color: "#111", transition: "color 0.2s" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#888")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#111")}
+            >
+              <InstagramIcon />
+            </a>
+            <a href="https://tiktok.com/@livemhaugland" target="_blank" rel="noreferrer" aria-label="TikTok" style={{ color: "#111", transition: "color 0.2s" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#888")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#111")}
+            >
+              <TikTokIcon />
+            </a>
           </div>
-          <img src={heroPortrait} alt="Live Marie Haugland" style={{ width: "100%", aspectRatio: "3 / 5", objectFit: "cover", objectPosition: "top" }} />
-        </div>
 
         <div className="photo-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px", padding: "2.5rem 2rem 0", maxWidth: "1300px", margin: "0 auto" }}>
           {[photo1, photo2, photo3, photo4].map((photo, i) => (
