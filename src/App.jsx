@@ -29,7 +29,7 @@ import hotel25 from "./assets/Hotel25.png";
 import hotel26 from "./assets/Hotel26.png";
 import hotel27 from "./assets/Hotel27.png";
 import hotel28 from "./assets/Hotel28.png";
-import hotel2 from "./assets/Hotel2.mp4";
+import hotel2 from "./assets/hotel2.mp4";
 
 
 const categories = [
@@ -40,7 +40,7 @@ const categories = [
 
 const hotels = [
   { title: "Casona de Las Flores, Ondara, Spain", photos: [hotel11, hotel12, hotel13, hotel14, hotel15, hotel16, hotel17, hotel18, hotel19] },
-  { title: "Helios Hotel, Almunecar, Spain", video: hotel2Video,photos: ["", "hotel21", "hotel22", "hotel23", "hotel24", "hotel25", "hotel26", "hotel27", "hotel28"] },
+  { title: "Helios Hotel, Almunecar, Spain", video: hotel2, photos: ["", hotel21, hotel22, hotel23, hotel24, hotel25, hotel26, hotel27, hotel28] },
   { title: "Hotel 3", photos: ["", "", "", "", "", "", "", "", ""] },
 ];
 
