@@ -10,6 +10,7 @@ import fashion2 from "./assets/Fashion2.mp4";
 import kookaiDress from "./assets/Kookai dress.mp4";
 import beauty1 from "./assets/Beauty1.mp4";
 import beauty2 from "./assets/Beauty2.mp4";
+import beauty5 from "./assets/Beauty5.mp4";
 import fashion3 from "./assets/Fashion3.mp4";
 import beauty4 from "./assets/Beauty4.mp4";
 import hotel11 from "./assets/Hotel11.png";
@@ -85,7 +86,7 @@ const SLOTS = 8;
 
 const videos = {
   fashion: [kookaiDress, fashion2, fashion3, "", "", "", "", ""],
-  beauty: [beauty2, beauty4, beauty1, "", "", "", "", ""],
+  beauty: [beauty5, beauty4, beauty1, beauty2, "", "", "", ""],
   wellness: [wellness1, "", "", "", "", "", "", ""],
 };
 
