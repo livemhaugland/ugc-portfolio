@@ -40,7 +40,7 @@ const categories = [
 
 const hotels = [
   { title: "Casona de Las Flores, Ondara, Spain", photos: [hotel11, hotel12, hotel13, hotel14, hotel15, hotel16, hotel17, hotel18, hotel19] },
-  { title: "Helios Hotel, Almunecar, Spain", photos: [hotel2, hotel21, hotel22, hotel23, hotel24, hotel25, hotel26, hotel27, hotel28] },
+  { title: "Helios Hotel, Almunecar, Spain", video: hotel2,photos: ["", hotel21, hotel22, hotel23, hotel24, hotel25, hotel26, hotel27, hotel28] },
   { title: "Hotel 3", photos: ["", "", "", "", "", "", "", "", ""] },
 ];
 
