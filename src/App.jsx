@@ -21,6 +21,16 @@ import hotel16 from "./assets/Hotel16.png";
 import hotel17 from "./assets/Hotel17.png";
 import hotel18 from "./assets/Hotel18.png";
 import hotel19 from "./assets/Hotel19.png";
+import hotel21 from "./assets/Hotel21.png";
+import hotel22 from "./assets/Hotel22.png";
+import hotel23 from "./assets/Hotel23.png";
+import hotel24 from "./assets/Hotel24.png";
+import hotel25 from "./assets/Hotel25.png";
+import hotel26 from "./assets/Hotel26.png";
+import hotel27 from "./assets/Hotel27.png";
+import hotel28 from "./assets/Hotel28.png";
+import hotel2 from "./assets/Hotel2.mp4";
+
 
 const categories = [
   { id: "fashion", title: "Fashion", desc: "Elevated styling" },
@@ -30,7 +40,7 @@ const categories = [
 
 const hotels = [
   { title: "Casona de Las Flores, Ondara, Spain", photos: [hotel11, hotel12, hotel13, hotel14, hotel15, hotel16, hotel17, hotel18, hotel19] },
-  { title: "Hotel 2", photos: ["", "", "", "", "", "", "", "", ""] },
+  { title: "Helios Hotel, Almunecar, Spain", video: hotel2Video,photos: ["", "hotel21", "hotel22", "hotel23", "hotel24", "hotel25", "hotel26", "hotel27", "hotel28"] },
   { title: "Hotel 3", photos: ["", "", "", "", "", "", "", "", ""] },
 ];
 
@@ -130,7 +140,16 @@ function HotelRow({ hotel }) {
                 background: "#f7f6f4",
               }}
             >
-              {photo ? (
+              {isBig && hotel.video ? (
+                <video
+                  src={hotel.video}
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                />
+              ) : photo ? (
                 <img src={photo} alt={hotel.title} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
               ) : (
                 <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "8px" }}>
