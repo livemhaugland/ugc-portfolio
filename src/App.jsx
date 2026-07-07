@@ -280,25 +280,28 @@ export default function App() {
               UGC Content Creator
             </p>
             <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(32px, 5vw, 72px)", fontWeight: 300, lineHeight: 1.0, letterSpacing: "0.01em" }}>
-             Live Marie Haugland
-           </h1>
+              Live Marie Haugland
+            </h1>
             <p style={{ marginTop: "2rem", fontSize: "14px", lineHeight: 1.9, color: "#555", maxWidth: "420px", marginLeft: "auto", marginRight: "auto" }}>
               Norwegian creator. My content sits at the intersection of beauty, fashion, lifestyle and travel — always authentic, always intentional.
             </p>
             <div style={{ display: "flex", gap: "1.5rem", marginTop: "2rem" }}>
-            <a href="https://instagram.com/livemhaugland" target="_blank" rel="noreferrer" aria-label="Instagram" style={{ color: "#111", transition: "color 0.2s" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#888")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "#111")}
-            >
-              <InstagramIcon />
-            </a>
-            <a href="https://tiktok.com/@livemhaugland" target="_blank" rel="noreferrer" aria-label="TikTok" style={{ color: "#111", transition: "color 0.2s" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#888")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "#111")}
-            >
-              <TikTokIcon />
-            </a>
+              <a href="https://instagram.com/livemhaugland" target="_blank" rel="noreferrer" aria-label="Instagram" style={{ color: "#111", transition: "color 0.2s" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#888")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#111")}
+              >
+                <InstagramIcon />
+              </a>
+              <a href="https://tiktok.com/@livemhaugland" target="_blank" rel="noreferrer" aria-label="TikTok" style={{ color: "#111", transition: "color 0.2s" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#888")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#111")}
+              >
+                <TikTokIcon />
+              </a>
+            </div>
           </div>
+          <img src={heroPortrait} alt="Live Marie Haugland" style={{ width: "100%", aspectRatio: "3 / 5", objectFit: "cover", objectPosition: "top" }} />
+        </div>
 
         <div className="photo-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px", padding: "2.5rem 2rem 0", maxWidth: "1300px", margin: "0 auto" }}>
           {[photo1, photo2, photo3, photo4].map((photo, i) => (
