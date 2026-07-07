@@ -138,7 +138,16 @@ export default function App() {
             padding-top: 90px !important;
           }
           .hero-inner {
+            grid-template-columns: 1fr !important;
+            gap: 2rem !important;
             padding: 3rem 1.25rem 2rem !important;
+          }
+          .hero-inner > div {
+            text-align: center !important;
+          }
+          .hero-inner img {
+            max-width: 280px !important;
+            margin: 0 auto !important;
           }
           .photo-grid {
             padding: 1.5rem 1.25rem 0 !important;
@@ -210,19 +219,22 @@ export default function App() {
 
       {/* HERO */}
       <section id="home" className="hero-section" style={{ paddingTop: "80px", background: "#f7f6f4" }}>
-        <div className="hero-inner" style={{ textAlign: "center", padding: "5rem 2rem 3rem", maxWidth: "860px", margin: "0 auto" }}>
-          <p style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#888", marginBottom: "2rem" }}>
-            UGC Content Creator
-          </p>
-          <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(32px, 5vw, 72px)", fontWeight: 300, lineHeight: 1.0, letterSpacing: "0.01em" }}>
-            Live Marie Haugland
-          </h1>
-          <p style={{ marginTop: "2rem", fontSize: "14px", lineHeight: 1.9, color: "#555", maxWidth: "420px", marginLeft: "auto", marginRight: "auto" }}>
-            Norwegian creator, currently living between Oslo and Barcelona. My content sits at the intersection of beauty, fashion, lifestyle and travel — always authentic, always intentional.
-          </p>
-          <a href="#portfolio" style={{ display: "inline-block", marginTop: "2.5rem", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", borderBottom: "0.5px solid #111", paddingBottom: "3px" }}>
-            View work
-          </a>
+        <div className="hero-inner" style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "4rem", alignItems: "center", padding: "5rem 2rem 3rem", maxWidth: "1140px", margin: "0 auto" }}>
+          <div style={{ textAlign: "left" }}>
+            <p style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#888", marginBottom: "2rem" }}>
+              UGC Content Creator
+            </p>
+            <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(32px, 5vw, 72px)", fontWeight: 300, lineHeight: 1.0, letterSpacing: "0.01em" }}>
+             Live Marie Haugland
+           </h1>
+            <p style={{ marginTop: "2rem", fontSize: "14px", lineHeight: 1.9, color: "#555", maxWidth: "420px", marginLeft: "auto", marginRight: "auto" }}>
+              Norwegian creator, currently living between Oslo and Barcelona. My content sits at the intersection of beauty, fashion, lifestyle and travel — always authentic, always intentional.
+            </p>
+            <a href="#portfolio" style={{ display: "inline-block", marginTop: "2.5rem", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", borderBottom: "0.5px solid #111", paddingBottom: "3px" }}>
+              View work
+            </a>
+          </div>
+          <img src={heroPortrait} alt="Live Marie Haugland" style={{ width: "100%", aspectRatio: "3 / 4", objectFit: "cover" }} />
         </div>
 
         <div className="photo-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px", padding: "2.5rem 2rem 0", maxWidth: "1300px", margin: "0 auto" }}>
