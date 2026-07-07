@@ -27,7 +27,7 @@ const categories = [
 ];
 
 const hotels = [
-  { title: "Hotel 1", photos: [hotel11, hotel12, hotel13, hotel14, hotel15, hotel16, hotel17, "", ""] },
+  { title: "Casona de Las Flores, Denia, Spain", photos: [hotel11, hotel12, hotel13, hotel14, hotel15, hotel16, hotel17, "", ""] },
   { title: "Hotel 2", photos: ["", "", "", "", "", "", "", "", ""] },
   { title: "Hotel 3", photos: ["", "", "", "", "", "", "", "", ""] },
 ];
