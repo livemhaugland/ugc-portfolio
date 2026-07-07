@@ -282,7 +282,7 @@ export default function App() {
             <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(32px, 5vw, 72px)", fontWeight: 300, lineHeight: 1.0, letterSpacing: "0.01em" }}>
               Live Marie Haugland
             </h1>
-            <p style={{ marginTop: "2rem", fontSize: "14px", lineHeight: 1.9, color: "#555", maxWidth: "420px", marginLeft: "auto", marginRight: "auto" }}>
+            <p style={{ marginTop: "2rem", fontSize: "14px", lineHeight: 1.9, color: "#555", maxWidth: "420px" }}>
               Norwegian creator. My content sits at the intersection of beauty, fashion, lifestyle and travel — always authentic, always intentional.
             </p>
             <div style={{ display: "flex", gap: "1.5rem", marginTop: "2rem" }}>
