@@ -274,7 +274,7 @@ export default function App() {
 
       {/* HERO */}
       <section id="home" className="hero-section" style={{ paddingTop: "80px", background: "#f7f6f4" }}>
-        <div className="hero-inner" style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "4rem", alignItems: "center", padding: "5rem 2rem 3rem", maxWidth: "1140px", margin: "0 auto" }}>
+        <div className="hero-inner" style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "4rem", alignItems: "start", padding: "5rem 2rem 3rem", maxWidth: "1140px", margin: "0 auto" }}>
           <div style={{ textAlign: "left" }}>
             <p style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#888", marginBottom: "2rem" }}>
               UGC Content Creator
