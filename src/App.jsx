@@ -27,7 +27,7 @@ const categories = [
 ];
 
 const hotels = [
-  { title: "Casona de Las Flores, Denia, Spain", photos: [hotel11, hotel12, hotel13, hotel14, hotel15, hotel16, hotel17, "", ""] },
+  { title: "Casona de Las Flores, Ondara, Spain", photos: [hotel11, hotel12, hotel13, hotel14, hotel15, hotel16, hotel17, "", ""] },
   { title: "Hotel 2", photos: ["", "", "", "", "", "", "", "", ""] },
   { title: "Hotel 3", photos: ["", "", "", "", "", "", "", "", ""] },
 ];
@@ -229,13 +229,18 @@ export default function App() {
              Live Marie Haugland
            </h1>
             <p style={{ marginTop: "2rem", fontSize: "14px", lineHeight: 1.9, color: "#555", maxWidth: "420px", marginLeft: "auto", marginRight: "auto" }}>
-              Norwegian creator, currently living between Oslo and Barcelona. My content sits at the intersection of beauty, fashion, lifestyle and travel — always authentic, always intentional.
+              Norwegian creator. My content sits at the intersection of beauty, fashion, lifestyle and travel — always authentic, always intentional.
             </p>
-            <a href="#portfolio" style={{ display: "inline-block", marginTop: "2.5rem", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", borderBottom: "0.5px solid #111", paddingBottom: "3px" }}>
-              View work
-            </a>
+            <div style={{ display: "flex", gap: "2rem", marginTop: "2.5rem" }}>
+              <a href="https://instagram.com/livemhaugland" target="_blank" rel="noreferrer" style={{ fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", borderBottom: "0.5px solid #111", paddingBottom: "3px" }}>
+                Instagram
+              </a>
+              <a href="https://tiktok.com/@livemhaugland" target="_blank" rel="noreferrer" style={{ fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", borderBottom: "0.5px solid #111", paddingBottom: "3px" }}>
+                TikTok
+              </a>
+            </div>
           </div>
-          <img src={heroPortrait} alt="Live Marie Haugland" style={{ width: "100%", aspectRatio: "3 / 4", objectFit: "cover" }} />
+          <img src={heroPortrait} alt="Live Marie Haugland" style={{ width: "100%", aspectRatio: "3 / 5", objectFit: "cover", objectPosition: "top" }} />
         </div>
 
         <div className="photo-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px", padding: "2.5rem 2rem 0", maxWidth: "1300px", margin: "0 auto" }}>
