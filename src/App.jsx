@@ -305,6 +305,7 @@ export default function App() {
             </h1>
             <p style={{ marginTop: "2rem", fontSize: "14px", lineHeight: 1.9, color: "#555", maxWidth: "420px" }}>
               Norwegian creator. My content sits at the intersection of beauty, fashion, lifestyle and travel — always authentic, always intentional.
+              Alongside creating, I'm studying Business Administration, which means I think about brand strategy and audience connection as seriously as I think about aesthetics. New ideas and creativity are what drive me forward.
             </p>
             <div style={{ display: "flex", gap: "1.5rem", marginTop: "2rem" }}>
               <a href="https://instagram.com/livemhaugland" target="_blank" rel="noreferrer" aria-label="Instagram" style={{ color: "#111", transition: "color 0.2s" }}
@@ -378,9 +379,6 @@ export default function App() {
             </h2>
             <p style={{ fontSize: "14px", lineHeight: 1.9, color: "#555", maxWidth: "440px", marginBottom: "1.2rem" }}>
               I'm a creator with a genuine interest in beauty, fashion, and lifestyle. I believe great content doesn't just look good — it creates a feeling.
-            </p>
-            <p style={{ fontSize: "14px", lineHeight: 1.9, color: "#555", maxWidth: "440px", marginBottom: "1.2rem" }}>
-              Alongside creating, I'm studying Business Administration, which means I think about brand strategy and audience connection as seriously as I think about aesthetics. New ideas and creativity are what drive me forward.
             </p>
             <a href="mailto:livehau@gmail.com" style={{ display: "inline-block", marginTop: "1.5rem", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", borderBottom: "0.5px solid #111", paddingBottom: "3px" }}>
               Get in touch
