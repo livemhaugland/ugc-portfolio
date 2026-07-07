@@ -27,17 +27,11 @@ const categories = [
 ];
 
 const hotels = [
-  { title: "Hotel 1", photos: [hotel11, hotel12, hotel13, hotel14, hotel15, hotel16] },
-  { title: "Hotel 2", photos: [hotel11, hotel12, hotel13, hotel14, hotel15, hotel16] },
-  { title: "Hotel 3", photos: [hotel11, hotel12, hotel13, hotel14, hotel15, hotel16] },
+  { title: "Hotel 1", photos: [hotel11, hotel12, hotel13, hotel14, hotel15, hotel16, hotel17, "", ""] },
+  { title: "Hotel 2", photos: ["", "", "", "", "", "", "", "", ""] },
+  { title: "Hotel 3", photos: ["", "", "", "", "", "", "", "", ""] },
 ];
 
-const sizePattern = ["large", "small", "medium", "small", "medium", "large"];
-const spanMap = {
-  large: { gridColumn: "span 3", gridRow: "span 2" },
-  medium: { gridColumn: "span 2", gridRow: "span 1" },
-  small: { gridColumn: "span 1", gridRow: "span 1" },
-};
 
 const SLOTS = 8;
 
@@ -84,11 +78,21 @@ function HotelRow({ hotel }) {
       <h4 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "24px", fontWeight: 300, letterSpacing: "0.01em", marginBottom: "1rem" }}>
         {hotel.title}
       </h4>
-      <div className="hotel-grid" style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gridAutoRows: "130px", gap: "10px" }}>
+      <div className="hotel-grid" style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: "10px" }}>
         {hotel.photos.map((photo, i) => {
-          const size = sizePattern[i % sizePattern.length];
+          const isBig = i === 0;
           return (
-            <div key={i} className="hotel-photo" style={{ ...spanMap[size], overflow: "hidden", background: "#f7f6f4" }}>
+            <div
+              key={i}
+              className="hotel-photo"
+              style={{
+                gridColumn: isBig ? "span 2" : "span 1",
+                gridRow: isBig ? "span 2" : "span 1",
+                aspectRatio: "3 / 4",
+                overflow: "hidden",
+                background: "#f7f6f4",
+              }}
+            >
               {photo ? (
                 <img src={photo} alt={hotel.title} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
               ) : (
