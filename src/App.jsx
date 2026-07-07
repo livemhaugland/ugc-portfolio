@@ -22,8 +22,7 @@ import hotel17 from "./assets/Hotel17.png";
 const categories = [
   { id: "fashion", title: "Fashion", desc: "Elevated styling" },
   { id: "beauty", title: "Beauty", desc: "Skin health, routines & soft glam" },
-  { id: "wellness", title: "Wellness", desc: "Mindful living" },
-  { id: "lifestyle", title: "Lifestyle", desc: "Everyday moments" },
+  { id: "wellness", title: "Wellness & Lifestyle", desc: "Mindful living" },
 ];
 
 const hotels = [
@@ -39,7 +38,6 @@ const videos = {
   fashion: [kookaiDress, fashion2, fashion3, "", "", "", "", ""],
   beauty: [beauty2, beauty4, beauty1, "", "", "", "", ""],
   wellness: [wellness1, "", "", "", "", "", "", ""],
-  lifestyle: ["", "", "", "", "", "", "", ""],
 };
 
 function VideoRow({ category }) {
