@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import heroPortrait from "./assets/hero-portrait.png";
 import photo1 from "./assets/photo1.png";
 import photo2 from "./assets/photo2.png";
@@ -32,6 +32,44 @@ const hotels = [
   { title: "Hotel 3", photos: ["", "", "", "", "", "", "", "", ""] },
 ];
 
+// Lim inn URL-ene til innleggene du vil vise (kopiert fra instagram.com)
+const instagramPosts = [
+  "https://www.instagram.com/p/DX2Rlisij2f/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+  "https://www.instagram.com/p/C6uXMuHtY_F/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+  "https://www.instagram.com/reel/DZwjXRfKuwb/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+];
+
+function InstagramEmbed({ url }) {
+  return (
+    <blockquote
+      className="instagram-media"
+      data-instgrm-permalink={url}
+      data-instgrm-version="14"
+      style={{ background: "#FFF", border: 0, borderRadius: "3px", margin: 0, maxWidth: "360px", minWidth: "326px", width: "100%" }}
+    />
+  );
+}
+
+function InstagramFeed({ posts }) {
+  useEffect(() => {
+    if (window.instgrm) {
+      window.instgrm.Embeds.process();
+      return;
+    }
+    const script = document.createElement("script");
+    script.src = "https://www.instagram.com/embed.js";
+    script.async = true;
+    document.body.appendChild(script);
+  }, [posts]);
+
+  return (
+    <div style={{ display: "flex", gap: "1.5rem", overflowX: "auto", marginTop: "2rem", paddingBottom: "0.5rem" }}>
+      {posts.map((url) => (
+        <InstagramEmbed key={url} url={url} />
+      ))}
+    </div>
+  );
+}
 
 const SLOTS = 8;
 
@@ -231,14 +269,10 @@ export default function App() {
             <p style={{ marginTop: "2rem", fontSize: "14px", lineHeight: 1.9, color: "#555", maxWidth: "420px", marginLeft: "auto", marginRight: "auto" }}>
               Norwegian creator. My content sits at the intersection of beauty, fashion, lifestyle and travel — always authentic, always intentional.
             </p>
-            <div style={{ display: "flex", gap: "2rem", marginTop: "2.5rem" }}>
-              <a href="https://instagram.com/livemhaugland" target="_blank" rel="noreferrer" style={{ fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", borderBottom: "0.5px solid #111", paddingBottom: "3px" }}>
-                Instagram
+            <InstagramFeed posts={instagramPosts} />
+             <a href="https://instagram.com/livemhaugland" target="_blank" rel="noreferrer" style={{ display: "inline-block", marginTop: "1.5rem", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", borderBottom: "0.5px solid #111", paddingBottom: "3px" }}>
+                View full profile
               </a>
-              <a href="https://tiktok.com/@livemhaugland" target="_blank" rel="noreferrer" style={{ fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", borderBottom: "0.5px solid #111", paddingBottom: "3px" }}>
-                TikTok
-              </a>
-            </div>
           </div>
           <img src={heroPortrait} alt="Live Marie Haugland" style={{ width: "100%", aspectRatio: "3 / 5", objectFit: "cover", objectPosition: "top" }} />
         </div>
