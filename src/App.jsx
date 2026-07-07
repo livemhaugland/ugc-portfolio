@@ -1,4 +1,5 @@
 import React from "react";
+import heroPortrait from "./assets/hero-portrait.png";
 import photo1 from "./assets/photo1.png";
 import photo2 from "./assets/photo2.png";
 import photo3 from "./assets/photo3.png";
