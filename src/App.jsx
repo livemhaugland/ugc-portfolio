@@ -30,6 +30,8 @@ import hotel26 from "./assets/Hotel26.png";
 import hotel27 from "./assets/Hotel27.png";
 import hotel28 from "./assets/Hotel28.png";
 import hotel2 from "./assets/Hotel2.mp4";
+import nakd1 from "./assets/NAKD1.mp4";
+import nakd2 from "./assets/NAKD2.mp4";
 
 
 const categories = [
@@ -84,7 +86,7 @@ function InstagramFeed({ posts }) {
 const SLOTS = 8;
 
 const videos = {
-  fashion: [kookaiDress, fashion2, fashion3, "", "", "", "", ""],
+  fashion: [kookaiDress, nakd1, fashion3, nakd2, fashion2, "", "", ""],
   beauty: [beauty5, beauty4, beauty1, beauty2, "", "", "", ""],
   wellness: ["", "", "", "", "", "", "", ""],
 };
