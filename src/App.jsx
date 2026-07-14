@@ -86,7 +86,7 @@ function InstagramFeed({ posts }) {
 const SLOTS = 8;
 
 const videos = {
-  fashion: [kookaiDress, nakd1, fashion3, nakd2, fashion2, "", "", ""],
+  fashion: [kookaiDress, nakd1, fashion2, nakd2, fashion3, "", "", ""],
   beauty: [beauty5, beauty4, beauty1, beauty2, "", "", "", ""],
   wellness: ["", "", "", "", "", "", "", ""],
 };
