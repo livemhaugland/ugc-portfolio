@@ -41,11 +41,12 @@ const categories = [
 const hotels = [
   { title: "Casona de Las Flores, Ondara, Spain", photos: [hotel11, hotel12, hotel13, hotel14, hotel15, hotel16, hotel17, hotel18, hotel19] },
   { title: "Helios Hotel, Almunecar, Spain", video: hotel2, photos: ["", hotel21, hotel22, hotel23, hotel24, hotel25, hotel26, hotel27, hotel28] },
+  { title: "Hotel 3", photos: ["", "", "", "", "", "", "", "", ""] },
 ];
 
 // ── HERO FAVORITES ──
 // Disse 3 spiller automatisk øverst på siden. Bytt ut med dine 3 favoritt-videoer.
-const heroFavorites = [kookaiDress, nakd1, beauty4];
+const heroFavorites = [kookaiDress, beauty4, nakd1];
 
 // ── CLOSING PHOTO GRID ──
 // Legg til flere bilder her etter hvert — både stående og liggende.
@@ -101,7 +102,7 @@ function InstagramFeed({ posts }) {
  */
 function MasonryPhotoGrid({ photos, className }) {
   return (
-    <div className={className} style={{ columnCount: 4, columnGap: "10px" }}>
+    <div className={className} style={{ columnCount: 4, columnGap: "4px" }}>
       {photos.map((photo, i) => (
         <img
           key={i}
@@ -112,7 +113,7 @@ function MasonryPhotoGrid({ photos, className }) {
           style={{
             width: "100%",
             display: "block",
-            marginBottom: "10px",
+            marginBottom: "4px",
             breakInside: "avoid",
             WebkitColumnBreakInside: "avoid",
           }}
@@ -267,7 +268,7 @@ function VideoRow({ category }) {
   const slots = Array.from({ length: SLOTS }, (_, i) => i);
 
   return (
-    <div style={{ display: "flex", gap: "12px", overflowX: "auto", scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch", scrollbarWidth: "none", paddingBottom: "4px" }}>
+    <div style={{ display: "flex", gap: "4px", overflowX: "auto", scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch", scrollbarWidth: "none", paddingBottom: "4px" }}>
       {slots.map((i) => (
         <div key={i} className="video-card" style={{ flex: "0 0 calc(25% - 9px)", minWidth: "calc(25% - 9px)", scrollSnapAlign: "start" }}>
           <div style={{ aspectRatio: "9/16", background: "#f7f6f4", overflow: "hidden" }}>
@@ -563,7 +564,7 @@ export default function App() {
       </div>
 
       {/* ABOUT */}
-      <section id="about" className="about-section" style={{ background: "#fff", padding: "6rem 3rem" }}>
+      <section id="about" className="about-section" style={{ background: "#fff", padding: "6rem 3rem 3rem" }}>
         <div className="about-grid" style={{ maxWidth: "1100px", margin: "0 auto", display: "grid", gridTemplateColumns: "340px 1fr", gap: "5rem", alignItems: "center" }}>
           <img className="about-img" src={about} alt="About" loading="lazy" decoding="async" style={{ width: "100%", aspectRatio: "4/5", objectFit: "cover" }} />
           <div>
@@ -581,8 +582,8 @@ export default function App() {
         </div>
       </section>
 
-      {/* CLOSING PHOTO GRID — masonry/asymmetric, inspirert av referanse-porteføljen */}
-      <div style={{ maxWidth: "1300px", margin: "0 auto", padding: "0 3rem 5rem" }}>
+      {/* CLOSING PHOTO GRID — masonry/asymmetric, stretched edge-to-edge */}
+      <div style={{ paddingBottom: "0" }}>
         <MasonryPhotoGrid photos={closingPhotos} className="closing-photo-grid" />
       </div>
 
