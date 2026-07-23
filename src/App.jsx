@@ -46,7 +46,7 @@ const hotels = [
 
 // ── HERO FAVORITES ──
 // Disse 3 spiller automatisk øverst på siden. Bytt ut med dine 3 favoritt-videoer.
-const heroFavorites = [kookaiDress, beauty5, nakd1];
+const heroFavorites = [kookaiDress, beauty4, nakd1];
 
 // ── CLOSING PHOTO GRID ──
 // Legg til flere bilder her etter hvert — både stående og liggende.
