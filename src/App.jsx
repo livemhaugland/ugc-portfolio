@@ -6,7 +6,7 @@ import photo3 from "./assets/photo3.png";
 import photo4 from "./assets/photo4.png";
 import about from "./assets/about.png";
 import fashion2 from "./assets/Fashion2.mp4";
-import kookaiDress from "./assets/Kookai dress.mp4";
+import kookaiDress from "./assets/Kookaidress.mp4";
 import beauty5 from "./assets/Beauty5.mp4";
 import fashion3 from "./assets/Fashion3.mp4";
 import beauty4 from "./assets/Beauty4.mp4";
@@ -214,7 +214,7 @@ function ClickToPlayVideo({ src, style }) {
 const SLOTS = 8;
 
 const videos = {
-  fashion: [kookaiDress, nakd1, fashion2, nakd2, fashion3, "", "", ""],
+  fashion: [kookaidress, nakd1, fashion2, nakd2, fashion3, "", "", ""],
   beauty: [beauty5, beauty4, "", "", "", "", "", ""],
   wellness: ["", "", "", "", "", "", "", ""],
 };
