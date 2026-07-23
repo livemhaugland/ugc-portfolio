@@ -499,6 +499,20 @@ export default function App() {
                 <TikTokIcon />
               </a>
             </div>
+
+            {/* Tagline — bytt teksten under til hva du vil ha stå */}
+            <p style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontStyle: "italic",
+              fontWeight: 300,
+              fontSize: "clamp(22px, 2.6vw, 34px)",
+              lineHeight: 1.3,
+              color: "#111",
+              marginTop: "3.5rem",
+              maxWidth: "380px",
+            }}>
+              Creating content<br />that feels like home.
+            </p>
           </div>
           <img src={heroPortrait} alt="Live Marie Haugland" style={{ width: "100%", aspectRatio: "3 / 5", objectFit: "cover", objectPosition: "top" }} />
         </div>
