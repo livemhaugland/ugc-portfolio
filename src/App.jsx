@@ -46,7 +46,7 @@ const hotels = [
 
 // ── HERO FAVORITES ──
 // Disse 3 spiller automatisk øverst på siden. Bytt ut med dine 3 favoritt-videoer.
-const heroFavorites = [kookaiDress, beauty5, nakd1];
+const heroFavorites = [kookaiDress, beauty4, nakd1];
 
 // Lim inn URL-ene til innleggene du vil vise (kopiert fra instagram.com)
 const instagramPosts = [
