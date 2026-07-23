@@ -46,7 +46,13 @@ const hotels = [
 
 // ── HERO FAVORITES ──
 // Disse 3 spiller automatisk øverst på siden. Bytt ut med dine 3 favoritt-videoer.
-const heroFavorites = [kookaiDress, beauty4, nakd1];
+const heroFavorites = [kookaiDress, beauty5, nakd1];
+
+// ── CLOSING PHOTO GRID ──
+// Legg til flere bilder her etter hvert — både stående og liggende.
+// Layouten stabler dem automatisk i kolonner basert på bildets EGEN høyde,
+// så du trenger ikke sette noen "type" eller spesifisere størrelse selv.
+const closingPhotos = [photo1, photo2, photo3, photo4];
 
 // Lim inn URL-ene til innleggene du vil vise (kopiert fra instagram.com)
 const instagramPosts = [
@@ -80,6 +86,38 @@ function InstagramFeed({ posts }) {
     <div style={{ display: "flex", gap: "1.5rem", overflowX: "auto", marginTop: "2rem", paddingBottom: "0.5rem" }}>
       {posts.map((url) => (
         <InstagramEmbed key={url} url={url} />
+      ))}
+    </div>
+  );
+}
+
+/**
+ * MasonryPhotoGrid
+ * Uses CSS multi-column layout instead of CSS grid.
+ * Each image keeps ITS OWN natural aspect ratio (no forced crop),
+ * and the browser stacks them top-to-bottom within each column —
+ * which is exactly what creates the asymmetric, Pinterest-style look.
+ * Adding a wide/horizontal image later works automatically: it will
+ * just take up less vertical space in its column than a tall one.
+ */
+function MasonryPhotoGrid({ photos, className }) {
+  return (
+    <div className={className} style={{ columnCount: 4, columnGap: "10px" }}>
+      {photos.map((photo, i) => (
+        <img
+          key={i}
+          src={photo}
+          alt={`Photo ${i + 1}`}
+          loading="lazy"
+          decoding="async"
+          style={{
+            width: "100%",
+            display: "block",
+            marginBottom: "10px",
+            breakInside: "avoid",
+            WebkitColumnBreakInside: "avoid",
+          }}
+        />
       ))}
     </div>
   );
@@ -214,7 +252,7 @@ function ClickToPlayVideo({ src, style }) {
 const SLOTS = 8;
 
 const videos = {
-  fashion: [kookaidress, nakd1, fashion2, nakd2, fashion3, "", "", ""],
+  fashion: [kookaiDress, nakd1, fashion2, nakd2, fashion3, "", "", ""],
   beauty: [beauty5, beauty4, "", "", "", "", "", ""],
   wellness: ["", "", "", "", "", "", "", ""],
 };
@@ -371,9 +409,12 @@ export default function App() {
             padding: 1.5rem 1.25rem 0 !important;
           }
           .closing-photo-grid {
+            column-count: 2 !important;
+            column-gap: 6px !important;
             padding: 1.5rem 1.25rem 3rem !important;
-            gap: 6px !important;
-            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .closing-photo-grid img {
+            margin-bottom: 6px !important;
           }
           .video-card {
             flex: 0 0 calc(50% - 6px) !important;
@@ -527,11 +568,9 @@ export default function App() {
         </div>
       </section>
 
-      {/* CLOSING PHOTO GRID — flyttet ned hit fra hero-seksjonen */}
-      <div className="closing-photo-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px", padding: "0 3rem 5rem", maxWidth: "1300px", margin: "0 auto" }}>
-        {[photo1, photo2, photo3, photo4].map((photo, i) => (
-          <img key={i} src={photo} alt={`Photo ${i + 1}`} loading="lazy" decoding="async" style={{ width: "100%", aspectRatio: "4/5", objectFit: "cover", display: "block" }} />
-        ))}
+      {/* CLOSING PHOTO GRID — masonry/asymmetric, inspirert av referanse-porteføljen */}
+      <div style={{ maxWidth: "1300px", margin: "0 auto", padding: "0 3rem 5rem" }}>
+        <MasonryPhotoGrid photos={closingPhotos} className="closing-photo-grid" />
       </div>
 
       {/* FOOTER */}
