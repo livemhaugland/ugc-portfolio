@@ -7,8 +7,6 @@ import photo4 from "./assets/photo4.png";
 import about from "./assets/about.png";
 import fashion2 from "./assets/Fashion2.mp4";
 import kookaiDress from "./assets/Kookai dress.mp4";
-import beauty1 from "./assets/Beauty1.mp4";
-import beauty2 from "./assets/Beauty2.mp4";
 import beauty5 from "./assets/Beauty5.mp4";
 import fashion3 from "./assets/Fashion3.mp4";
 import beauty4 from "./assets/Beauty4.mp4";
@@ -45,6 +43,10 @@ const hotels = [
   { title: "Helios Hotel, Almunecar, Spain", video: hotel2, photos: ["", hotel21, hotel22, hotel23, hotel24, hotel25, hotel26, hotel27, hotel28] },
   { title: "Hotel 3", photos: ["", "", "", "", "", "", "", "", ""] },
 ];
+
+// ── HERO FAVORITES ──
+// Disse 3 spiller automatisk øverst på siden. Bytt ut med dine 3 favoritt-videoer.
+const heroFavorites = [kookaiDress, beauty5, nakd1];
 
 // Lim inn URL-ene til innleggene du vil vise (kopiert fra instagram.com)
 const instagramPosts = [
@@ -84,39 +86,30 @@ function InstagramFeed({ posts }) {
 }
 
 /**
- * LazyVideo
- * - Doesn't touch the network at all until the element is within `rootMargin` of the viewport.
- * - Once in view: sets `src`, starts loading, and plays.
- * - Once it scrolls back OUT of view: pauses playback (keeps src cached, so re-entering is instant).
- * - Uses preload="none" until intersecting, so the browser makes zero requests up front.
+ * AutoplayVideo — for the 3 hero favorites.
+ * Loads + plays automatically once in view (which, since it's at the top, is basically immediately).
+ * No click needed, muted so autoplay is allowed by browsers.
  */
-function LazyVideo({ src, style, className }) {
+function AutoplayVideo({ src, style, className }) {
   const videoRef = useRef(null);
   const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
     const el = videoRef.current;
     if (!el) return;
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setShouldLoad(true);
-            // play() can reject if the browser hasn't finished loading yet — that's fine, ignore it
             el.play?.().catch(() => {});
           } else {
             el.pause?.();
           }
         });
       },
-      {
-        root: null,
-        rootMargin: "200px", // start loading slightly before it's actually visible
-        threshold: 0.15,
-      }
+      { root: null, rootMargin: "200px", threshold: 0.15 }
     );
-
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
@@ -135,11 +128,101 @@ function LazyVideo({ src, style, className }) {
   );
 }
 
+/**
+ * ClickToPlayVideo — for every video EXCEPT the 3 hero favorites.
+ * Doesn't load anything until scrolled near view (network-friendly),
+ * and even then just sits there with a play button overlay — no playback,
+ * no sound, no bandwidth used until the user actually clicks it.
+ */
+function ClickToPlayVideo({ src, style }) {
+  const wrapperRef = useRef(null);
+  const videoRef = useRef(null);
+  const [isInView, setIsInView] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    const el = wrapperRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((entry) => entry.isIntersecting && setIsInView(true)),
+      { rootMargin: "200px", threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const handlePlay = () => {
+    setIsPlaying(true);
+    requestAnimationFrame(() => {
+      videoRef.current?.play().catch(() => {});
+    });
+  };
+
+  return (
+    <div ref={wrapperRef} style={{ position: "relative", width: "100%", height: "100%" }}>
+      {isInView && (
+        <video
+          ref={videoRef}
+          src={src}
+          preload="none"
+          playsInline
+          loop
+          muted={!isPlaying}
+          controls={isPlaying}
+          onClick={() => !isPlaying && handlePlay()}
+          style={{ ...style, cursor: isPlaying ? "default" : "pointer" }}
+        />
+      )}
+      {!isPlaying && (
+        <button
+          onClick={handlePlay}
+          aria-label="Play video"
+          style={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "rgba(0,0,0,0.12)",
+            border: "none",
+            padding: 0,
+            cursor: "pointer",
+          }}
+        >
+          <span
+            style={{
+              width: "44px",
+              height: "44px",
+              borderRadius: "50%",
+              background: "rgba(255,255,255,0.92)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
+            }}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#111" style={{ marginLeft: "2px" }}>
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </span>
+        </button>
+      )}
+    </div>
+  );
+}
+
 const SLOTS = 8;
 
 const videos = {
   fashion: [kookaiDress, nakd1, fashion2, nakd2, fashion3, "", "", ""],
-  beauty: [beauty5, beauty4, beauty1, beauty2, "", "", "", ""],
+  beauty: [beauty5, beauty4, "", "", "", "", "", ""],
+  wellness: ["", "", "", "", "", "", "", ""],
+};
+
+// Undertekst under hver video i portfolio-radene. Bytt ut med dine egne tekster.
+const captions = {
+  fashion: ["Kookai dress", "NA-KD collab", "Everyday styling", "NA-KD collab", "Fashion edit", "", "", ""],
+  beauty: ["Beauty routine", "Beauty routine", "Skincare", "Get ready with me", "", "", "", ""],
   wellness: ["", "", "", "", "", "", "", ""],
 };
 
@@ -152,7 +235,7 @@ function VideoRow({ category }) {
         <div key={i} className="video-card" style={{ flex: "0 0 calc(25% - 9px)", minWidth: "calc(25% - 9px)", scrollSnapAlign: "start" }}>
           <div style={{ aspectRatio: "9/16", background: "#f7f6f4", overflow: "hidden" }}>
             {videos[category.id][i] ? (
-              <LazyVideo
+              <ClickToPlayVideo
                 src={videos[category.id][i]}
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
@@ -163,6 +246,11 @@ function VideoRow({ category }) {
               </div>
             )}
           </div>
+          {captions[category.id][i] ? (
+            <p style={{ marginTop: "8px", fontSize: "12px", letterSpacing: "0.02em", color: "#555", textAlign: "center" }}>
+              {captions[category.id][i]}
+            </p>
+          ) : null}
         </div>
       ))}
     </div>
@@ -191,7 +279,7 @@ function HotelRow({ hotel }) {
               }}
             >
               {isBig && hotel.video ? (
-                <LazyVideo
+                <ClickToPlayVideo
                   src={hotel.video}
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
@@ -277,8 +365,13 @@ export default function App() {
             max-width: 280px !important;
             margin: 0 auto !important;
           }
-          .photo-grid {
+          .hero-favorites {
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 6px !important;
             padding: 1.5rem 1.25rem 0 !important;
+          }
+          .closing-photo-grid {
+            padding: 1.5rem 1.25rem 3rem !important;
             gap: 6px !important;
             grid-template-columns: repeat(2, 1fr) !important;
           }
@@ -293,10 +386,6 @@ export default function App() {
             flex-direction: column !important;
             align-items: flex-start !important;
             gap: 4px !important;
-          }
-          div[style*="calc(25% - 9px)"] {
-            flex: 0 0 calc(50% - 6px) !important;
-            min-width: calc(50% - 6px) !important;
           }
           .quote-band {
             padding: 3rem 1.25rem !important;
@@ -373,9 +462,12 @@ export default function App() {
           <img src={heroPortrait} alt="Live Marie Haugland" style={{ width: "100%", aspectRatio: "3 / 5", objectFit: "cover", objectPosition: "top" }} />
         </div>
 
-        <div className="photo-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px", padding: "2.5rem 2rem 0", maxWidth: "1300px", margin: "0 auto" }}>
-          {[photo1, photo2, photo3, photo4].map((photo, i) => (
-            <img key={i} src={photo} alt={`Photo ${i + 1}`} loading="lazy" decoding="async" style={{ width: "100%", aspectRatio: "4/5", objectFit: "cover", display: "block" }} />
+        {/* 3 favoritt-videoer — spiller automatisk, ligger der bildene lå før */}
+        <div className="hero-favorites" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px", padding: "2.5rem 2rem 0", maxWidth: "1300px", margin: "0 auto" }}>
+          {heroFavorites.map((vid, i) => (
+            <div key={i} style={{ width: "100%", aspectRatio: "4/5", overflow: "hidden", background: "#f7f6f4" }}>
+              <AutoplayVideo src={vid} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            </div>
           ))}
         </div>
       </section>
@@ -434,6 +526,13 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      {/* CLOSING PHOTO GRID — flyttet ned hit fra hero-seksjonen */}
+      <div className="closing-photo-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px", padding: "0 3rem 5rem", maxWidth: "1300px", margin: "0 auto" }}>
+        {[photo1, photo2, photo3, photo4].map((photo, i) => (
+          <img key={i} src={photo} alt={`Photo ${i + 1}`} loading="lazy" decoding="async" style={{ width: "100%", aspectRatio: "4/5", objectFit: "cover", display: "block" }} />
+        ))}
+      </div>
 
       {/* FOOTER */}
       <footer id="contact" style={{ background: "#f7f6f4" }}>
