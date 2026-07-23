@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import heroPortrait from "./assets/hero-portrait.png";
 import photo1 from "./assets/photo1.png";
 import photo2 from "./assets/photo2.png";
@@ -42,7 +42,7 @@ const categories = [
 
 const hotels = [
   { title: "Casona de Las Flores, Ondara, Spain", photos: [hotel11, hotel12, hotel13, hotel14, hotel15, hotel16, hotel17, hotel18, hotel19] },
-  { title: "Helios Hotel, Almunecar, Spain", video: hotel2,photos: ["", hotel21, hotel22, hotel23, hotel24, hotel25, hotel26, hotel27, hotel28] },
+  { title: "Helios Hotel, Almunecar, Spain", video: hotel2, photos: ["", hotel21, hotel22, hotel23, hotel24, hotel25, hotel26, hotel27, hotel28] },
   { title: "Hotel 3", photos: ["", "", "", "", "", "", "", "", ""] },
 ];
 
@@ -83,6 +83,58 @@ function InstagramFeed({ posts }) {
   );
 }
 
+/**
+ * LazyVideo
+ * - Doesn't touch the network at all until the element is within `rootMargin` of the viewport.
+ * - Once in view: sets `src`, starts loading, and plays.
+ * - Once it scrolls back OUT of view: pauses playback (keeps src cached, so re-entering is instant).
+ * - Uses preload="none" until intersecting, so the browser makes zero requests up front.
+ */
+function LazyVideo({ src, style, className }) {
+  const videoRef = useRef(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setShouldLoad(true);
+            // play() can reject if the browser hasn't finished loading yet — that's fine, ignore it
+            el.play?.().catch(() => {});
+          } else {
+            el.pause?.();
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "200px", // start loading slightly before it's actually visible
+        threshold: 0.15,
+      }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <video
+      ref={videoRef}
+      src={shouldLoad ? src : undefined}
+      preload="none"
+      muted
+      loop
+      playsInline
+      className={className}
+      style={style}
+    />
+  );
+}
+
 const SLOTS = 8;
 
 const videos = {
@@ -97,16 +149,12 @@ function VideoRow({ category }) {
   return (
     <div style={{ display: "flex", gap: "12px", overflowX: "auto", scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch", scrollbarWidth: "none", paddingBottom: "4px" }}>
       {slots.map((i) => (
-        <div key={i} style={{ flex: "0 0 calc(25% - 9px)", minWidth: "calc(25% - 9px)", scrollSnapAlign: "start" }}>
+        <div key={i} className="video-card" style={{ flex: "0 0 calc(25% - 9px)", minWidth: "calc(25% - 9px)", scrollSnapAlign: "start" }}>
           <div style={{ aspectRatio: "9/16", background: "#f7f6f4", overflow: "hidden" }}>
             {videos[category.id][i] ? (
-              <video
+              <LazyVideo
                 src={videos[category.id][i]}
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                autoPlay
-                muted
-                loop
-                playsInline
               />
             ) : (
               <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "8px" }}>
@@ -143,16 +191,18 @@ function HotelRow({ hotel }) {
               }}
             >
               {isBig && hotel.video ? (
-                <video
+                <LazyVideo
                   src={hotel.video}
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
                 />
               ) : photo ? (
-                <img src={photo} alt={hotel.title} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                <img
+                  src={photo}
+                  alt={hotel.title}
+                  loading="lazy"
+                  decoding="async"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
               ) : (
                 <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "8px" }}>
                   <div style={{ width: "32px", height: "32px", border: "0.5px solid #aaa", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", color: "#888", fontSize: "20px", lineHeight: 1 }}>+</div>
@@ -248,10 +298,6 @@ export default function App() {
             flex: 0 0 calc(50% - 6px) !important;
             min-width: calc(50% - 6px) !important;
           }
-          .video-card {
-            flex: 0 0 calc(50% - 6px) !important;
-            min-width: calc(50% - 6px) !important;
-          }
           .quote-band {
             padding: 3rem 1.25rem !important;
           }
@@ -329,7 +375,7 @@ export default function App() {
 
         <div className="photo-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px", padding: "2.5rem 2rem 0", maxWidth: "1300px", margin: "0 auto" }}>
           {[photo1, photo2, photo3, photo4].map((photo, i) => (
-            <img key={i} src={photo} alt={`Photo ${i + 1}`} style={{ width: "100%", aspectRatio: "4/5", objectFit: "cover", display: "block" }} />
+            <img key={i} src={photo} alt={`Photo ${i + 1}`} loading="lazy" decoding="async" style={{ width: "100%", aspectRatio: "4/5", objectFit: "cover", display: "block" }} />
           ))}
         </div>
       </section>
@@ -350,7 +396,7 @@ export default function App() {
             <VideoRow category={cat} />
           </div>
         ))}
-        
+
        {/* HOTELS & TRAVEL */}
         <div style={{ maxWidth: "1300px", margin: "0 auto 5rem" }}>
           <div className="category-head hotels-head" style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: "1.5rem", paddingBottom: "1rem", borderBottom: "0.5px solid #f7f6f4" }}>
@@ -373,7 +419,7 @@ export default function App() {
       {/* ABOUT */}
       <section id="about" className="about-section" style={{ background: "#fff", padding: "6rem 3rem" }}>
         <div className="about-grid" style={{ maxWidth: "1100px", margin: "0 auto", display: "grid", gridTemplateColumns: "340px 1fr", gap: "5rem", alignItems: "center" }}>
-          <img className="about-img" src={about} alt="About" style={{ width: "100%", aspectRatio: "4/5", objectFit: "cover" }} />
+          <img className="about-img" src={about} alt="About" loading="lazy" decoding="async" style={{ width: "100%", aspectRatio: "4/5", objectFit: "cover" }} />
           <div>
             <p style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#888", marginBottom: "2rem" }}>About me</p>
             <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(36px, 4vw, 56px)", fontWeight: 300, lineHeight: 1.1, marginBottom: "2rem" }}>
