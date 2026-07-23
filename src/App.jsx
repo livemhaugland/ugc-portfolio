@@ -214,7 +214,7 @@ function ClickToPlayVideo({ src, style }) {
 const SLOTS = 8;
 
 const videos = {
-  fashion: [kookaidress, nakd1, fashion2, nakd2, fashion3, "", "", ""],
+  fashion: [kookaiDress, nakd1, fashion2, nakd2, fashion3, "", "", ""],
   beauty: [beauty5, beauty4, "", "", "", "", "", ""],
   wellness: ["", "", "", "", "", "", "", ""],
 };
