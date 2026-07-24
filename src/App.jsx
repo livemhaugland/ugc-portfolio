@@ -47,6 +47,67 @@ const hotels = [
 // Disse 3 spiller automatisk øverst på siden. Bytt ut med dine 3 favoritt-videoer.
 const heroFavorites = [kookaiDress, beauty4, nakd1];
 
+// ── BRANDS I'VE WORKED WITH ──
+// Legg til flere merker etter hvert. "logo" kan være en importert logo-fil
+// (samme måte som bildene over — legg filen i /assets og importer den øverst),
+// eller la den stå tom ("") for en enkel tekst-basert plassholder.
+const brands = [
+  { name: "NA-KD", logo: "" },
+  { name: "", logo: "" },
+  { name: "", logo: "" },
+  { name: "", logo: "" },
+];
+
+function BrandsSection({ brands }) {
+  return (
+    <section style={{ background: "#fff", padding: "4rem 3rem" }}>
+      <p style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#888", textAlign: "center", marginBottom: "2.5rem" }}>
+        Brands I've worked with
+      </p>
+      <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: "3.5rem", maxWidth: "1100px", margin: "0 auto" }}>
+        {brands.map((brand, i) =>
+          brand.logo ? (
+            <img
+              key={i}
+              src={brand.logo}
+              alt={brand.name || `Brand ${i + 1}`}
+              loading="lazy"
+              decoding="async"
+              style={{ height: "32px", width: "auto", objectFit: "contain", filter: "grayscale(100%)", opacity: 0.75 }}
+            />
+          ) : brand.name ? (
+            <span
+              key={i}
+              style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "26px", fontWeight: 400, letterSpacing: "0.03em", color: "#333" }}
+            >
+              {brand.name}
+            </span>
+          ) : (
+            <div
+              key={i}
+              style={{
+                width: "90px",
+                height: "32px",
+                border: "0.5px dashed #ccc",
+                borderRadius: "4px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "9px",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                color: "#aaa",
+              }}
+            >
+              Add logo
+            </div>
+          )
+        )}
+      </div>
+    </section>
+  );
+}
+
 // ── CLOSING PHOTO GRID ──
 // Legg til flere bilder her etter hvert — både stående og liggende.
 // Layouten stabler dem automatisk i kolonner basert på bildets EGEN høyde,
@@ -510,7 +571,7 @@ export default function App() {
               marginTop: "3.5rem",
               maxWidth: "380px",
             }}>
-              Fashion. Styling. Beauty. Wellness. <br />Content that feels like home.
+              Fashion. Styling. Beauty. Lifestyle. <br />Content that feels like home.
             </p>
           </div>
           <img src={heroPortrait} alt="Live Marie Haugland" style={{ width: "100%", aspectRatio: "3 / 5", objectFit: "cover", objectPosition: "top" }} />
@@ -525,6 +586,9 @@ export default function App() {
           ))}
         </div>
       </section>
+
+      {/* BRANDS */}
+      <BrandsSection brands={brands} />
 
       {/* QUOTE */}
       <div className="quote-band" style={{ background: "#f7f6f4", textAlign: "center", padding: "5rem 2rem" }}>
