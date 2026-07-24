@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import heroPortrait from "./assets/hero-portrait.png";
 import photo1 from "./assets/photo1.png";
 import photo2 from "./assets/photo2.png";
 import photo3 from "./assets/photo3.png";
@@ -52,9 +51,14 @@ const hotels = [
   { title: "Helios Hotel, Almunecar, Spain", video: hotel2, photos: ["", hotel21, hotel22, hotel23, hotel24, hotel25, hotel26, hotel27, hotel28] },
 ];
 
-// ── HERO FAVORITES ──
-// Disse 3 spiller automatisk øverst på siden. Bytt ut med dine 3 favoritt-videoer.
-const heroFavorites = [kookaiDress, beauty4, nakd1];
+// ── HERO VIDEO ──
+// Fyller hele høyre halvdel av forsiden, spiller automatisk på repeat. Bytt ut med din favoritt-video.
+const heroVideo = kookaiDress;
+
+// ── HERO PHOTO ROW ──
+// 8 bilder rett under hero-seksjonen, alle i fast 3:4-format (ikke masonry som collagen nederst).
+// Bytt ut de tomme ("") plassene med importerte bilder etter hvert.
+const heroRowPhotos = [photo1, photo2, photo3, photo4, "", "", "", ""];
 
 // ── BRANDS I'VE WORKED WITH ──
 // Legg til flere merker etter hvert. "logo" kan være en importert logo-fil
@@ -193,7 +197,39 @@ function MasonryPhotoGrid({ photos, className }) {
 }
 
 /**
- * AutoplayVideo — for the 3 hero favorites.
+ * FixedPhotoGrid
+ * Same idea as MasonryPhotoGrid, but every image is forced into an
+ * identical 3:4 box (aspect-ratio + objectFit: cover) via a regular
+ * CSS grid instead of columns — so this row is even/symmetric rather
+ * than staggered. Empty ("") slots show an "Add photo" placeholder.
+ */
+function FixedPhotoGrid({ photos, className }) {
+  return (
+    <div className={className} style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "4px" }}>
+      {photos.map((photo, i) => (
+        <div key={i} style={{ aspectRatio: "3 / 4", overflow: "hidden", background: "#f7f6f4" }}>
+          {photo ? (
+            <img
+              src={photo}
+              alt={`Photo ${i + 1}`}
+              loading="lazy"
+              decoding="async"
+              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            />
+          ) : (
+            <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "8px" }}>
+              <div style={{ width: "32px", height: "32px", border: "0.5px solid #aaa", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", color: "#888", fontSize: "20px", lineHeight: 1 }}>+</div>
+              <span style={{ fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#888" }}>Add photo</span>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/**
+ * AutoplayVideo — for the hero video.
  * Loads + plays automatically once in view (which, since it's at the top, is basically immediately).
  * No click needed, muted so autoplay is allowed by browsers.
  */
@@ -236,10 +272,10 @@ function AutoplayVideo({ src, style, className }) {
 }
 
 /**
- * ClickToPlayVideo — for every video EXCEPT the 3 hero favorites.
+ * ClickToPlayVideo — for every video EXCEPT the hero video.
  * Doesn't load anything until scrolled near view (network-friendly),
- * and even then just sits there with a play button overlay — no playback,
- * no sound, no bandwidth used until the user actually clicks it.
+ * and shows a play-button overlay with the first frame as a thumbnail —
+ * no playback, no sound, until the user actually clicks it.
  */
 function ClickToPlayVideo({ src, style }) {
   const wrapperRef = useRef(null);
@@ -460,22 +496,20 @@ export default function App() {
           .hero-section {
             padding-top: 90px !important;
           }
-          .hero-inner {
+          .hero-split {
             grid-template-columns: 1fr !important;
-            gap: 2rem !important;
-            padding: 3rem 1.25rem 2rem !important;
+            min-height: auto !important;
           }
-          .hero-inner > div {
+          .hero-text-col {
+            padding: 2.5rem 1.25rem !important;
             text-align: center !important;
           }
-          .hero-inner img {
-            max-width: 280px !important;
-            margin: 0 auto !important;
+          .hero-video-col {
+            min-height: 60vh !important;
           }
-          .hero-favorites {
-            grid-template-columns: repeat(3, 1fr) !important;
+          .hero-photo-row {
+            grid-template-columns: repeat(2, 1fr) !important;
             gap: 6px !important;
-            padding: 1.5rem 1.25rem 0 !important;
           }
           .closing-photo-grid {
             column-count: 2 !important;
@@ -540,10 +574,10 @@ export default function App() {
         </div>
       </header>
 
-      {/* HERO */}
+      {/* HERO — split 50/50: tekst venstre, video høyre (fyller hele halvdelen) */}
       <section id="home" className="hero-section" style={{ paddingTop: "80px", background: "#f7f6f4" }}>
-        <div className="hero-inner" style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "4rem", alignItems: "start", padding: "5rem 2rem 3rem", maxWidth: "1140px", margin: "0 auto" }}>
-          <div style={{ textAlign: "left" }}>
+        <div className="hero-split" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: "calc(100vh - 80px)" }}>
+          <div className="hero-text-col" style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "3rem 4rem", textAlign: "left" }}>
             <p style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#888", marginBottom: "2rem" }}>
               UGC Content Creator
             </p>
@@ -580,21 +614,21 @@ export default function App() {
               marginTop: "3.5rem",
               maxWidth: "380px",
             }}>
-               Content that feels like home.<br /> 
+               Content that feels like home.<br />
             </p>
           </div>
-          <img src={heroPortrait} alt="Live Marie Haugland" style={{ width: "100%", aspectRatio: "3 / 5", objectFit: "cover", objectPosition: "top" }} />
-        </div>
 
-        {/* 3 favoritt-videoer — spiller automatisk, ligger der bildene lå før */}
-        <div className="hero-favorites" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px", padding: "2.5rem 2rem 0", maxWidth: "1300px", margin: "0 auto" }}>
-          {heroFavorites.map((vid, i) => (
-            <div key={i} style={{ width: "100%", aspectRatio: "4/5", overflow: "hidden", background: "#f7f6f4" }}>
-              <AutoplayVideo src={vid} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-            </div>
-          ))}
+          {/* Video-kolonne — fyller hele høyre halvdel, spiller automatisk på repeat */}
+          <div className="hero-video-col" style={{ position: "relative", width: "100%", height: "100%", minHeight: "400px", overflow: "hidden", background: "#111" }}>
+            <AutoplayVideo src={heroVideo} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          </div>
         </div>
       </section>
+
+      {/* HERO PHOTO ROW — 8 bilder, fast 3:4-format (erstatter den gamle 3-video-raden) */}
+      <div style={{ padding: "0" }}>
+        <FixedPhotoGrid photos={heroRowPhotos} className="hero-photo-row" />
+      </div>
 
       {/* BRANDS */}
       <BrandsSection brands={brands} />
