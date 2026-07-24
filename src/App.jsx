@@ -52,8 +52,8 @@ const heroFavorites = [kookaiDress, beauty4, nakd1];
 // (samme måte som bildene over — legg filen i /assets og importer den øverst),
 // eller la den stå tom ("") for en enkel tekst-basert plassholder.
 const brands = [
-  { name: "NA-KD", logo: "" },
-  { name: "", logo: "" },
+  { name: "NA-KD", logo: "NAKDlogo" },
+  { name: "Melle", logo: "Mellelogo" },
   { name: "", logo: "" },
   { name: "", logo: "" },
 ];
