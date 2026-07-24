@@ -54,7 +54,7 @@ const hotels = [
 
 // ── HERO VIDEO ──
 // Vises i en mindre, innrammet boks på høyre side (ikke full høyde), spiller automatisk på repeat.
-const heroVideo = kookai;
+const heroVideo = kookaidress;
 
 // ── HERO PHOTO ROW ──
 // 8 bilder rett under hero-seksjonen, alle i fast 3:4-format (ikke masonry som collagen nederst).
@@ -225,38 +225,15 @@ function FixedPhotoGrid({ photos, className }) {
 
 /**
  * AutoplayVideo — for the hero video.
- * Loads + plays automatically once in view (which, since it's at the top, is basically immediately).
- * No click needed, muted so autoplay is allowed by browsers.
+ * Always visible on page load, so it just loads and plays immediately —
+ * no IntersectionObserver needed (that was adding a small delay for no benefit here).
  */
 function AutoplayVideo({ src, style, className }) {
-  const videoRef = useRef(null);
-  const [shouldLoad, setShouldLoad] = useState(false);
-
-  useEffect(() => {
-    const el = videoRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setShouldLoad(true);
-            el.play?.().catch(() => {});
-          } else {
-            el.pause?.();
-          }
-        });
-      },
-      { root: null, rootMargin: "200px", threshold: 0.15 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <video
-      ref={videoRef}
-      src={shouldLoad ? src : undefined}
-      preload="none"
+      src={src}
+      preload="auto"
+      autoPlay
       muted
       loop
       playsInline
@@ -616,7 +593,7 @@ export default function App() {
 
           {/* Video-kolonne — mindre, innrammet video med bakgrunn rundt i stedet for full høyde */}
           <div className="hero-video-col" style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem", minHeight: "380px" }}>
-            <div style={{ width: "100%", maxWidth: "460px", aspectRatio: "3 / 4", overflow: "hidden", background: "#111" }}>
+            <div style={{ width: "100%", maxWidth: "460px", aspectRatio: "3 / 4", overflow: "hidden", background: "#e8e6e2" }}>
               <AutoplayVideo src={heroVideo} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
           </div>
