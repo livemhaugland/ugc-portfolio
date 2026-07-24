@@ -509,7 +509,7 @@ export default function App() {
               marginTop: "3.5rem",
               maxWidth: "380px",
             }}>
-              Creating content<br />that feels like home.
+              Fashion. Styling. Beauty. Wellness.<br />Content that feels like home.
             </p>
           </div>
           <img src={heroPortrait} alt="Live Marie Haugland" style={{ width: "100%", aspectRatio: "3 / 5", objectFit: "cover", objectPosition: "top" }} />
