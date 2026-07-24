@@ -615,21 +615,21 @@ export default function App() {
           </div>
 
           {/* Video-kolonne — mindre, innrammet video med bakgrunn rundt i stedet for full høyde */}
-          <div className="hero-video-col" style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "3rem", minHeight: "320px" }}>
-            <div style={{ width: "100%", maxWidth: "380px", aspectRatio: "3 / 4", overflow: "hidden", background: "#111" }}>
+          <div className="hero-video-col" style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem", minHeight: "380px" }}>
+            <div style={{ width: "100%", maxWidth: "460px", aspectRatio: "3 / 4", overflow: "hidden", background: "#111" }}>
               <AutoplayVideo src={heroVideo} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
           </div>
         </div>
       </section>
 
+      {/* BRANDS */}
+      <BrandsSection brands={brands} />
+
       {/* HERO PHOTO ROW — 8 bilder, fast 3:4-format (erstatter den gamle 3-video-raden) */}
       <div style={{ paddingTop: "2.5rem" }}>
         <FixedPhotoGrid photos={heroRowPhotos} className="hero-photo-row" />
       </div>
-
-      {/* BRANDS */}
-      <BrandsSection brands={brands} />
 
       {/* QUOTE */}
       <div className="quote-band" style={{ background: "#f7f6f4", textAlign: "center", padding: "5rem 2rem" }}>
