@@ -526,6 +526,13 @@ export default function App() {
         </div>
       </section>
 
+      {/* QUOTE */}
+      <div className="quote-band" style={{ background: "#f7f6f4", textAlign: "center", padding: "5rem 2rem" }}>
+        <blockquote style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 300, fontStyle: "italic", lineHeight: 1.2, maxWidth: "700px", margin: "0 auto" }}>
+          Content that connects brands<br />with real people.
+        </blockquote>
+      </div>
+
       {/* PORTFOLIO */}
       <section id="portfolio" className="portfolio-section" style={{ padding: "6rem 3rem", background: "#fff" }}>
         <div style={{ textAlign: "center", marginBottom: "4rem" }}>
@@ -555,12 +562,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* QUOTE */}
-      <div className="quote-band" style={{ background: "#f7f6f4", textAlign: "center", padding: "5rem 2rem" }}>
-        <blockquote style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 300, fontStyle: "italic", lineHeight: 1.2, maxWidth: "700px", margin: "0 auto" }}>
-          Content that connects brands<br />with real people.
-        </blockquote>
-      </div>
 
       {/* ABOUT */}
       <section id="about" className="about-section" style={{ background: "#fff", padding: "6rem 3rem 3rem" }}>
