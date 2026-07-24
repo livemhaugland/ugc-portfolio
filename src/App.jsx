@@ -32,6 +32,12 @@ import nakd1 from "./assets/NAKD1.mp4";
 import nakd2 from "./assets/NAKD2.mp4";
 import Mellelogo from "./assets/Mellelogo.png";
 import NAKDlogo from "./assets/NAKDlogo.png";
+import Image1 from "./assets/Image1.png";
+import Image2 from "./assets/Image2.png";
+import Image3 from "./assets/Image3.png";
+import Image4 from "./assets/Image4.png";
+import Image5 from "./assets/Image5.png";
+
 
 
 
@@ -115,7 +121,7 @@ function BrandsSection({ brands }) {
 // Legg til flere bilder her etter hvert — både stående og liggende.
 // Layouten stabler dem automatisk i kolonner basert på bildets EGEN høyde,
 // så du trenger ikke sette noen "type" eller spesifisere størrelse selv.
-const closingPhotos = [photo1, photo2, photo3, photo4];
+const closingPhotos = [photo1, photo2, photo3, photo4, image1, image2, image3, image4, image5];
 
 // Lim inn URL-ene til innleggene du vil vise (kopiert fra instagram.com)
 const instagramPosts = [
