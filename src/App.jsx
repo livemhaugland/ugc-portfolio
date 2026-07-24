@@ -54,7 +54,7 @@ const hotels = [
 
 // ── HERO VIDEO ──
 // Vises i en mindre, innrammet boks på høyre side (ikke full høyde), spiller automatisk på repeat.
-const heroVideo = kookaidress;
+const heroVideo = kookaiDress;
 
 // ── HERO PHOTO ROW ──
 // 8 bilder rett under hero-seksjonen, alle i fast 3:4-format (ikke masonry som collagen nederst).
