@@ -30,6 +30,9 @@ import hotel28 from "./assets/Hotel28.png";
 import hotel2 from "./assets/Hotel2.mp4";
 import nakd1 from "./assets/NAKD1.mp4";
 import nakd2 from "./assets/NAKD2.mp4";
+import Mellelogo from "./assets/Mellelogo.png";
+import NAKDlogo from "./assets/NAKDlogo.png";
+
 
 
 const categories = [
@@ -571,7 +574,7 @@ export default function App() {
               marginTop: "3.5rem",
               maxWidth: "380px",
             }}>
-              Fashion. Styling. Beauty. Lifestyle. <br />Content that feels like home.
+               Content that feels like home.<br /> 
             </p>
           </div>
           <img src={heroPortrait} alt="Live Marie Haugland" style={{ width: "100%", aspectRatio: "3 / 5", objectFit: "cover", objectPosition: "top" }} />
