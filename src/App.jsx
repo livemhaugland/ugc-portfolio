@@ -253,6 +253,7 @@ const SLOTS = 8;
 const videos = {
   fashion: [kookaiDress, nakd1, fashion2, nakd2, fashion3, "", "", ""],
   beauty: [beauty5, beauty4, "", "", "", "", "", ""],
+  wellness: ["", "", "", "", "", "", "", ""],
 };
 
 // Undertekst under hver video i portfolio-radene. Bytt ut med dine egne tekster.
@@ -509,7 +510,7 @@ export default function App() {
               marginTop: "3.5rem",
               maxWidth: "380px",
             }}>
-              Fashion. Styling. Beauty. Wellness.<br />Content that feels like home.
+              Creating content<br />that feels like home.
             </p>
           </div>
           <img src={heroPortrait} alt="Live Marie Haugland" style={{ width: "100%", aspectRatio: "3 / 5", objectFit: "cover", objectPosition: "top" }} />
