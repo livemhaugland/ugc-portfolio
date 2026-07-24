@@ -53,7 +53,7 @@ const hotels = [
 ];
 
 // ── HERO VIDEO ──
-// Fyller hele høyre halvdel av forsiden, spiller automatisk på repeat. Bytt ut med din favoritt-video.
+// Vises i en mindre, innrammet boks på høyre side (ikke full høyde), spiller automatisk på repeat.
 const heroVideo = kookai;
 
 // ── HERO PHOTO ROW ──
@@ -500,7 +500,8 @@ export default function App() {
             text-align: center !important;
           }
           .hero-video-col {
-            min-height: 45vh !important;
+            padding: 2rem 1.25rem !important;
+            min-height: auto !important;
           }
           .hero-photo-row {
             grid-template-columns: repeat(2, 1fr) !important;
@@ -569,9 +570,9 @@ export default function App() {
         </div>
       </header>
 
-      {/* HERO — split 50/50: tekst venstre, video høyre (fyller hele halvdelen) */}
+      {/* HERO — split 50/50: tekst venstre, mindre innrammet video høyre */}
       <section id="home" className="hero-section" style={{ paddingTop: "80px", background: "#f7f6f4" }}>
-        <div className="hero-split" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: "70vh" }}>
+        <div className="hero-split" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: "60vh" }}>
           <div className="hero-text-col" style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "3rem 4rem", textAlign: "left" }}>
             <p style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#888", marginBottom: "2rem" }}>
               UGC Content Creator
@@ -613,9 +614,11 @@ export default function App() {
             </p>
           </div>
 
-          {/* Video-kolonne — fyller hele høyre halvdel, spiller automatisk på repeat */}
-          <div className="hero-video-col" style={{ position: "relative", width: "100%", height: "100%", minHeight: "400px", overflow: "hidden", background: "#111" }}>
-            <AutoplayVideo src={heroVideo} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          {/* Video-kolonne — mindre, innrammet video med bakgrunn rundt i stedet for full høyde */}
+          <div className="hero-video-col" style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "3rem", minHeight: "320px" }}>
+            <div style={{ width: "100%", maxWidth: "380px", aspectRatio: "3 / 4", overflow: "hidden", background: "#111" }}>
+              <AutoplayVideo src={heroVideo} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            </div>
           </div>
         </div>
       </section>
