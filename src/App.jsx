@@ -510,7 +510,7 @@ export default function App() {
               marginTop: "3.5rem",
               maxWidth: "380px",
             }}>
-              Creating content<br />that feels like home.
+              Fashion. Styling. Beauty. Wellness. <br />Content that feels like home.
             </p>
           </div>
           <img src={heroPortrait} alt="Live Marie Haugland" style={{ width: "100%", aspectRatio: "3 / 5", objectFit: "cover", objectPosition: "top" }} />
@@ -529,7 +529,7 @@ export default function App() {
       {/* QUOTE */}
       <div className="quote-band" style={{ background: "#f7f6f4", textAlign: "center", padding: "5rem 2rem" }}>
         <blockquote style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 300, fontStyle: "italic", lineHeight: 1.2, maxWidth: "700px", margin: "0 auto" }}>
-          Content that connects brands<br />with real people.
+          View my<br />PORTFOLIO.
         </blockquote>
       </div>
 
