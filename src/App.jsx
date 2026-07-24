@@ -35,6 +35,7 @@ import photo5 from "./assets/photo5.png";
 import photo6 from "./assets/photo6.png";
 import photo7 from "./assets/photo7.png";
 import photo8 from "./assets/photo8.png";
+import kookai from "./assets/Kookai.mp4";
 
 
 
@@ -53,12 +54,12 @@ const hotels = [
 
 // ── HERO VIDEO ──
 // Fyller hele høyre halvdel av forsiden, spiller automatisk på repeat. Bytt ut med din favoritt-video.
-const heroVideo = kookaiDress;
+const heroVideo = kookai;
 
 // ── HERO PHOTO ROW ──
 // 8 bilder rett under hero-seksjonen, alle i fast 3:4-format (ikke masonry som collagen nederst).
 // Bytt ut de tomme ("") plassene med importerte bilder etter hvert.
-const heroRowPhotos = [photo1, photo2, photo3, photo4, photo5, photo6, photo7, photo8];
+const heroRowPhotos = [photo1, photo5, photo8, photo4, photo2, photo6, photo7, photo3];
 
 // ── BRANDS I'VE WORKED WITH ──
 // Legg til flere merker etter hvert. "logo" kan være en importert logo-fil
