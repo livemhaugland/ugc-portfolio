@@ -31,11 +31,11 @@ import nakd1 from "./assets/NAKD1.mp4";
 import nakd2 from "./assets/NAKD2.mp4";
 import Mellelogo from "./assets/Mellelogo.png";
 import NAKDlogo from "./assets/NAKDlogo.png";
-import image1 from "./assets/Image1.png";
-import image2 from "./assets/Image2.png";
-import image3 from "./assets/Image3.png";
-import image4 from "./assets/Image4.png";
-import image5 from "./assets/Image5.png";
+import photo5 from "./assets/photo5.png";
+import photo6 from "./assets/photo6.png";
+import photo7 from "./assets/photo7.png";
+import photo8 from "./assets/photo8.png";
+
 
 
 
@@ -58,7 +58,7 @@ const heroVideo = kookaiDress;
 // ── HERO PHOTO ROW ──
 // 8 bilder rett under hero-seksjonen, alle i fast 3:4-format (ikke masonry som collagen nederst).
 // Bytt ut de tomme ("") plassene med importerte bilder etter hvert.
-const heroRowPhotos = [photo1, photo2, photo3, photo4, "", "", "", ""];
+const heroRowPhotos = [photo1, photo2, photo3, photo4, photo5, photo6, photo7, photo8];
 
 // ── BRANDS I'VE WORKED WITH ──
 // Legg til flere merker etter hvert. "logo" kan være en importert logo-fil
@@ -120,12 +120,6 @@ function BrandsSection({ brands }) {
     </section>
   );
 }
-
-// ── CLOSING PHOTO GRID ──
-// Legg til flere bilder her etter hvert — både stående og liggende.
-// Layouten stabler dem automatisk i kolonner basert på bildets EGEN høyde,
-// så du trenger ikke sette noen "type" eller spesifisere størrelse selv.
-const closingPhotos = [photo1, photo2, photo3, photo4, image1, image2, image3, image4, image5];
 
 // Lim inn URL-ene til innleggene du vil vise (kopiert fra instagram.com)
 const instagramPosts = [
@@ -686,10 +680,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* CLOSING PHOTO GRID — masonry/asymmetric, stretched edge-to-edge */}
-      <div style={{ paddingBottom: "0" }}>
-        <MasonryPhotoGrid photos={closingPhotos} className="closing-photo-grid" />
-      </div>
 
       {/* FOOTER */}
       <footer id="contact" style={{ background: "#f7f6f4" }}>
