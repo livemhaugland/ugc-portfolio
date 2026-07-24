@@ -529,16 +529,13 @@ export default function App() {
       {/* QUOTE */}
       <div className="quote-band" style={{ background: "#f7f6f4", textAlign: "center", padding: "5rem 2rem" }}>
         <blockquote style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 300, fontStyle: "italic", lineHeight: 1.2, maxWidth: "700px", margin: "0 auto" }}>
-          View my<br />PORTFOLIO.
+          View my<br />PORTFOLIO
         </blockquote>
       </div>
 
       {/* PORTFOLIO */}
       <section id="portfolio" className="portfolio-section" style={{ padding: "6rem 3rem", background: "#fff" }}>
-        <div style={{ textAlign: "center", marginBottom: "4rem" }}>
-          <p style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#888", marginBottom: "1.5rem" }}>View my work</p>
-          <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(36px, 4vw, 56px)", fontWeight: 300 }}>PORTFOLIO</h2>
-        </div>
+        
 
         {categories.map((cat) => (
           <div key={cat.id} style={{ maxWidth: "1300px", margin: "0 auto 5rem" }}>
