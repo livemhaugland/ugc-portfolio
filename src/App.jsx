@@ -505,7 +505,7 @@ export default function App() {
             text-align: center !important;
           }
           .hero-video-col {
-            min-height: 60vh !important;
+            min-height: 45vh !important;
           }
           .hero-photo-row {
             grid-template-columns: repeat(2, 1fr) !important;
@@ -576,7 +576,7 @@ export default function App() {
 
       {/* HERO — split 50/50: tekst venstre, video høyre (fyller hele halvdelen) */}
       <section id="home" className="hero-section" style={{ paddingTop: "80px", background: "#f7f6f4" }}>
-        <div className="hero-split" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: "calc(100vh - 80px)" }}>
+        <div className="hero-split" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: "70vh" }}>
           <div className="hero-text-col" style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "3rem 4rem", textAlign: "left" }}>
             <p style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#888", marginBottom: "2rem" }}>
               UGC Content Creator
@@ -626,7 +626,7 @@ export default function App() {
       </section>
 
       {/* HERO PHOTO ROW — 8 bilder, fast 3:4-format (erstatter den gamle 3-video-raden) */}
-      <div style={{ padding: "0" }}>
+      <div style={{ paddingTop: "2.5rem" }}>
         <FixedPhotoGrid photos={heroRowPhotos} className="hero-photo-row" />
       </div>
 
