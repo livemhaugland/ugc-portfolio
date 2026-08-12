@@ -36,6 +36,15 @@ import photo6 from "./assets/photo6.png";
 import photo7 from "./assets/photo7.png";
 import photo8 from "./assets/photo8.png";
 import kookai from "./assets/Kookai.mp4";
+import NAKDp1 from "./assets/NAKDp1.png";
+import NAKDp2 from "./assets/NAKDp2.png";
+import NAKDp3 from "./assets/NAKDp3.png";
+import NAKDp5 from "./assets/NAKDp5.png";
+import NAKDp6 from "./assets/NAKDp6.png";
+import NAKDp7 from "./assets/NAKDp7.png";
+import Melle from "./assets/Melle.png";
+import Melle2 from "./assets/Melle2.png";
+import Mellevid1 from "./assets/Mellevid1.mp4";
 
 
 
@@ -60,6 +69,25 @@ const heroVideo = kookaiDress;
 // 8 bilder rett under hero-seksjonen, alle i fast 3:4-format (ikke masonry som collagen nederst).
 // Bytt ut de tomme ("") plassene med importerte bilder etter hvert.
 const heroRowPhotos = [photo1, photo5, photo8, photo4, photo2, photo3, photo7, photo6];
+
+// ── BRAND COLLABS ──
+// Split-seksjoner (samme mønster som hero-seksjonen): tekst på én side, bilde/video-grid på den andre.
+const nakdCollab = {
+  label: "Fashion Collaboration",
+  title: "NAKD",
+  description: "A fashion collaboration built around everyday styling — clean lines, elevated basics, and pieces that move with real life.",
+  photos: [NAKDp1, NAKDp2, NAKDp3, NAKDp5, NAKDp6, NAKDp7],
+  mediaSide: "right",
+};
+
+const melleCollab = {
+  label: "Beauty Collaboration",
+  title: "MELLE",
+  description: "Skin-first beauty content for Melle — soft glam, honest routines, and the products that actually make it into daily rotation.",
+  photos: [Melle, Melle2],
+  video: Mellevid1,
+  mediaSide: "left",
+};
 
 // ── BRANDS I'VE WORKED WITH ──
 // Legg til flere merker etter hvert. "logo" kan være en importert logo-fil
@@ -420,6 +448,73 @@ function HotelRow({ hotel }) {
   );
 }
 
+/**
+ * BrandSplitSection
+ * Same split layout as the hero section: a text column (label, brand
+ * name, description) next to a media column. `mediaSide` controls
+ * which side the media grid sits on — "right" (e.g. NAKD) mirrors the
+ * hero's text-left/media-right layout, "left" (e.g. MELLE) flips it.
+ * If a `video` is passed, it's shown as a large ClickToPlayVideo cell
+ * (same play-button pattern used everywhere else) alongside the photos;
+ * otherwise the media column is a plain photo grid.
+ */
+function BrandSplitSection({ label, title, description, photos, video, mediaSide }) {
+  const textCol = (
+    <div className="brand-text-col" style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "3rem 4rem" }}>
+      <p style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#888", marginBottom: "1.5rem" }}>
+        {label}
+      </p>
+      <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(30px, 3.6vw, 48px)", fontWeight: 300, lineHeight: 1.1, letterSpacing: "0.01em" }}>
+        {title}
+      </h3>
+      <p style={{ marginTop: "1.5rem", fontSize: "14px", lineHeight: 1.9, color: "#555", maxWidth: "420px" }}>
+        {description}
+      </p>
+    </div>
+  );
+
+  const mediaCol = (
+    <div className="brand-media-col" style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem" }}>
+      <div className="brand-media-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px", width: "100%", maxWidth: "460px" }}>
+        {video && (
+          <div style={{ gridColumn: "span 2", gridRow: "span 2", aspectRatio: "3 / 4", overflow: "hidden", background: "#f7f6f4" }}>
+            <ClickToPlayVideo src={video} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          </div>
+        )}
+        {photos.map((photo, i) => (
+          <div key={i} style={{ aspectRatio: "3 / 4", overflow: "hidden", background: "#f7f6f4" }}>
+            <img
+              src={photo}
+              alt={`${title} ${i + 1}`}
+              loading="lazy"
+              decoding="async"
+              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  return (
+    <section className="brand-section" style={{ background: "#fff" }}>
+      <div className="brand-split" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: "420px" }}>
+        {mediaSide === "left" ? (
+          <>
+            {mediaCol}
+            {textCol}
+          </>
+        ) : (
+          <>
+            {textCol}
+            {mediaCol}
+          </>
+        )}
+      </div>
+    </section>
+  );
+}
+
 function InstagramIcon() {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -479,6 +574,20 @@ export default function App() {
           .hero-video-col {
             padding: 2rem 1.25rem !important;
             min-height: auto !important;
+          }
+          .brand-split {
+            grid-template-columns: 1fr !important;
+            min-height: auto !important;
+          }
+          .brand-text-col {
+            padding: 2.5rem 1.25rem !important;
+            text-align: center !important;
+          }
+          .brand-media-col {
+            padding: 2rem 1.25rem !important;
+          }
+          .brand-media-grid {
+            max-width: 360px !important;
           }
           .hero-photo-row {
             grid-template-columns: repeat(2, 1fr) !important;
@@ -605,11 +714,27 @@ export default function App() {
         <FixedPhotoGrid photos={heroRowPhotos} className="hero-photo-row" />
       </div>
 
-      {/* PORTFOLIO */}
-      <section id="portfolio" className="portfolio-section" style={{ padding: "6rem 3rem", background: "#fff" }}>
-        
+      {/* NAKD COLLAB */}
+      <BrandSplitSection {...nakdCollab} />
 
-        {categories.map((cat) => (
+      {/* PORTFOLIO */}
+      <section id="portfolio" className="portfolio-section" style={{ padding: "6rem 3rem 0", background: "#fff" }}>
+        {categories.filter((cat) => cat.id === "fashion").map((cat) => (
+          <div key={cat.id} style={{ maxWidth: "1300px", margin: "0 auto 5rem" }}>
+            <div className="category-head" style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: "1.5rem", paddingBottom: "1rem", borderBottom: "0.5px solid #f7f6f4" }}>
+              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "38px", fontWeight: 300, letterSpacing: "0.02em" }}>{cat.title}</h3>
+              <span style={{ fontSize: "12px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#888" }}>{cat.desc}</span>
+            </div>
+            <VideoRow category={cat} />
+          </div>
+        ))}
+      </section>
+
+      {/* MELLE COLLAB */}
+      <BrandSplitSection {...melleCollab} />
+
+      <section className="portfolio-section" style={{ padding: "5rem 3rem 6rem", background: "#fff" }}>
+        {categories.filter((cat) => cat.id !== "fashion").map((cat) => (
           <div key={cat.id} style={{ maxWidth: "1300px", margin: "0 auto 5rem" }}>
             <div className="category-head" style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: "1.5rem", paddingBottom: "1rem", borderBottom: "0.5px solid #f7f6f4" }}>
               <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "38px", fontWeight: 300, letterSpacing: "0.02em" }}>{cat.title}</h3>
