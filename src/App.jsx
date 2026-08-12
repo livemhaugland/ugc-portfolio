@@ -39,6 +39,16 @@ import Melle from "./assets/Melle.png";
 import Melle2 from "./assets/Melle2.png";
 import Mellevid1 from "./assets/Mellevid1.mp4";
 import Mellevid2 from "./assets/Mellevid2.mp4";
+import kookaidressPoster from "./assets/Kookaidress-poster.jpg";
+import nakd1Poster from "./assets/NAKD1-poster.jpg";
+import fashion2Poster from "./assets/Fashion2-poster.jpg";
+import nakd2Poster from "./assets/NAKD2-poster.jpg";
+import fashion3Poster from "./assets/Fashion3-poster.jpg";
+import beauty5Poster from "./assets/Beauty5-poster.jpg";
+import beauty4Poster from "./assets/Beauty4-poster.jpg";
+import mellevid2Poster from "./assets/Mellevid2-poster.jpg";
+import hotel2Poster from "./assets/Hotel2-poster.jpg";
+import mellevid1Poster from "./assets/Mellevid1-poster.jpg";
 
 
 
@@ -52,12 +62,13 @@ const categories = [
 
 const hotels = [
   { title: "Casona de Las Flores, Ondara, Spain", photos: [hotel11, hotel12, hotel13, hotel14, hotel15, hotel16, hotel17, hotel18, hotel19] },
-  { title: "Helios Hotel, Almunecar, Spain", video: hotel2, photos: ["", hotel21, hotel22, hotel23, hotel24, hotel25, hotel26, hotel27, hotel28] },
+  { title: "Helios Hotel, Almunecar, Spain", video: hotel2, videoPoster: hotel2Poster, photos: ["", hotel21, hotel22, hotel23, hotel24, hotel25, hotel26, hotel27, hotel28] },
 ];
 
 // ── HERO VIDEO ──
 // Vises i en mindre, innrammet boks på høyre side (ikke full høyde), spiller automatisk på repeat.
 const heroVideo = kookaiDress;
+const heroVideoPoster = kookaidressPoster;
 
 // ── BRAND COLLABS ──
 // Split-seksjoner (samme mønster som hero-seksjonen): tekst på én side, bilde/video-grid på den andre.
@@ -74,6 +85,7 @@ const melleCollab = {
   title: "MELLE",
   photos: [Melle, Melle2, photo7],
   video: Mellevid1,
+  videoPoster: mellevid1Poster,
   mediaSide: "left",
 };
 
@@ -211,12 +223,17 @@ function MasonryPhotoGrid({ photos, className }) {
  * AutoplayVideo — for the hero video.
  * Always visible on page load, so it just loads and plays immediately —
  * no IntersectionObserver needed (that was adding a small delay for no benefit here).
+ * preload="none" is safe here despite autoplay: per spec, a muted autoplay
+ * video still triggers its own load regardless of the preload hint, so
+ * nothing extra downloads until the browser actually starts playback.
+ * The poster covers the brief gap before that happens.
  */
-function AutoplayVideo({ src, style, className }) {
+function AutoplayVideo({ src, poster, style, className }) {
   return (
     <video
       src={src}
-      preload="auto"
+      poster={poster}
+      preload="none"
       autoPlay
       muted
       loop
@@ -230,10 +247,11 @@ function AutoplayVideo({ src, style, className }) {
 /**
  * ClickToPlayVideo — for every video EXCEPT the hero video.
  * Doesn't load anything until scrolled near view (network-friendly),
- * and shows a play-button overlay with the first frame as a thumbnail —
- * no playback, no sound, until the user actually clicks it.
+ * and shows a poster thumbnail behind the play-button overlay —
+ * no playback, no sound, no bytes downloaded until the user actually
+ * clicks it (preload="none").
  */
-function ClickToPlayVideo({ src, style }) {
+function ClickToPlayVideo({ src, poster, style }) {
   const wrapperRef = useRef(null);
   const videoRef = useRef(null);
   const [isInView, setIsInView] = useState(false);
@@ -263,7 +281,8 @@ function ClickToPlayVideo({ src, style }) {
         <video
           ref={videoRef}
           src={src}
-          preload="metadata"
+          poster={poster}
+          preload="none"
           playsInline
           loop
           muted={!isPlaying}
@@ -318,6 +337,13 @@ const videos = {
   wellness: ["", "", "", "", "", "", "", ""],
 };
 
+// Poster-bilde (thumbnail) for hver video over — vises før play trykkes, samme rekkefølge som "videos".
+const videoPosters = {
+  fashion: [kookaidressPoster, nakd1Poster, fashion2Poster, nakd2Poster, fashion3Poster, "", "", ""],
+  beauty: [beauty5Poster, beauty4Poster, mellevid2Poster, "", "", "", "", ""],
+  wellness: ["", "", "", "", "", "", "", ""],
+};
+
 // Undertekst under hver video i portfolio-radene. Bytt ut med dine egne tekster.
 const captions = {
   fashion: ["Kookai dress", "NA-KD collab", "Everyday styling", "NA-KD collab", "Fashion edit", "", "", ""],
@@ -336,6 +362,7 @@ function VideoRow({ category }) {
             {videos[category.id][i] ? (
               <ClickToPlayVideo
                 src={videos[category.id][i]}
+                poster={videoPosters[category.id][i]}
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
             ) : (
@@ -380,6 +407,7 @@ function HotelRow({ hotel }) {
               {isBig && hotel.video ? (
                 <ClickToPlayVideo
                   src={hotel.video}
+                  poster={hotel.videoPoster}
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
               ) : photo ? (
@@ -417,7 +445,7 @@ function HotelRow({ hotel }) {
  * used everywhere else) among the photo cells.
  * Same large-image, minimal-gap treatment as the hero photo row.
  */
-function BrandSplitSection({ label, title, photos, video, mediaSide }) {
+function BrandSplitSection({ label, title, photos, video, videoPoster, mediaSide }) {
   const textCol = (
     <div className="brand-text-col" style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "3rem 4rem" }}>
       <p style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#888", marginBottom: "1.5rem" }}>
@@ -434,7 +462,7 @@ function BrandSplitSection({ label, title, photos, video, mediaSide }) {
       <div className="brand-media-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gridAutoFlow: "dense", gap: "4px", width: "100%" }}>
         {video && (
           <div style={{ gridColumn: "span 2", gridRow: "span 2", aspectRatio: "3 / 4", overflow: "hidden", background: "#f7f6f4" }}>
-            <ClickToPlayVideo src={video} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <ClickToPlayVideo src={video} poster={videoPoster} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
           </div>
         )}
         {photos.map((photo, i) => (
@@ -648,7 +676,7 @@ export default function App() {
           {/* Video-kolonne — mindre, innrammet video med bakgrunn rundt i stedet for full høyde */}
           <div className="hero-video-col" style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem", minHeight: "380px" }}>
             <div style={{ width: "100%", maxWidth: "460px", aspectRatio: "3 / 4", overflow: "hidden", background: "#e8e6e2" }}>
-              <AutoplayVideo src={heroVideo} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              <AutoplayVideo src={heroVideo} poster={heroVideoPoster} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
           </div>
         </div>
