@@ -504,9 +504,6 @@ export default function App() {
             align-items: flex-start !important;
             gap: 4px !important;
           }
-          .quote-band {
-            padding: 3rem 1.25rem !important;
-          }
           .about-section {
             padding: 3rem 1.25rem !important;
           }
@@ -606,13 +603,6 @@ export default function App() {
       {/* HERO PHOTO ROW — 8 bilder, fast 3:4-format (erstatter den gamle 3-video-raden) */}
       <div style={{ paddingTop: "2.5rem" }}>
         <FixedPhotoGrid photos={heroRowPhotos} className="hero-photo-row" />
-      </div>
-
-      {/* QUOTE */}
-      <div className="quote-band" style={{ background: "#f7f6f4", textAlign: "center", padding: "5rem 2rem" }}>
-        <blockquote style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 300, fontStyle: "italic", lineHeight: 1.2, maxWidth: "700px", margin: "0 auto" }}>
-          View my<br />WORK
-        </blockquote>
       </div>
 
       {/* PORTFOLIO */}
