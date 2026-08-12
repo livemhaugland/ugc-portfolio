@@ -333,21 +333,21 @@ const SLOTS = 8;
 
 const videos = {
   fashion: [kookaiDress, nakd1, fashion2, nakd2, fashion3, "", "", ""],
-  beauty: [beauty5, beauty4, Mellevid2, "", "", "", "", ""],
+  beauty: [Mellevid2, beauty4, beauty5, "", "", "", "", ""],
   wellness: ["", "", "", "", "", "", "", ""],
 };
 
 // Poster-bilde (thumbnail) for hver video over — vises før play trykkes, samme rekkefølge som "videos".
 const videoPosters = {
   fashion: [kookaidressPoster, nakd1Poster, fashion2Poster, nakd2Poster, fashion3Poster, "", "", ""],
-  beauty: [beauty5Poster, beauty4Poster, mellevid2Poster, "", "", "", "", ""],
+  beauty: [mellevid2Poster, beauty4Poster, beauty5Poster, "", "", "", "", ""],
   wellness: ["", "", "", "", "", "", "", ""],
 };
 
 // Undertekst under hver video i portfolio-radene. Bytt ut med dine egne tekster.
 const captions = {
   fashion: ["Kookai dress", "NA-KD collab", "Everyday styling", "NA-KD collab", "Fashion edit", "", "", ""],
-  beauty: ["Product shots", "Product shots", "MELLE collab", "Get ready with me", "", "", "", ""],
+  beauty: ["MELLE collab", "Product shots", "Product shots", "Get ready with me", "", "", "", ""],
   wellness: ["", "", "", "", "", "", "", ""],
 };
 
