@@ -66,7 +66,7 @@ const nakdCollab = {
   label: "Fashion Collaboration",
   title: "NA-KD",
   photos: [NAKDp1, NAKDp2, NAKDp3, NAKDp5, NAKDp6, NAKDp7],
-  mediaSide: "right",
+  mediaSide: "left",
 };
 
 const melleCollab = {
@@ -321,7 +321,7 @@ const videos = {
 // Undertekst under hver video i portfolio-radene. Bytt ut med dine egne tekster.
 const captions = {
   fashion: ["Kookai dress", "NA-KD collab", "Everyday styling", "NA-KD collab", "Fashion edit", "", "", ""],
-  beauty: ["Beauty routine", "Beauty routine", "Skincare", "Get ready with me", "", "", "", ""],
+  beauty: ["Product shots", "Product shots", "MELLE collab", "Get ready with me", "", "", "", ""],
   wellness: ["", "", "", "", "", "", "", ""],
 };
 
@@ -614,7 +614,6 @@ export default function App() {
             </h1>
             <p style={{ marginTop: "2rem", fontSize: "14px", lineHeight: 1.9, color: "#555", maxWidth: "420px" }}>
               Norwegian creator, Instagram at heart. Photos, reels, stories — I know how to turn all three into a feed with a red thread and a feeling. My focus is fashion and beauty: the aesthetics, the details, the inspiration.
-              Alongside creating, I'm studying Business Administration, so I think about brand strategy and audience connection as seriously as I think about visuals. New ideas and creativity are what drive me forward.
             </p>
             <div style={{ display: "flex", gap: "1.5rem", marginTop: "2rem" }}>
               <a href="https://instagram.com/livemhaugland" target="_blank" rel="noreferrer" aria-label="Instagram" style={{ color: "#111", transition: "color 0.2s" }}
@@ -694,6 +693,9 @@ export default function App() {
             <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "38px", fontWeight: 300, letterSpacing: "0.02em" }}>Hotels &amp; Travel</h3>
             <img src={about} alt="Live Marie Haugland" style={{ width: "64px", height: "64px", borderRadius: "50%", objectFit: "cover" }} />
           </div>
+          <p style={{ fontSize: "14px", lineHeight: 1.9, color: "#555", maxWidth: "640px", marginBottom: "2.5rem" }}>
+            Content is often what tips the scale for me when choosing one hotel over another. I love capturing a stay from the guest's perspective — the small details, the light, the feeling of actually being there. That authenticity matters to me because it's exactly what I look for myself before booking somewhere.
+          </p>
           {hotels.map((hotel) => (
             <HotelRow key={hotel.title} hotel={hotel} />
           ))}
