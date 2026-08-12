@@ -1,8 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import photo1 from "./assets/photo1.png";
-import photo2 from "./assets/photo2.png";
-import photo3 from "./assets/photo3.png";
-import photo4 from "./assets/photo4.png";
 import about from "./assets/about.png";
 import fashion2 from "./assets/Fashion2.mp4";
 import kookaiDress from "./assets/Kookaidress.mp4";
@@ -31,10 +27,7 @@ import nakd1 from "./assets/NAKD1.mp4";
 import nakd2 from "./assets/NAKD2.mp4";
 import Mellelogo from "./assets/Mellelogo.png";
 import NAKDlogo from "./assets/NAKDlogo.png";
-import photo5 from "./assets/photo5.png";
-import photo6 from "./assets/photo6.png";
 import photo7 from "./assets/photo7.png";
-import photo8 from "./assets/photo8.png";
 import kookai from "./assets/Kookai.mp4";
 import NAKDp1 from "./assets/NAKDp1.png";
 import NAKDp2 from "./assets/NAKDp2.png";
@@ -45,6 +38,7 @@ import NAKDp7 from "./assets/NAKDp7.png";
 import Melle from "./assets/Melle.png";
 import Melle2 from "./assets/Melle2.png";
 import Mellevid1 from "./assets/Mellevid1.mp4";
+import Mellevid2 from "./assets/Mellevid2.mp4";
 
 
 
@@ -65,17 +59,12 @@ const hotels = [
 // Vises i en mindre, innrammet boks på høyre side (ikke full høyde), spiller automatisk på repeat.
 const heroVideo = kookaiDress;
 
-// ── HERO PHOTO ROW ──
-// 8 bilder rett under hero-seksjonen, alle i fast 3:4-format (ikke masonry som collagen nederst).
-// Bytt ut de tomme ("") plassene med importerte bilder etter hvert.
-const heroRowPhotos = [photo1, photo5, photo8, photo4, photo2, photo3, photo7, photo6];
-
 // ── BRAND COLLABS ──
 // Split-seksjoner (samme mønster som hero-seksjonen): tekst på én side, bilde/video-grid på den andre.
+// "photos" kan utvides med flere bilder når som helst — gridet flyter automatisk (auto-flow).
 const nakdCollab = {
   label: "Fashion Collaboration",
-  title: "NAKD",
-  description: "A fashion collaboration built around everyday styling — clean lines, elevated basics, and pieces that move with real life.",
+  title: "NA-KD",
   photos: [NAKDp1, NAKDp2, NAKDp3, NAKDp5, NAKDp6, NAKDp7],
   mediaSide: "right",
 };
@@ -83,8 +72,7 @@ const nakdCollab = {
 const melleCollab = {
   label: "Beauty Collaboration",
   title: "MELLE",
-  description: "Skin-first beauty content for Melle — soft glam, honest routines, and the products that actually make it into daily rotation.",
-  photos: [Melle, Melle2],
+  photos: [Melle, Melle2, photo7],
   video: Mellevid1,
   mediaSide: "left",
 };
@@ -220,38 +208,6 @@ function MasonryPhotoGrid({ photos, className }) {
 }
 
 /**
- * FixedPhotoGrid
- * Same idea as MasonryPhotoGrid, but every image is forced into an
- * identical 3:4 box (aspect-ratio + objectFit: cover) via a regular
- * CSS grid instead of columns — so this row is even/symmetric rather
- * than staggered. Empty ("") slots show an "Add photo" placeholder.
- */
-function FixedPhotoGrid({ photos, className }) {
-  return (
-    <div className={className} style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "4px" }}>
-      {photos.map((photo, i) => (
-        <div key={i} style={{ aspectRatio: "3 / 4", overflow: "hidden", background: "#f7f6f4" }}>
-          {photo ? (
-            <img
-              src={photo}
-              alt={`Photo ${i + 1}`}
-              loading="lazy"
-              decoding="async"
-              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-            />
-          ) : (
-            <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "8px" }}>
-              <div style={{ width: "32px", height: "32px", border: "0.5px solid #aaa", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", color: "#888", fontSize: "20px", lineHeight: 1 }}>+</div>
-              <span style={{ fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#888" }}>Add photo</span>
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-}
-
-/**
  * AutoplayVideo — for the hero video.
  * Always visible on page load, so it just loads and plays immediately —
  * no IntersectionObserver needed (that was adding a small delay for no benefit here).
@@ -358,7 +314,7 @@ const SLOTS = 8;
 
 const videos = {
   fashion: [kookaiDress, nakd1, fashion2, nakd2, fashion3, "", "", ""],
-  beauty: [beauty5, beauty4, "", "", "", "", "", ""],
+  beauty: [beauty5, beauty4, Mellevid2, "", "", "", "", ""],
   wellness: ["", "", "", "", "", "", "", ""],
 };
 
@@ -450,15 +406,18 @@ function HotelRow({ hotel }) {
 
 /**
  * BrandSplitSection
- * Same split layout as the hero section: a text column (label, brand
- * name, description) next to a media column. `mediaSide` controls
- * which side the media grid sits on — "right" (e.g. NAKD) mirrors the
- * hero's text-left/media-right layout, "left" (e.g. MELLE) flips it.
- * If a `video` is passed, it's shown as a large ClickToPlayVideo cell
- * (same play-button pattern used everywhere else) alongside the photos;
- * otherwise the media column is a plain photo grid.
+ * Same split layout as the hero section: a text column (label + brand
+ * name) next to a media column. `mediaSide` controls which side the
+ * media grid sits on — "right" (e.g. NA-KD) mirrors the hero's
+ * text-left/media-right layout, "left" (e.g. MELLE) flips it.
+ * The media grid is an auto-flow CSS grid (repeat(auto-fill, minmax(...)))
+ * so `photos` can grow to any length without touching the layout —
+ * cells just keep wrapping into new rows. If a `video` is passed, it's
+ * shown as a large 2x2 ClickToPlayVideo cell (same play-button pattern
+ * used everywhere else) among the photo cells.
+ * Same large-image, minimal-gap treatment as the hero photo row.
  */
-function BrandSplitSection({ label, title, description, photos, video, mediaSide }) {
+function BrandSplitSection({ label, title, photos, video, mediaSide }) {
   const textCol = (
     <div className="brand-text-col" style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "3rem 4rem" }}>
       <p style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#888", marginBottom: "1.5rem" }}>
@@ -467,15 +426,12 @@ function BrandSplitSection({ label, title, description, photos, video, mediaSide
       <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(30px, 3.6vw, 48px)", fontWeight: 300, lineHeight: 1.1, letterSpacing: "0.01em" }}>
         {title}
       </h3>
-      <p style={{ marginTop: "1.5rem", fontSize: "14px", lineHeight: 1.9, color: "#555", maxWidth: "420px" }}>
-        {description}
-      </p>
     </div>
   );
 
   const mediaCol = (
-    <div className="brand-media-col" style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem" }}>
-      <div className="brand-media-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px", width: "100%", maxWidth: "460px" }}>
+    <div className="brand-media-col" style={{ display: "flex", alignItems: "center" }}>
+      <div className="brand-media-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gridAutoFlow: "dense", gap: "4px", width: "100%" }}>
         {video && (
           <div style={{ gridColumn: "span 2", gridRow: "span 2", aspectRatio: "3 / 4", overflow: "hidden", background: "#f7f6f4" }}>
             <ClickToPlayVideo src={video} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
@@ -583,15 +539,8 @@ export default function App() {
             padding: 2.5rem 1.25rem !important;
             text-align: center !important;
           }
-          .brand-media-col {
-            padding: 2rem 1.25rem !important;
-          }
           .brand-media-grid {
-            max-width: 360px !important;
-          }
-          .hero-photo-row {
             grid-template-columns: repeat(2, 1fr) !important;
-            gap: 6px !important;
           }
           .closing-photo-grid {
             column-count: 2 !important;
@@ -708,11 +657,6 @@ export default function App() {
 
       {/* BRANDS */}
       <BrandsSection brands={brands} />
-
-      {/* HERO PHOTO ROW — 8 bilder, fast 3:4-format (erstatter den gamle 3-video-raden) */}
-      <div style={{ paddingTop: "2.5rem" }}>
-        <FixedPhotoGrid photos={heroRowPhotos} className="hero-photo-row" />
-      </div>
 
       {/* NAKD COLLAB */}
       <BrandSplitSection {...nakdCollab} />
