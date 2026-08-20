@@ -49,6 +49,12 @@ import beauty4Poster from "./assets/Beauty4-poster.jpg";
 import mellevid2Poster from "./assets/Mellevid2-poster.jpg";
 import hotel2Poster from "./assets/Hotel2-poster.jpg";
 import mellevid1Poster from "./assets/Mellevid1-poster.jpg";
+import NAKD21 from "./assets/NAKD21.png";
+import NAKD22 from "./assets/NAKD22.png";
+import NAKD23 from "./assets/NAKD23.png";
+import NAKD24 from "./assets/NAKD24.png";
+import NAKD25 from "./assets/NAKD25.png";
+
 
 
 
@@ -76,7 +82,7 @@ const heroVideoPoster = kookaidressPoster;
 const nakdCollab = {
   label: "Fashion Collaboration",
   title: "NA-KD",
-  photos: [NAKDp1, NAKDp2, NAKDp3, NAKDp5, NAKDp6, NAKDp7],
+  photos: [NAKDp1, NAKDp2, NAKDp3, NAKDp5, NAKDp6, NAKDp7, NAKD21, NAKD22, NAKD23, NAKD24, NAKD25],
   mediaSide: "left",
 };
 
