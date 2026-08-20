@@ -84,7 +84,7 @@ const heroVideoPoster = kookaidressPoster;
 const nakdCollab = {
   label: "Fashion Collaboration",
   title: "NA-KD",
-  photos: [NAKDp1, NAKDp2, NAKDp3, NAKDp5, NAKDp6, NAKDp7, NAKD21, NAKD22, NAKD23, NAKD24, NAKD26, NAKD25],
+  photos: [NAKDp1, NAKDp2, NAKDp3, NAKDp5, NAKDp6, NAKDp7, NAKD21, NAKD24, NAKD23, NAKD22, NAKD26, NAKD25],
   mediaSide: "left",
 };
 
