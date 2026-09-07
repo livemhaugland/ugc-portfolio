@@ -55,6 +55,10 @@ import NAKD23 from "./assets/NAKD23.png";
 import NAKD24 from "./assets/NAKD24.png";
 import NAKD25 from "./assets/NAKD25.png";
 import NAKD26 from "./assets/NAKD26.png";
+import JWPEI1 from "./assets/JWPEI1.png";
+import JWPEI2 from "./assets/JWPEI2.png";
+import JWPEIlogo from "./assets/JWPEIlogo.png";
+
 
 
 
@@ -81,11 +85,23 @@ const heroVideoPoster = kookaidressPoster;
 // ── BRAND COLLABS ──
 // Split-seksjoner (samme mønster som hero-seksjonen): tekst på én side, bilde/video-grid på den andre.
 // "photos" kan utvides med flere bilder når som helst — gridet flyter automatisk (auto-flow).
+const jwpeiCollab = {
+  label: "Accessories Collaboration",
+  title: "JW PEI",
+  photos: [JWPEI1, JWPEI2],
+  // No video file yet — drop it in /assets, import it above, then add
+  // `video: jwpei1` (and `videoPoster: ...` if you have a poster) here.
+  mediaSide: "left",
+  layout: "video-stack",
+};
+
 const nakdCollab = {
   label: "Fashion Collaboration",
   title: "NA-KD",
   photos: [NAKDp1, NAKDp2, NAKDp3, NAKDp5, NAKDp6, NAKDp7, NAKD21, NAKD24, NAKD23, NAKD22, NAKD26, NAKD25],
-  mediaSide: "left",
+  mediaSide: "top",
+  layout: "asymmetric",
+  largeIndices: [1, 7],
 };
 
 const melleCollab = {
@@ -104,7 +120,7 @@ const melleCollab = {
 const brands = [
   { name: "NA-KD", logo: NAKDlogo },
   { name: "Melle", logo: Mellelogo },
-  { name: "", logo: "" },
+  { name: "JW PEI", logo: JWPEIlogo },
   { name: "", logo: "" },
 ];
 
@@ -442,18 +458,24 @@ function HotelRow({ hotel }) {
 
 /**
  * BrandSplitSection
- * Same split layout as the hero section: a text column (label + brand
- * name) next to a media column. `mediaSide` controls which side the
- * media grid sits on — "right" (e.g. NA-KD) mirrors the hero's
- * text-left/media-right layout, "left" (e.g. MELLE) flips it.
- * The media grid is an auto-flow CSS grid (repeat(auto-fill, minmax(...)))
- * so `photos` can grow to any length without touching the layout —
- * cells just keep wrapping into new rows. If a `video` is passed, it's
- * shown as a large 2x2 ClickToPlayVideo cell (same play-button pattern
- * used everywhere else) among the photo cells.
+ * `mediaSide` controls the overall arrangement: "right" (e.g. MELLE)
+ * mirrors the hero's text-left/media-right split layout, "left" flips
+ * it, and "top" stacks a centered text block above a full-width media
+ * area (e.g. NA-KD) instead of splitting into two columns.
+ * `layout` picks the media arrangement:
+ *  - (default) an auto-flow CSS grid (repeat(auto-fill, minmax(...)))
+ *    so `photos` can grow to any length without touching the layout —
+ *    cells just keep wrapping into new rows. If a `video` is passed,
+ *    it's shown as a large 2x2 ClickToPlayVideo cell among the photos.
+ *  - "asymmetric" — same grid, but the photos at `largeIndices` span
+ *    2x2 instead of 1x1, breaking up the uniform grid into an
+ *    irregular mosaic (dense auto-flow fills the gaps around them).
+ *  - "video-stack" — a large video on one side with the photos stacked
+ *    vertically in a narrow column beside it (video always reserves
+ *    its slot, showing an "Add video" placeholder until one is passed).
  * Same large-image, minimal-gap treatment as the hero photo row.
  */
-function BrandSplitSection({ label, title, photos, video, videoPoster, mediaSide }) {
+function BrandSplitSection({ label, title, photos, video, videoPoster, mediaSide, layout, largeIndices }) {
   const textCol = (
     <div className="brand-text-col" style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "3rem 4rem" }}>
       <p style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#888", marginBottom: "1.5rem" }}>
@@ -465,16 +487,37 @@ function BrandSplitSection({ label, title, photos, video, videoPoster, mediaSide
     </div>
   );
 
-  const mediaCol = (
-    <div className="brand-media-col" style={{ display: "flex", alignItems: "center" }}>
-      <div className="brand-media-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gridAutoFlow: "dense", gap: "4px", width: "100%" }}>
-        {video && (
-          <div style={{ gridColumn: "span 2", gridRow: "span 2", aspectRatio: "3 / 4", overflow: "hidden", background: "#f7f6f4" }}>
-            <ClickToPlayVideo src={video} poster={videoPoster} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-          </div>
-        )}
-        {photos.map((photo, i) => (
-          <div key={i} style={{ aspectRatio: "3 / 4", overflow: "hidden", background: "#f7f6f4" }}>
+  const textBlockTop = (
+    <div className="brand-text-top" style={{ textAlign: "center", padding: "3.5rem 1.25rem 2rem" }}>
+      <p style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#888", marginBottom: "1rem" }}>
+        {label}
+      </p>
+      <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(30px, 3.6vw, 48px)", fontWeight: 300, lineHeight: 1.1, letterSpacing: "0.01em" }}>
+        {title}
+      </h3>
+    </div>
+  );
+
+  const mediaGrid = (
+    <div className="brand-media-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gridAutoFlow: "dense", gap: "4px", width: "100%" }}>
+      {video && (
+        <div style={{ gridColumn: "span 2", gridRow: "span 2", aspectRatio: "3 / 4", overflow: "hidden", background: "#f7f6f4" }}>
+          <ClickToPlayVideo src={video} poster={videoPoster} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        </div>
+      )}
+      {photos.map((photo, i) => {
+        const isLarge = layout === "asymmetric" && largeIndices?.includes(i);
+        return (
+          <div
+            key={i}
+            style={{
+              gridColumn: isLarge ? "span 2" : "span 1",
+              gridRow: isLarge ? "span 2" : "span 1",
+              aspectRatio: "3 / 4",
+              overflow: "hidden",
+              background: "#f7f6f4",
+            }}
+          >
             <img
               src={photo}
               alt={`${title} ${i + 1}`}
@@ -483,10 +526,53 @@ function BrandSplitSection({ label, title, photos, video, videoPoster, mediaSide
               style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
             />
           </div>
-        ))}
-      </div>
+        );
+      })}
     </div>
   );
+
+  const mediaVideoStack = (
+    <div className="brand-media-video-stack" style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: "4px", width: "100%" }}>
+      <div className="brand-media-video-cell" style={{ gridColumn: "1", gridRow: `1 / span ${photos.length}`, overflow: "hidden", background: "#f7f6f4" }}>
+        {video ? (
+          <ClickToPlayVideo src={video} poster={videoPoster} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        ) : (
+          <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "8px" }}>
+            <div style={{ width: "32px", height: "32px", border: "0.5px solid #aaa", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", color: "#888", fontSize: "20px", lineHeight: 1 }}>+</div>
+            <span style={{ fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#888" }}>Add video</span>
+          </div>
+        )}
+      </div>
+      {photos.map((photo, i) => (
+        <div key={i} className="brand-media-stack-photo" style={{ gridColumn: "2", aspectRatio: "3 / 4", overflow: "hidden", background: "#f7f6f4" }}>
+          <img
+            src={photo}
+            alt={`${title} ${i + 1}`}
+            loading="lazy"
+            decoding="async"
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          />
+        </div>
+      ))}
+    </div>
+  );
+
+  const mediaCol = (
+    <div className="brand-media-col" style={{ display: "flex", alignItems: "center" }}>
+      {layout === "video-stack" ? mediaVideoStack : mediaGrid}
+    </div>
+  );
+
+  if (mediaSide === "top") {
+    return (
+      <section className="brand-section" style={{ background: "#fff" }}>
+        {textBlockTop}
+        <div className="brand-media-top" style={{ maxWidth: "1300px", margin: "0 auto", padding: "0 3rem" }}>
+          {layout === "video-stack" ? mediaVideoStack : mediaGrid}
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="brand-section" style={{ background: "#fff" }}>
@@ -575,8 +661,22 @@ export default function App() {
             padding: 2.5rem 1.25rem !important;
             text-align: center !important;
           }
+          .brand-media-top {
+            padding: 0 1.25rem !important;
+          }
           .brand-media-grid {
             grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .brand-media-video-stack {
+            grid-template-columns: 1fr !important;
+          }
+          .brand-media-video-cell {
+            grid-column: 1 !important;
+            grid-row: auto !important;
+            aspect-ratio: 3 / 4;
+          }
+          .brand-media-stack-photo {
+            grid-column: 1 !important;
           }
           .closing-photo-grid {
             column-count: 2 !important;
@@ -693,8 +793,13 @@ export default function App() {
       {/* BRANDS */}
       <BrandsSection brands={brands} />
 
+      {/* JW PEI COLLAB */}
+      <BrandSplitSection {...jwpeiCollab} />
+
       {/* NAKD COLLAB */}
-      <BrandSplitSection {...nakdCollab} />
+      <div style={{ marginTop: "5rem" }}>
+        <BrandSplitSection {...nakdCollab} />
+      </div>
 
       {/* PORTFOLIO */}
       <section id="portfolio" className="portfolio-section" style={{ padding: "6rem 3rem 0", background: "#fff" }}>
