@@ -58,6 +58,7 @@ import NAKD26 from "./assets/NAKD26.png";
 import JWPEI1 from "./assets/JWPEI1.png";
 import JWPEI2 from "./assets/JWPEI2.png";
 import JWPEIlogo from "./assets/JWPEIlogo.png";
+import JWPEIbag from "./assets/JWPEIbag.mp4";
 
 
 
@@ -89,8 +90,7 @@ const jwpeiCollab = {
   label: "Accessories Collaboration",
   title: "JW PEI",
   photos: [JWPEI1, JWPEI2],
-  // No video file yet — drop it in /assets, import it above, then add
-  // `video: jwpei1` (and `videoPoster: ...` if you have a poster) here.
+  video: JWPEIbag,
   mediaSide: "left",
   layout: "video-stack",
 };
