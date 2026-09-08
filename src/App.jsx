@@ -59,6 +59,7 @@ import JWPEI1 from "./assets/JWPEI1.png";
 import JWPEI2 from "./assets/JWPEI2.png";
 import JWPEIlogo from "./assets/JWPEIlogo.png";
 import JWPEIbag from "./assets/JWPEIbag.mp4";
+import JWPEIbagPoster from "./assets/JWPEIbag-poster.jpg";
 
 
 
@@ -91,6 +92,7 @@ const jwpeiCollab = {
   title: "JW PEI",
   photos: [JWPEI1, JWPEI2],
   video: JWPEIbag,
+  videoPoster: JWPEIbagPoster,
   mediaSide: "left",
   layout: "video-stack",
 };
