@@ -57,7 +57,9 @@ import NAKD25 from "./assets/NAKD25.png";
 import NAKD26 from "./assets/NAKD26.png";
 import JWPEI1 from "./assets/JWPEI1.png";
 import JWPEI2 from "./assets/JWPEI2.png";
+import JWPEI3 from "./assets/JWPEI3.png";
 import JWPEIlogo from "./assets/JWPEIlogo.png";
+import WOWBROWlogo from "./assets/WOWBROWlogo.png";
 import JWPEIbag from "./assets/JWPEIbag.mp4";
 import JWPEIbagPoster from "./assets/JWPEIbag-poster.jpg";
 
@@ -90,7 +92,7 @@ const heroVideoPoster = kookaidressPoster;
 const jwpeiCollab = {
   label: "Accessories Collaboration",
   title: "JW PEI",
-  photos: [JWPEI1, JWPEI2],
+  photos: [JWPEI1, JWPEI2, JWPEI3],
   video: JWPEIbag,
   videoPoster: JWPEIbagPoster,
   mediaSide: "left",
@@ -123,7 +125,7 @@ const brands = [
   { name: "NA-KD", logo: NAKDlogo },
   { name: "Melle", logo: Mellelogo },
   { name: "JW PEI", logo: JWPEIlogo },
-  { name: "", logo: "" },
+  { name: "WOW Brow", logo: WOWBROWlogo },
 ];
 
 function BrandsSection({ brands }) {
