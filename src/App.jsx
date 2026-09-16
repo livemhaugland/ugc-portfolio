@@ -96,7 +96,7 @@ const jwpeiCollab = {
   video: JWPEIbag,
   videoPoster: JWPEIbagPoster,
   mediaSide: "left",
-  layout: "video-stack",
+  layout: "video-mosaic",
 };
 
 const nakdCollab = {
@@ -477,6 +477,9 @@ function HotelRow({ hotel }) {
  *  - "video-stack" — a large video on one side with the photos stacked
  *    vertically in a narrow column beside it (video always reserves
  *    its slot, showing an "Add video" placeholder until one is passed).
+ *  - "video-mosaic" — a compact, two-row version of the above: a smaller
+ *    portrait video beside two photos with a third wide photo below them,
+ *    for a section that takes up much less vertical space (e.g. JW PEI).
  * Same large-image, minimal-gap treatment as the hero photo row.
  */
 function BrandSplitSection({ label, title, photos, video, videoPoster, mediaSide, layout, largeIndices }) {
@@ -561,9 +564,57 @@ function BrandSplitSection({ label, title, photos, video, videoPoster, mediaSide
     </div>
   );
 
+  // "video-mosaic": compact two-row mosaic — a portrait video on the left
+  // (narrower than in "video-stack", so the section stays short) with two
+  // photos beside it on the top row and one wide photo under them. The
+  // column/row ratios are picked so the video cell lands near 3:5 — close
+  // to the native 9:16 clips, so the crop stays minimal.
+  const mediaVideoMosaic = (
+    <div className="brand-media-video-mosaic" style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr 1fr", gap: "4px", width: "100%" }}>
+      <div className="brand-media-mosaic-video" style={{ gridColumn: "1", gridRow: "1 / span 2", overflow: "hidden", background: "#f7f6f4" }}>
+        {video ? (
+          <ClickToPlayVideo src={video} poster={videoPoster} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        ) : (
+          <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "8px" }}>
+            <div style={{ width: "32px", height: "32px", border: "0.5px solid #aaa", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", color: "#888", fontSize: "20px", lineHeight: 1 }}>+</div>
+            <span style={{ fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#888" }}>Add video</span>
+          </div>
+        )}
+      </div>
+      {photos.map((photo, i) => {
+        // First two photos sit side by side on the top row, the third spans
+        // both columns underneath; any extra photos just flow on after it.
+        const isWide = i === 2;
+        return (
+          <div
+            key={i}
+            className={isWide ? "brand-media-mosaic-wide" : "brand-media-mosaic-photo"}
+            style={{
+              gridColumn: isWide ? "2 / span 2" : "auto",
+              aspectRatio: isWide ? "3 / 2" : "3 / 4",
+              overflow: "hidden",
+              background: "#f7f6f4",
+            }}
+          >
+            <img
+              src={photo}
+              alt={`${title} ${i + 1}`}
+              loading="lazy"
+              decoding="async"
+              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            />
+          </div>
+        );
+      })}
+    </div>
+  );
+
+  const mediaByLayout =
+    layout === "video-stack" ? mediaVideoStack : layout === "video-mosaic" ? mediaVideoMosaic : mediaGrid;
+
   const mediaCol = (
     <div className="brand-media-col" style={{ display: "flex", alignItems: "center" }}>
-      {layout === "video-stack" ? mediaVideoStack : mediaGrid}
+      {mediaByLayout}
     </div>
   );
 
@@ -572,7 +623,7 @@ function BrandSplitSection({ label, title, photos, video, videoPoster, mediaSide
       <section className="brand-section" style={{ background: "#fff" }}>
         {textBlockTop}
         <div className="brand-media-top" style={{ maxWidth: "1300px", margin: "0 auto", padding: "0 3rem" }}>
-          {layout === "video-stack" ? mediaVideoStack : mediaGrid}
+          {mediaByLayout}
         </div>
       </section>
     );
@@ -681,6 +732,17 @@ export default function App() {
           }
           .brand-media-stack-photo {
             grid-column: 1 !important;
+          }
+          .brand-media-video-mosaic {
+            grid-template-columns: 1fr 1fr !important;
+          }
+          .brand-media-mosaic-video {
+            grid-column: 1 / span 2 !important;
+            grid-row: auto !important;
+            aspect-ratio: 3 / 4;
+          }
+          .brand-media-mosaic-wide {
+            grid-column: 1 / span 2 !important;
           }
           .closing-photo-grid {
             column-count: 2 !important;
