@@ -48,7 +48,6 @@ import beauty5Poster from "./assets/Beauty5-poster.jpg";
 import beauty4Poster from "./assets/Beauty4-poster.jpg";
 import mellevid2Poster from "./assets/Mellevid2-poster.jpg";
 import hotel2Poster from "./assets/Hotel2-poster.jpg";
-import mellevid1Poster from "./assets/Mellevid1-poster.jpg";
 import NAKD21 from "./assets/NAKD21.png";
 import NAKD22 from "./assets/NAKD22.png";
 import NAKD23 from "./assets/NAKD23.png";
@@ -115,9 +114,10 @@ const jwpeiMelleDuo = {
     {
       title: "MELLE",
       caption: "MELLE Collab",
-      photos: [Melle, Melle2, photo7],
+      photos: [Melle, photo7],
       video: Mellevid1,
-      videoPoster: mellevid1Poster,
+      videoPoster: Melle2,
+      layout: "video-row",
     },
   ],
 };
