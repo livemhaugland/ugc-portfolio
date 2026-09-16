@@ -76,7 +76,7 @@ import JWPEIbag from "./assets/JWPEIbag.mp4";
 const categories = [
   { id: "fashion", title: "Fashion", desc: "Elevated styling" },
   { id: "beauty", title: "Beauty", desc: "Skin health, routines & soft glam" },
-  { id: "wellness", title: "Wellness", desc: "Mindful living" },
+  { id: "wellness", title: "Lifestyle", desc: "Mindful living" },
 ];
 
 const hotels = [
