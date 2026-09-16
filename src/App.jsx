@@ -90,18 +90,6 @@ const heroVideoPoster = kookaidressPoster;
 // ── BRAND COLLABS ──
 // Split-seksjoner (samme mønster som hero-seksjonen): tekst på én side, bilde/video-grid på den andre.
 // "photos" kan utvides med flere bilder når som helst — gridet flyter automatisk (auto-flow).
-const jwpeiCollab = {
-  label: "Accessories Collaboration",
-  title: "JW PEI",
-  photos: [JWPEI1, JWPEI2],
-  video: JWPEIbag,
-  videoPoster: JWPEI3,
-  mediaSide: "bottom",
-  layout: "video-row",
-  background: "#f7f6f4",
-  mediaMaxWidth: "640px",
-};
-
 const nakdCollab = {
   label: "Fashion Collaboration",
   title: "NA-KD",
@@ -111,13 +99,27 @@ const nakdCollab = {
   largeIndices: [1, 7],
 };
 
-const melleCollab = {
-  label: "Beauty Collaboration",
-  title: "MELLE",
-  photos: [Melle, Melle2, photo7],
-  video: Mellevid1,
-  videoPoster: mellevid1Poster,
-  mediaSide: "left",
+// JW PEI + MELLE share one beige band, side by side, each with just a
+// small caption underneath instead of their own full section.
+const jwpeiMelleDuo = {
+  background: "#f7f6f4",
+  items: [
+    {
+      title: "JW PEI",
+      caption: "JW PEI Collab",
+      photos: [JWPEI1, JWPEI2],
+      video: JWPEIbag,
+      videoPoster: JWPEI3,
+      layout: "video-row",
+    },
+    {
+      title: "MELLE",
+      caption: "MELLE Collab",
+      photos: [Melle, Melle2, photo7],
+      video: Mellevid1,
+      videoPoster: mellevid1Poster,
+    },
+  ],
 };
 
 // ── BRANDS I'VE WORKED WITH ──
@@ -466,19 +468,9 @@ function HotelRow({ hotel }) {
 }
 
 /**
- * BrandSplitSection
- * `mediaSide` controls the overall arrangement: "right" (e.g. MELLE)
- * mirrors the hero's text-left/media-right split layout, "left" flips
- * it, "top" stacks a centered text block above a full-width media area
- * (e.g. NA-KD), and "bottom" is the same arrangement with the centered
- * text block below the media instead (e.g. JW PEI) — either way it
- * replaces the two-column split. `mediaMaxWidth` caps how wide that
- * media area gets (defaults to 1300px, full-bleed within the page's
- * padding) — pass a smaller value to keep a "top"/"bottom" section from
- * spanning the full width (e.g. JW PEI's narrower, centered media row).
- * `background` sets the section's own background color (defaults to
- * white; JW PEI uses the hero's beige-gray to set it apart as a block).
- * `layout` picks the media arrangement:
+ * CollabMedia
+ * Renders a brand collab's photos (and optional video) in one of two
+ * arrangements, shared between BrandSplitSection and BrandDuoSection:
  *  - (default) an auto-flow CSS grid (repeat(auto-fill, minmax(...)))
  *    so `photos` can grow to any length without touching the layout —
  *    cells just keep wrapping into new rows. If a `video` is passed,
@@ -491,30 +483,36 @@ function HotelRow({ hotel }) {
  *    rather than the dominant element (e.g. JW PEI).
  * Same large-image, minimal-gap treatment as the hero photo row.
  */
-function BrandSplitSection({ label, title, photos, video, videoPoster, mediaSide, layout, largeIndices, background = "#fff", mediaMaxWidth = "1300px" }) {
-  const textCol = (
-    <div className="brand-text-col" style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "3rem 4rem" }}>
-      <p style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#888", marginBottom: "1.5rem" }}>
-        {label}
-      </p>
-      <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(30px, 3.6vw, 48px)", fontWeight: 300, lineHeight: 1.1, letterSpacing: "0.01em" }}>
-        {title}
-      </h3>
-    </div>
-  );
+function CollabMedia({ photos, video, videoPoster, layout, largeIndices, title }) {
+  if (layout === "video-row") {
+    return (
+      <div className="brand-media-video-row" style={{ display: "flex", gap: "4px", width: "100%" }}>
+        <div className="brand-media-row-cell" style={{ flex: "1 1 0", aspectRatio: "3 / 4", overflow: "hidden", background: "#f7f6f4" }}>
+          {video ? (
+            <ClickToPlayVideo src={video} poster={videoPoster} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          ) : (
+            <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "8px" }}>
+              <div style={{ width: "32px", height: "32px", border: "0.5px solid #aaa", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", color: "#888", fontSize: "20px", lineHeight: 1 }}>+</div>
+              <span style={{ fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#888" }}>Add video</span>
+            </div>
+          )}
+        </div>
+        {photos.map((photo, i) => (
+          <div key={i} className="brand-media-row-cell" style={{ flex: "1 1 0", aspectRatio: "3 / 4", overflow: "hidden", background: "#f7f6f4" }}>
+            <img
+              src={photo}
+              alt={`${title} ${i + 1}`}
+              loading="lazy"
+              decoding="async"
+              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            />
+          </div>
+        ))}
+      </div>
+    );
+  }
 
-  const textBlockTop = (
-    <div className="brand-text-top" style={{ textAlign: "center", padding: "3.5rem 1.25rem 2rem" }}>
-      <p style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#888", marginBottom: "1rem" }}>
-        {label}
-      </p>
-      <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(30px, 3.6vw, 48px)", fontWeight: 300, lineHeight: 1.1, letterSpacing: "0.01em" }}>
-        {title}
-      </h3>
-    </div>
-  );
-
-  const mediaGrid = (
+  return (
     <div className="brand-media-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gridAutoFlow: "dense", gap: "4px", width: "100%" }}>
       {video && (
         <div style={{ gridColumn: "span 2", gridRow: "span 2", aspectRatio: "3 / 4", overflow: "hidden", background: "#f7f6f4" }}>
@@ -546,66 +544,59 @@ function BrandSplitSection({ label, title, photos, video, videoPoster, mediaSide
       })}
     </div>
   );
+}
 
-  const mediaVideoRow = (
-    <div className="brand-media-video-row" style={{ display: "flex", gap: "4px", width: "100%" }}>
-      <div className="brand-media-row-cell" style={{ flex: "1 1 0", aspectRatio: "3 / 4", overflow: "hidden", background: "#f7f6f4" }}>
-        {video ? (
-          <ClickToPlayVideo src={video} poster={videoPoster} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-        ) : (
-          <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "8px" }}>
-            <div style={{ width: "32px", height: "32px", border: "0.5px solid #aaa", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", color: "#888", fontSize: "20px", lineHeight: 1 }}>+</div>
-            <span style={{ fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#888" }}>Add video</span>
-          </div>
-        )}
-      </div>
-      {photos.map((photo, i) => (
-        <div key={i} className="brand-media-row-cell" style={{ flex: "1 1 0", aspectRatio: "3 / 4", overflow: "hidden", background: "#f7f6f4" }}>
-          <img
-            src={photo}
-            alt={`${title} ${i + 1}`}
-            loading="lazy"
-            decoding="async"
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-          />
-        </div>
-      ))}
+/**
+ * BrandSplitSection
+ * `mediaSide` controls the overall arrangement: "right" (e.g. MELLE used
+ * to) mirrors the hero's text-left/media-right split layout, "left" flips
+ * it, and "top" stacks a centered text block above a full-width media area
+ * (e.g. NA-KD) instead of splitting into two columns.
+ */
+function BrandSplitSection({ label, title, photos, video, videoPoster, mediaSide, layout, largeIndices }) {
+  const textCol = (
+    <div className="brand-text-col" style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "3rem 4rem" }}>
+      <p style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#888", marginBottom: "1.5rem" }}>
+        {label}
+      </p>
+      <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(30px, 3.6vw, 48px)", fontWeight: 300, lineHeight: 1.1, letterSpacing: "0.01em" }}>
+        {title}
+      </h3>
     </div>
   );
 
-  const mediaByLayout = layout === "video-row" ? mediaVideoRow : mediaGrid;
+  const textBlockTop = (
+    <div className="brand-text-top" style={{ textAlign: "center", padding: "3.5rem 1.25rem 2rem" }}>
+      <p style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#888", marginBottom: "1rem" }}>
+        {label}
+      </p>
+      <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(30px, 3.6vw, 48px)", fontWeight: 300, lineHeight: 1.1, letterSpacing: "0.01em" }}>
+        {title}
+      </h3>
+    </div>
+  );
+
+  const media = <CollabMedia photos={photos} video={video} videoPoster={videoPoster} layout={layout} largeIndices={largeIndices} title={title} />;
 
   const mediaCol = (
     <div className="brand-media-col" style={{ display: "flex", alignItems: "center" }}>
-      {mediaByLayout}
+      {media}
     </div>
   );
 
-  if (mediaSide === "top" || mediaSide === "bottom") {
-    const mediaBlock = (
-      <div className="brand-media-top" style={{ maxWidth: mediaMaxWidth, margin: "0 auto", padding: "0 3rem" }}>
-        {mediaByLayout}
-      </div>
-    );
+  if (mediaSide === "top") {
     return (
-      <section className="brand-section" style={{ background, padding: "4rem 0" }}>
-        {mediaSide === "top" ? (
-          <>
-            {textBlockTop}
-            {mediaBlock}
-          </>
-        ) : (
-          <>
-            {mediaBlock}
-            {textBlockTop}
-          </>
-        )}
+      <section className="brand-section" style={{ background: "#fff" }}>
+        {textBlockTop}
+        <div className="brand-media-top" style={{ maxWidth: "1300px", margin: "0 auto", padding: "0 3rem" }}>
+          {media}
+        </div>
       </section>
     );
   }
 
   return (
-    <section className="brand-section" style={{ background }}>
+    <section className="brand-section" style={{ background: "#fff" }}>
       <div className="brand-split" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: "420px" }}>
         {mediaSide === "left" ? (
           <>
@@ -618,6 +609,29 @@ function BrandSplitSection({ label, title, photos, video, videoPoster, mediaSide
             {mediaCol}
           </>
         )}
+      </div>
+    </section>
+  );
+}
+
+/**
+ * BrandDuoSection
+ * Two collab media blocks side by side inside one shared background band,
+ * each with just a small "<Brand> Collab" caption underneath — for brands
+ * that don't need their own full-width section (e.g. JW PEI + MELLE).
+ */
+function BrandDuoSection({ background = "#fff", items }) {
+  return (
+    <section className="brand-duo-section" style={{ background, padding: "4rem 3rem" }}>
+      <div className="brand-duo-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", maxWidth: "1200px", margin: "0 auto" }}>
+        {items.map((item, i) => (
+          <div key={i} className="brand-duo-item">
+            <CollabMedia photos={item.photos} video={item.video} videoPoster={item.videoPoster} layout={item.layout} largeIndices={item.largeIndices} title={item.title} />
+            <p style={{ textAlign: "center", marginTop: "1.25rem", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#888" }}>
+              {item.caption}
+            </p>
+          </div>
+        ))}
       </div>
     </section>
   );
@@ -696,6 +710,13 @@ export default function App() {
           }
           .brand-media-grid {
             grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .brand-duo-section {
+            padding: 3rem 1.25rem !important;
+          }
+          .brand-duo-grid {
+            grid-template-columns: 1fr !important;
+            gap: 2.5rem !important;
           }
           .closing-photo-grid {
             column-count: 2 !important;
@@ -812,8 +833,8 @@ export default function App() {
       {/* BRANDS */}
       <BrandsSection brands={brands} />
 
-      {/* JW PEI COLLAB */}
-      <BrandSplitSection {...jwpeiCollab} />
+      {/* JW PEI + MELLE COLLAB */}
+      <BrandDuoSection {...jwpeiMelleDuo} />
 
       {/* NAKD COLLAB */}
       <div style={{ marginTop: "5rem" }}>
@@ -832,9 +853,6 @@ export default function App() {
           </div>
         ))}
       </section>
-
-      {/* MELLE COLLAB */}
-      <BrandSplitSection {...melleCollab} />
 
       <section className="portfolio-section" style={{ padding: "5rem 3rem 6rem", background: "#fff" }}>
         {categories.filter((cat) => cat.id !== "fashion").map((cat) => (
