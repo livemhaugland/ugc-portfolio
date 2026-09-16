@@ -98,6 +98,8 @@ const jwpeiCollab = {
   videoPoster: JWPEI3,
   mediaSide: "bottom",
   layout: "video-row",
+  background: "#f7f6f4",
+  mediaMaxWidth: "640px",
 };
 
 const nakdCollab = {
@@ -468,9 +470,14 @@ function HotelRow({ hotel }) {
  * `mediaSide` controls the overall arrangement: "right" (e.g. MELLE)
  * mirrors the hero's text-left/media-right split layout, "left" flips
  * it, "top" stacks a centered text block above a full-width media area
- * (e.g. NA-KD), and "bottom" is the same full-width media area with the
- * centered text block below it instead (e.g. JW PEI) — either way it
- * replaces the two-column split.
+ * (e.g. NA-KD), and "bottom" is the same arrangement with the centered
+ * text block below the media instead (e.g. JW PEI) — either way it
+ * replaces the two-column split. `mediaMaxWidth` caps how wide that
+ * media area gets (defaults to 1300px, full-bleed within the page's
+ * padding) — pass a smaller value to keep a "top"/"bottom" section from
+ * spanning the full width (e.g. JW PEI's narrower, centered media row).
+ * `background` sets the section's own background color (defaults to
+ * white; JW PEI uses the hero's beige-gray to set it apart as a block).
  * `layout` picks the media arrangement:
  *  - (default) an auto-flow CSS grid (repeat(auto-fill, minmax(...)))
  *    so `photos` can grow to any length without touching the layout —
@@ -484,7 +491,7 @@ function HotelRow({ hotel }) {
  *    rather than the dominant element (e.g. JW PEI).
  * Same large-image, minimal-gap treatment as the hero photo row.
  */
-function BrandSplitSection({ label, title, photos, video, videoPoster, mediaSide, layout, largeIndices }) {
+function BrandSplitSection({ label, title, photos, video, videoPoster, mediaSide, layout, largeIndices, background = "#fff", mediaMaxWidth = "1300px" }) {
   const textCol = (
     <div className="brand-text-col" style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "3rem 4rem" }}>
       <p style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#888", marginBottom: "1.5rem" }}>
@@ -576,12 +583,12 @@ function BrandSplitSection({ label, title, photos, video, videoPoster, mediaSide
 
   if (mediaSide === "top" || mediaSide === "bottom") {
     const mediaBlock = (
-      <div className="brand-media-top" style={{ maxWidth: "1300px", margin: "0 auto", padding: "0 3rem" }}>
+      <div className="brand-media-top" style={{ maxWidth: mediaMaxWidth, margin: "0 auto", padding: "0 3rem" }}>
         {mediaByLayout}
       </div>
     );
     return (
-      <section className="brand-section" style={{ background: "#fff" }}>
+      <section className="brand-section" style={{ background, padding: "4rem 0" }}>
         {mediaSide === "top" ? (
           <>
             {textBlockTop}
@@ -598,7 +605,7 @@ function BrandSplitSection({ label, title, photos, video, videoPoster, mediaSide
   }
 
   return (
-    <section className="brand-section" style={{ background: "#fff" }}>
+    <section className="brand-section" style={{ background }}>
       <div className="brand-split" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: "420px" }}>
         {mediaSide === "left" ? (
           <>
