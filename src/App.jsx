@@ -54,6 +54,9 @@ import NAKD23 from "./assets/NAKD23.png";
 import NAKD24 from "./assets/NAKD24.png";
 import NAKD25 from "./assets/NAKD25.png";
 import NAKD26 from "./assets/NAKD26.png";
+import NAKD31 from "./assets/NAKD31.png";
+import NAKD32 from "./assets/NAKD32.png";
+import NAKD33 from "./assets/NAKD33.png";
 import JWPEI1 from "./assets/JWPEI1.png";
 import JWPEI2 from "./assets/JWPEI2.png";
 import JWPEI3 from "./assets/JWPEI3.png";
@@ -92,8 +95,8 @@ const heroVideoPoster = kookaidressPoster;
 const nakdCollab = {
   label: "Fashion Collaboration",
   title: "NA-KD",
-  photos: [NAKDp1, NAKDp2, NAKDp3, NAKDp5, NAKDp6, NAKDp7, NAKD21, NAKD24, NAKD23, NAKD22, NAKD26, NAKD25],
-  mediaSide: "top",
+  photos: [NAKDp1, NAKDp2, NAKDp3, NAKDp5, NAKDp6, NAKDp7, NAKD21, NAKD24, NAKD23, NAKD22, NAKD26, NAKD25, NAKD31, NAKD32, NAKD33],
+  mediaSide: "bottom",
   layout: "asymmetric",
   largeIndices: [1, 7],
 };
@@ -550,8 +553,8 @@ function CollabMedia({ photos, video, videoPoster, layout, largeIndices, title }
  * BrandSplitSection
  * `mediaSide` controls the overall arrangement: "right" (e.g. MELLE used
  * to) mirrors the hero's text-left/media-right split layout, "left" flips
- * it, and "top" stacks a centered text block above a full-width media area
- * (e.g. NA-KD) instead of splitting into two columns.
+ * it, and "bottom" stacks a full-width media area with a centered text
+ * block underneath it (e.g. NA-KD) instead of splitting into two columns.
  */
 function BrandSplitSection({ label, title, photos, video, videoPoster, mediaSide, layout, largeIndices }) {
   const textCol = (
@@ -566,7 +569,7 @@ function BrandSplitSection({ label, title, photos, video, videoPoster, mediaSide
   );
 
   const textBlockTop = (
-    <div className="brand-text-top" style={{ textAlign: "center", padding: "3.5rem 1.25rem 2rem" }}>
+    <div className="brand-text-top" style={{ textAlign: "center", padding: "2rem 1.25rem 3.5rem" }}>
       <p style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#888", marginBottom: "1rem" }}>
         {label}
       </p>
@@ -584,13 +587,13 @@ function BrandSplitSection({ label, title, photos, video, videoPoster, mediaSide
     </div>
   );
 
-  if (mediaSide === "top") {
+  if (mediaSide === "bottom") {
     return (
       <section className="brand-section" style={{ background: "#fff" }}>
-        {textBlockTop}
         <div className="brand-media-top" style={{ maxWidth: "1300px", margin: "0 auto", padding: "0 3rem" }}>
           {media}
         </div>
+        {textBlockTop}
       </section>
     );
   }
