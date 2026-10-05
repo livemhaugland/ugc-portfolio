@@ -66,6 +66,7 @@ import AWYROWlogo from "./assets/AWYROWlogo.png";
 import Bosantlogo from "./assets/Bosantlogo.png";
 import JWPEIbag from "./assets/JWPEIbag.mp4";
 import AWYROWvid from "./assets/AWYROWvid.mp4";
+import TheNAPvid from "./assets/TheNAPvid.mp4";
 
 
 
@@ -373,7 +374,7 @@ const SLOTS = 8;
 const videos = {
   fashion: [kookaiDress, nakd1, fashion2, nakd2, fashion3, "", "", ""],
   beauty: [Mellevid2, beauty4, beauty5, "", "", "", "", ""],
-  lifestyle: [AWYROWvid, "", "", "", "", "", "", ""],
+  lifestyle: [AWYROWvid, TheNAPvid, "", "", "", "", "", ""],
 };
 
 // Poster-bilde (thumbnail) for hver video over — vises før play trykkes, samme rekkefølge som "videos".
@@ -387,7 +388,7 @@ const videoPosters = {
 const captions = {
   fashion: ["Kookai dress", "NA-KD collab", "Everyday styling", "NA-KD collab", "Fashion edit", "", "", ""],
   beauty: ["MELLE collab", "Product shots", "Product shots", "Get ready with me", "", "", "", ""],
-  lifestyle: ["AWYROW collab", "", "", "", "", "", "", ""],
+  lifestyle: ["AWYROW collab", "The NAP collab", "", "", "", "", "", ""],
 };
 
 function VideoRow({ category }) {
