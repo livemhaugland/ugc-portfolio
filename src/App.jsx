@@ -67,6 +67,8 @@ import Bosantlogo from "./assets/Bosantlogo.png";
 import JWPEIbag from "./assets/JWPEIbag.mp4";
 import AWYROWvid from "./assets/AWYROWvid.mp4";
 import TheNAPvid from "./assets/TheNAPvid.mp4";
+import AWYROWvidPoster from "./assets/AWYROWvid-poster.jpg";
+import TheNAPvidPoster from "./assets/TheNAPvid-poster.jpg";
 
 
 
@@ -381,7 +383,7 @@ const videos = {
 const videoPosters = {
   fashion: [kookaidressPoster, nakd1Poster, fashion2Poster, nakd2Poster, fashion3Poster, "", "", ""],
   beauty: [mellevid2Poster, beauty4Poster, beauty5Poster, "", "", "", "", ""],
-  lifestyle: ["", "", "", "", "", "", "", ""],
+  lifestyle: [AWYROWvidPoster, TheNAPvidPoster, "", "", "", "", "", ""],
 };
 
 // Undertekst under hver video i portfolio-radene. Bytt ut med dine egne tekster.
