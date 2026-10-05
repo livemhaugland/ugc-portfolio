@@ -65,6 +65,7 @@ import WOWBROWlogo from "./assets/WOWBROWlogo.png";
 import AWYROWlogo from "./assets/AWYROWlogo.png";
 import Bosantlogo from "./assets/Bosantlogo.png";
 import JWPEIbag from "./assets/JWPEIbag.mp4";
+import AWYROWvid from "./assets/AWYROWvid.mp4";
 
 
 
@@ -76,7 +77,7 @@ import JWPEIbag from "./assets/JWPEIbag.mp4";
 const categories = [
   { id: "fashion", title: "Fashion", desc: "Elevated styling" },
   { id: "beauty", title: "Beauty", desc: "Skin health, routines & soft glam" },
-  { id: "wellness", title: "Lifestyle", desc: "Mindful living" },
+  { id: "lifestyle", title: "Lifestyle", desc: "Mindful living" },
 ];
 
 const hotels = [
@@ -372,21 +373,21 @@ const SLOTS = 8;
 const videos = {
   fashion: [kookaiDress, nakd1, fashion2, nakd2, fashion3, "", "", ""],
   beauty: [Mellevid2, beauty4, beauty5, "", "", "", "", ""],
-  wellness: ["", "", "", "", "", "", "", ""],
+  lifestyle: [AWYROWvid, "", "", "", "", "", "", ""],
 };
 
 // Poster-bilde (thumbnail) for hver video over — vises før play trykkes, samme rekkefølge som "videos".
 const videoPosters = {
   fashion: [kookaidressPoster, nakd1Poster, fashion2Poster, nakd2Poster, fashion3Poster, "", "", ""],
   beauty: [mellevid2Poster, beauty4Poster, beauty5Poster, "", "", "", "", ""],
-  wellness: ["", "", "", "", "", "", "", ""],
+  lifestyle: ["", "", "", "", "", "", "", ""],
 };
 
 // Undertekst under hver video i portfolio-radene. Bytt ut med dine egne tekster.
 const captions = {
   fashion: ["Kookai dress", "NA-KD collab", "Everyday styling", "NA-KD collab", "Fashion edit", "", "", ""],
   beauty: ["MELLE collab", "Product shots", "Product shots", "Get ready with me", "", "", "", ""],
-  wellness: ["", "", "", "", "", "", "", ""],
+  lifestyle: ["AWYROW collab", "", "", "", "", "", "", ""],
 };
 
 function VideoRow({ category }) {
