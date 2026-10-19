@@ -65,7 +65,6 @@ import JWPEI3 from "./assets/JWPEI3.png";
 import JWPEIlogo from "./assets/JWPEIlogo.png";
 import WOWBROWlogo from "./assets/WOWBROWlogo.png";
 import AWYROWlogo from "./assets/AWYROWlogo.png";
-import Bosantlogo from "./assets/Bosantlogo.png";
 import CARECOPENHAGENlogo from "./assets/CARECOPENHAGENlogo.png";
 import JWPEIbag from "./assets/JWPEIbag.mp4";
 import AWYROWvid from "./assets/AWYROWvid.mp4";
@@ -142,7 +141,6 @@ const brands = [
   { name: "JW PEI", logo: JWPEIlogo },
   { name: "WOW Brow", logo: WOWBROWlogo },
   { name: "AWYROW", logo: AWYROWlogo },
-  { name: "Bosant", logo: Bosantlogo },
   { name: "Care Copenhagen", logo: CARECOPENHAGENlogo },
 ];
 
