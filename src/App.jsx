@@ -39,6 +39,8 @@ import Melle from "./assets/Melle.png";
 import Melle2 from "./assets/Melle2.png";
 import Mellevid1 from "./assets/Mellevid1.mp4";
 import Mellevid2 from "./assets/Mellevid2.mp4";
+import melle2 from "./assets/melle2.mp4";
+import carecopenhagen from "./assets/carecopenhagen.mp4";
 import kookaidressPoster from "./assets/Kookaidress-poster.jpg";
 import nakd1Poster from "./assets/NAKD1-poster.jpg";
 import fashion2Poster from "./assets/Fashion2-poster.jpg";
@@ -375,21 +377,21 @@ const SLOTS = 8;
 
 const videos = {
   fashion: [kookaiDress, nakd1, fashion2, nakd2, fashion3, "", "", ""],
-  beauty: [Mellevid2, beauty4, beauty5, "", "", "", "", ""],
+  beauty: [carecopenhagen, melle2, Mellevid2, beauty4, beauty5, "", "", ""],
   lifestyle: [AWYROWvid, TheNAPvid, "", "", "", "", "", ""],
 };
 
 // Poster-bilde (thumbnail) for hver video over — vises før play trykkes, samme rekkefølge som "videos".
 const videoPosters = {
   fashion: [kookaidressPoster, nakd1Poster, fashion2Poster, nakd2Poster, fashion3Poster, "", "", ""],
-  beauty: [mellevid2Poster, beauty4Poster, beauty5Poster, "", "", "", "", ""],
+  beauty: ["", "", mellevid2Poster, beauty4Poster, beauty5Poster, "", "", ""],
   lifestyle: [AWYROWvidPoster, TheNAPvidPoster, "", "", "", "", "", ""],
 };
 
 // Undertekst under hver video i portfolio-radene. Bytt ut med dine egne tekster.
 const captions = {
   fashion: ["Kookai dress", "NA-KD collab", "Everyday styling", "NA-KD collab", "Fashion edit", "", "", ""],
-  beauty: ["MELLE collab", "Product shots", "Product shots", "Get ready with me", "", "", "", ""],
+  beauty: ["Care Copenhagen collab", "MELLE collab", "MELLE collab", "Product shots", "Product shots", "Get ready with me", "", ""],
   lifestyle: ["AWYROW collab", "The NAP collab", "", "", "", "", "", ""],
 };
 
