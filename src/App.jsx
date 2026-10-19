@@ -798,7 +798,7 @@ export default function App() {
               Live Marie Haugland
             </h1>
             <p style={{ marginTop: "2rem", fontSize: "14px", lineHeight: 1.9, color: "#555", maxWidth: "420px" }}>
-              Norwegian creator, Instagram at heart. Photos, reels, stories — I know how to turn all three into a feed with a red thread and a feeling. My focus is fashion and beauty: the aesthetics, the details, the inspiration.
+              Norwegian creator, Instagram at heart. Photos, reels, stories — I know how to turn all three into a feed with a red thread and a feeling. My focus is fashion, hotels and lifestyle: the aesthetics, the details, the inspiration.
             </p>
             <div style={{ display: "flex", gap: "1.5rem", marginTop: "2rem" }}>
               <a href="https://instagram.com/livemhaugland" target="_blank" rel="noreferrer" aria-label="Instagram" style={{ color: "#111", transition: "color 0.2s" }}
