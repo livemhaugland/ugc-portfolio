@@ -49,6 +49,8 @@ import fashion3Poster from "./assets/Fashion3-poster.jpg";
 import beauty5Poster from "./assets/Beauty5-poster.jpg";
 import beauty4Poster from "./assets/Beauty4-poster.jpg";
 import mellevid2Poster from "./assets/Mellevid2-poster.jpg";
+import melle2Poster from "./assets/melle2-poster.jpg";
+import carecopenhagenPoster from "./assets/carecopenhagen-poster.jpg";
 import hotel2Poster from "./assets/Hotel2-poster.jpg";
 import NAKD21 from "./assets/NAKD21.png";
 import NAKD22 from "./assets/NAKD22.png";
@@ -69,7 +71,7 @@ import CARECOPENHAGENlogo from "./assets/CARECOPENHAGENlogo.png";
 import JWPEIbag from "./assets/JWPEIbag.mp4";
 import AWYROWvid from "./assets/AWYROWvid.mp4";
 import TheNAPvid from "./assets/TheNAPvid.mp4";
-import AWYROWvidPoster from "./assets/AWYROWvid-poster.jpg";
+import AWYROWvidPoster from "./assets/awyrow-poster.jpg";
 import TheNAPvidPoster from "./assets/TheNAPvid-poster.jpg";
 
 
@@ -384,7 +386,7 @@ const videos = {
 // Poster-bilde (thumbnail) for hver video over — vises før play trykkes, samme rekkefølge som "videos".
 const videoPosters = {
   fashion: [kookaidressPoster, nakd1Poster, fashion2Poster, nakd2Poster, fashion3Poster, "", "", ""],
-  beauty: ["", "", mellevid2Poster, beauty4Poster, beauty5Poster, "", "", ""],
+  beauty: [carecopenhagenPoster, melle2Poster, mellevid2Poster, beauty4Poster, beauty5Poster, "", "", ""],
   lifestyle: [AWYROWvidPoster, TheNAPvidPoster, "", "", "", "", "", ""],
 };
 
